@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="194.68" height="526.68" viewBox="0 0 194.68 526.68">
+  <defs>
+    <filter id="Rectangle" x="-12" y="-10" width="218.68" height="550.68" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.133"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectangle)">
+        <rect id="Rectangle-2" data-name="Rectangle" width="194.679" height="526.68" rx="8" transform="translate(282 293)" fill="#fff"/>
+      </g>
+    </clipPath>
+  </defs>
+  <g id="Enmascarar_grupo_8" data-name="Enmascarar grupo 8" transform="translate(-282 -293)" clip-path="url(#clip-path)">
+    <path id="Trazado_17" data-name="Trazado 17" d="M327.925,226.883,165.443,0H8.513L192.832,257.6,0,526.68H156.931L327.925,287.953Z" transform="translate(148.868 293)" fill="#f0f0f7" opacity="0.4"/>
+  </g>
+</svg>

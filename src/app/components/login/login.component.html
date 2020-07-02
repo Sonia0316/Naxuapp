@@ -1,0 +1,57 @@
+<div class="img_derecha">
+	<img src="assets/img/logo-login-naxu.svg" alt="logo naxu" class="logoLoginDesk">
+	<img src="assets/img/logo_naxu.svg" alt="logo naxu movil" class="logoLoginMovil">
+</div>
+ <div class="main row align-items-center justify-content-center vh-100">
+	<div class="col-12 col-md-10 col-lg-10 col-xl-8">
+
+		<div class="logoLoginCompany">
+			<img alt="Company Name" src="assets/img/companyname_loging.svg">
+		</div>
+	   <div class="login-form">
+
+		  <form [formGroup]="userForm" (submit)="CheckUser()">
+			 <div class="form-group">
+				<label>Correo</label>
+				<input type="text" class="form-control" formControlName="email" id="email" >
+				<control-messages [control]="userForm.get('email')"></control-messages>
+
+			 </div>
+			 <div class="form-group">
+				<label>Contraseña</label>
+				<input type="password" class="form-control" formControlName="password" id="password" >
+				<control-messages [control]="userForm.get('password')"></control-messages>
+			 </div>
+
+			 <div class="row">
+				 <div class="col-md-6">
+					<label class="control control-checkbox">
+						Recordar contraseña
+						<input type="checkbox" />
+						<div class="control_indicator"></div>
+					</label>
+				 </div>
+
+				 <div class="col-md-6">
+					<div class="form-group">
+						<a href="recupera_pass.html" target="_blank">¿Olvidaste tu contraseña?</a>
+					 </div>
+				 </div>
+
+			</div>
+			<br><br>
+
+			<div class="row">
+				<div class="col-md-6">
+						<!--<a  routerLink="home" class="btn btn-block btn-lg btn-primary" target="_self">Entrar</a>-->
+					<input  type="submit"  [disabled]="!userForm.valid" class="btn btn-block btn-lg btn-primary" value="Entrar" >
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<br>
+			 <p class="enlaceRegAqu">¿No tienes cuenta? <a (click)="FlagRegistro()"  target="_blank">Regístrate aquí</a></p>
+
+		  </form>
+	   </div>
+	</div>
+ </div>

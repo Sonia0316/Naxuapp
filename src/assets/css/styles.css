@@ -1,0 +1,2290 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: #f0f0f7;
+}
+
+p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+i,
+span {
+    display: inline-block;
+}
+
+.spaCbz {
+    margin: 0 0 5% 0;
+}
+
+.spaCbzPrest {
+    margin-top: 20px;
+}
+
+.spaCbzSeg {
+    margin: 0;
+}
+
+/* ---------------------------------------------------
+    menÃº lateral
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 188px;
+    max-width: 188px;
+    background: #43425d;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -188px;
+}
+
+/*
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+*/
+
+#sidebar.active .sidebar-header h3,
+#sidebar.active .CTAs {
+    display: none;
+}
+
+#sidebar.active .sidebar-header .logo_movil {
+    display: block;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar.active ul li a {
+    padding: 20px 10px;
+    text-align: left;
+    font-size: 0.85em;
+}
+
+#sidebar.active ul li a i {
+    margin-right: 0;
+    display: block;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+#sidebar.active ul ul a {
+    padding: 10px !important;
+}
+
+#sidebar.active .dropdown-toggle:after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
+
+#sidebar .sidebar-header {
+    padding: 15px;
+    background: #14141e;
+}
+
+#sidebar .sidebar-header .logo_movil {
+    display: none;
+    font-size: 1.8em;
+}
+
+#sidebar ul.components {
+    height: 100%;
+    padding-bottom: 100%;
+}
+
+/* ---------------------------------------------------
+ajuste botones
+----------------------------------------------------- */
+
+#sidebar ul.components li a {
+    padding-top: 20px;
+}
+
+#sidebar ul.components li a p {
+    color: #fff;
+    font-size: 0.875em;
+}
+
+#sidebar ul.components li a img {
+    float: left;
+    margin: 5px 10px 0 5px;
+}
+
+#sidebar ul li {
+    border-bottom: 0.01em solid #b0adf7;
+}
+
+#sidebar .components .active {
+    border-left: solid 0.4em #b0adf7;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #b0adf7;
+    background: #555478;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+#prueba {
+    font-size: 112em;
+    color: #b0adf7;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #2a293b;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle:after {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.fa-chevron-down {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.fa-chevron-right {
+    width: 100%;
+    margin-right: 10px;
+}
+
+ul li .subItem {
+    padding-top: 10%;
+}
+
+.subItem.actived {
+    text-decoration: underline;
+    font-size: 1em !important;
+    margin-left: 10%;
+}
+
+ul ul a {
+    font-size: 0.999em !important;
+    padding-left: 30px !important;
+    background: #9e9bde;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386d5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+.sidebarCollapse {
+    display: none;
+}
+
+.barraMovil .naxus_logo_movil {
+    width: 100%;
+    height: auto;
+}
+
+.fa-bars {
+    color: #f1f9ff;
+    width: 100px;
+}
+
+/* ---------------------------------------------------
+    estilos del contenido
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    padding: 0;
+    background-color: #f0f0f7;
+}
+
+.barraDesktop {
+    padding: 0;
+    background-color: #f8f9fa;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.barraDesktop img {
+    margin-top: 5%;
+}
+
+.barraDesktop02 {
+    display: none;
+}
+
+.Bienv {
+    margin: 0;
+    color: #035fe9;
+    font-size: 2.5em;
+}
+
+.Usua {
+    color: #43425d;
+    font-size: 1.223em;
+    margin: 0 5px;
+}
+
+.barraMovil {
+    display: none !important;
+}
+
+/* ---------------------------------------------------
+    Estilos del Index
+----------------------------------------------------- */
+
+.encabz {
+    font-weight: 400;
+    font-size: 1.5em;
+    margin: 2% 0;
+    color: #43425d;
+    padding-top: 10px;
+}
+
+.encabz01 {
+    font-weight: 400;
+    font-size: 1.5em;
+    margin: 1.5% 0;
+    color: #43425d;
+}
+
+.imgEncabz {
+    float: left;
+    margin: 10px 5px 0 0;
+}
+
+.imgEncabzVaca {
+    float: left;
+    margin: 30px 5px 0 0;
+}
+
+.imgEncabzPrest {
+    float: left;
+    margin: 30px 5px 0 0;
+}
+
+.imgEncabzPrest01 {
+    float: left;
+    margin: 20px 5px 0 0;
+}
+
+.back-slider {
+    background-color: #fff;
+}
+
+.carousel-indicators li {
+    background-color: #43425d;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2343425D' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2343425D' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.content h4 {
+    font-size: 1.875em;
+    color: #43425d;
+    font-weight: 600;
+}
+
+.content p {
+    font-size: 1em;
+    color: #43425d;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.content {
+    padding: 5% 0 0 5%;
+}
+
+/* Estilos mÃ³dulo info personal*/
+
+.infoUsua {
+    padding: 2.5% 5%;
+    background-color: #f1f9ff;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.infoUsua p {
+    font-size: 1.125em;
+    font-weight: 500;
+    color: #4d4f5c;
+    margin: 0px;
+}
+
+.infoUsua ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.infoUsua ul li p {
+    margin: 0px;
+    font-weight: 300;
+    color: #4d4f5c;
+    font-size: 1em;
+}
+
+.infoUsua ul li p span {
+    font-weight: 600;
+}
+
+/* Estilos mÃ³dulo crÃ©ditos*/
+
+.solCred {
+    background-color: #fff;
+    padding: 2.5% 5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.solCred p {
+    color: #a1a0ae;
+    font-size: 0.875em;
+}
+
+.solCred h2 {
+    font-size: 2.5em;
+    color: #4d4f5c;
+    font-weight: bold;
+}
+
+.solCred a {
+    color: #3cc480;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chptec a {
+    font-size: 1.125em;
+    font-weight: 300;
+}
+
+/* Estilos enlaces*/
+.enlace {
+    font-size: 1.125em;
+    font-weight: 300;
+    padding: 2%;
+}
+
+.enlace02 {
+    background-color: transparent;
+    border: 1px solid #035fe9;
+    font-size: 1.125em;
+    font-weight: 300;
+    color: #035fe9;
+    padding: %;
+}
+
+/*Estilos formularios*/
+.form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #035fe9;
+    margin-bottom: 10%;
+}
+
+/* Estilos mÃ³dulo crÃ©ditos*/
+.recNom {
+    background-color: #14141e;
+    width: 100%;
+}
+
+/* Estilos mÃ³dulo crÃ©ditos*/
+
+/*---------------------
+Estilo vacaciones
+----------------------*/
+
+/*Dias disponibles*/
+
+.diasDisp {
+    background-color: #fff;
+    padding: 2.5% 5%;
+    margin-top: 5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.diasDisp h3 {
+    font-size: 4.188em;
+    color: #4d4f5c;
+    font-weight: bold;
+}
+
+.diasDisp p {
+    font-size: 1em;
+    color: #ff4141;
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+
+/*Dias solicitados*/
+.diasSoli h4 {
+    margin-top: 2%;
+    font-size: 1.188em;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 0px;
+    color: #43425d;
+}
+
+.diasSoli p {
+    margin: 0px;
+    font-size: 1.188em;
+    text-align: center;
+    font-weight: 500;
+    color: #43425d;
+}
+
+/*Banner vacaciones*/
+.bannerVaca img {
+    width: 90%;
+    height: auto;
+}
+
+/*Estilos footer*/
+
+.fot {
+    margin-top: 5%;
+    background-color: #43425d;
+    padding: 2%;
+}
+
+.fot img {
+    width: 100px;
+}
+
+.fot .cjadress {
+    padding: 1%;
+    border-right: solid 1px #a3a0fb;
+}
+
+.fot address {
+    font-size: 0.875em;
+    color: #fff;
+}
+
+.fot p {
+    font-weight: 100;
+    font-size: 0.938em;
+    color: #fff;
+    line-height: 1.3em;
+}
+
+/*---------------------
+SecciÃ³n crÃ©ditos
+----------------------*/
+
+/* Calculadora de prestamos*/
+
+.clacPres {
+    background-color: #fff;
+    padding: 2.5% 5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.infoUsuaPrest {
+    padding: 2.5% 5%;
+    margin-top: 2%;
+    background-color: #f1f9ff;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+}
+
+.solCred01 {
+    background-color: #fff;
+    padding: 2.5% 5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+    margin-bottom: 5%;
+}
+
+.solCred01 h3 {
+    font-size: 1.125em;
+    font-weight: 400;
+    color: #4d4f5c;
+}
+
+.solCred01 p {
+    font-size: 1.125em;
+    font-weight: 400;
+    color: #4d4f5c;
+    float: left;
+}
+
+.solCred01 .variable {
+    font-size: 1.125em;
+    font-weight: 900;
+    color: #4d4f5c;
+    float: right;
+}
+
+.calcRang {
+    margin: 0 15%;
+}
+
+.solCred01 .calcRang .izq {
+    float: left;
+    color: #43425d;
+    font: 1em;
+    margin-right: 5px;
+}
+
+.solCred01 .calcRang .der {
+    float: left;
+    color: #43425d;
+    font: 1em;
+    margin-right: 5px;
+}
+
+.solCred01 .calcRang .izq01 {
+    float: left;
+    color: #a7a8ae;
+    font: 0.75em;
+    font-weight: 100;
+}
+
+.solCred01 .calcRang .der01 {
+    float: left;
+    color: #a7a8ae;
+    font: 0.75em;
+    font-weight: 100;
+}
+
+.solCred01 .calcRang .derQ .fa-circle {
+    color: #2699fb;
+    margin-right: 5px;
+}
+
+.solCred01 .calcRang .izqQ .fa-circle {
+    color: #f1f9ff;
+    margin-right: 5px;
+}
+
+.solCred01 .calcRang .der .fa-circle {
+    color: #a4a1fb;
+    margin-right: 5px;
+}
+
+.solCred01 .calcRang .izq .fa-circle {
+    color: #edecfe;
+    margin-right: 5px;
+}
+
+/* Resumen de prestamos*/
+.infoUsuaPrest h3 {
+    font-size: 1em;
+    color: #4d4f5c;
+    font-weight: 300;
+}
+
+.infoUsuaPrest p {
+    font-size: 0.933em;
+    color: #43425d;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.infoUsuaPrest .variable {
+    font-size: 1.2em;
+    color: #43425d;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.infoUsuaPrest .termCond {
+    text-decoration: underline;
+    font-size: 0.8em;
+    color: #43425d;
+    font-weight: 400;
+    margin: 0px;
+}
+
+/* ---------------------------------------------------
+    Estilos seccion seguros
+----------------------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Noborder {
+    border: 0px;
+}
+
+.RightBorder {
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 1px solid #43425d;
+}
+
+.NoRightBorder {
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+}
+
+table,
+thead,
+tr,
+th,
+.titleSeg {
+    font-size: 1em;
+    color: #43425d;
+    text-align: center;
+    font-weight: 400;
+}
+
+.itemSeg {
+    font-size: 1em;
+    color: #43425d;
+    text-align: center;
+    font-weight: 400;
+    margin: 5px;
+}
+
+.itemSegFecha {
+    font-size: 1em;
+    color: #ff4141;
+    text-align: center;
+    font-weight: 400;
+    margin: 5px;
+}
+
+/* efecto zebra en tabla */
+tr:nth-of-type(odd) {
+    background: #fff;
+    padding: 5% 0;
+}
+
+th {
+    background: #f5f6fa;
+    border: 0px;
+}
+
+td,
+th {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.sepCelda {
+    background-color: #f0f0f7;
+    border: 0px;
+}
+
+
+/* ---------------------------------------------------
+    Estilos sección adquirir seguros
+----------------------------------------------------- */
+
+/* Promocion especial*/
+.adqSeg h2{
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.adqSeg h2 span{
+   font-weight: 700;
+   
+}
+
+.adqSeg hr{
+    border-top: 1px solid#43425D;
+	border-bottom: 1px solid #fff;
+   display: block;
+   margin-top: auto;
+   margin-left: auto;
+   
+ }
+ 
+
+
+.no-gutters{
+    background-color: #3C3B54;
+}
+
+
+.no-gutters img {
+    width: 100%;
+    height: auto;
+}
+
+.AdqSegInfo{
+    background-color: #3C3B54;
+    padding: 5px 10px;
+    
+}
+
+.AdqSegInfo p{
+   font-size: 0.938em;
+   text-align: center;
+   margin: 10px 0 ;
+   color: #fff;
+
+}
+
+.AdqSegInfo h3{
+    font-size: 1.375em;
+    font-weight: 500;
+    text-align: center;
+    margin: 0px;
+    color: #fff;
+ }
+ .AdqSegInfo h4{
+    font-size: 1.375em;
+    font-weight: 500;
+    text-align: center;
+    color: #FF6565;
+ }
+ .AdqSegInfo .AdqSegInfoDesc{
+     font-size: 0.875em;
+     text-align: center;
+     line-height: normal;
+
+ }
+
+ .AdqSegInfo .AdqSegInfoCod{
+    font-size: 0.875em;
+    text-align: center;
+}
+
+.AdqSegInfo .AdqSegInfoCod span{
+    font-size: 0.975em;
+    font-weight: 900;
+    color: #FF6565;
+}
+
+.AdqSegInfo .AdqSegInfoVig{
+    font-size: 0.875em;
+    text-align: center;
+}
+
+.AdqSegInfo a{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    border: 1px solid #fff;
+}
+
+
+/* Pasos Obtener beneficios*/
+
+.ObtBene{
+    background-color: #fff;
+    padding: 2.5% 2.5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+    border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px;
+-webkit-border-radius: 20px 20px 20px 20px;
+}
+
+
+.ObtBene ul{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.ObtBene h2{
+    font-size:1em;
+    color: #4D4F5C;
+    font-weight: 400;
+    text-align: center;
+    
+}
+
+.ObtBene .ObtBenePasoImg{
+    float: left;
+    margin-right: 10px;
+}
+
+.ObtBene .ObtBenePasoText .ObtBenePasoTextStep{
+    margin-left: 50px;
+    color: #8898AA;
+    font-size: .8999em;
+    
+}
+
+.ObtBenePasoTextStep span{
+    color: #43425D;
+    font-size: 1.0em;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+/* Otros seguros*/
+
+.OtroSeg{
+    margin-bottom: 5%;
+}
+
+.OtroSeg img{
+    width: 100%;
+    height: auto;
+}
+
+.OtroSeg .OtroSegInfo{
+    background-color: #fff;
+    padding: 2.5% 2.5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+   
+}
+
+
+.OtroSeg .OtroSegTitle {
+    color: #43425D;
+    font-size:0.9em;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+.OtroSeg .OtroSegDesc {
+    color: #172B4D;
+    font-size:0.8em;
+    text-align: center;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.OtroSeg .OtroSegCod{
+    color: #172B4D;
+    font-size:1.2em;
+    text-align: center;
+    font-weight: 400;
+}
+
+.OtroSeg .OtroSegCod span{
+    color: #FF6565;
+    font-size:1.2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.OtroSeg .OtroSegDate{
+
+    color: #172B4D;
+    font-size:0.9em;
+    text-align: center;
+    font-weight: 400;
+}
+
+.OtroSegInfo a{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+   
+}
+
+.OtroSegInfo .Benef{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    background-color:#DC2516;
+    border: 0;
+
+}
+
+.OtroSegInfo .Benef02{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    background-color:#892B53;
+    border: 0;
+
+}
+
+/* Estilos lightbox seccion Adquirir seguros*/
+
+.AdqSegModal .modal-header .modal-title {
+    font-size: 1.625em;
+    text-align: center;
+    line-height: normal;
+}
+
+.AdqSegModal .modal-body .imagen img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+   padding: 2% 0;
+}
+
+.AdqSegModal p{
+  text-align: center;
+  font-size: 1em;
+  color:#383838;
+  font-weight: 500;
+}
+
+.AdqSegModal p a{
+    text-align: center;
+    font-size: 1em;
+    color: #035FE9;
+    font-weight: 500;
+
+  }
+  
+.modal-footer a{
+    color: #035FE9;
+
+}
+
+/* Estilos lightbox otro seguros*/
+
+
+.AdqOtroSegModal01 .modal-header{
+    background-color: #035FE9;
+}
+
+
+.AdqOtroSegModal01 .modal-header h5{
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+}
+
+.AdqOtroSegModal01 .modal-header .close span{
+    color: #fff;
+   
+}
+
+.AdqOtroSegModal01 .modal-body{
+    padding: 0px;
+}
+
+.AdqOtroSegModal01 .modal-body p{
+    padding: 5%;
+}
+
+.AdqOtroSegModal01 .modal-body .imagen img{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.modal-body .OtroSegInfo{
+    background-color: #fff;
+    padding: 2.5% 2.5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+   
+}
+
+.modal-body .OtroSegTitle {
+    color: #43425D;
+    font-size:1.5em;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+
+.modal-body .OtroSegDesc {
+    color: #172B4D;
+    font-size:0.8em;
+    text-align: center;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 !important;
+    padding: 0 !important;
+
+}
+
+.modal-body .OtroSegCod{
+    color: #172B4D;
+    font-size:1.2em;
+    text-align: center;
+    font-weight: 400;
+}
+
+.modal-body .OtroSegCod span{
+    color: #FF6565;
+    font-size:1.2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.modal-body .OtroSegDate{
+
+    color: #172B4D;
+    font-size:0.9em;
+    text-align: center;
+    font-weight: 400;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.AdqOtroSegModal01 .rojo{
+    background-color: #DC2516;
+}
+
+.AdqOtroSegModal01 .violeta{
+    background-color:#892B53;
+}
+
+
+/* ---------------------------------------------------
+    Tienda en línea
+----------------------------------------------------- */
+/* Search*/
+
+.fa-search{
+    color: #606060;
+    background-color: #fff;
+}
+
+.bg-light {
+    background-color: #fff!important;
+}
+.rounded-pill {
+    border-radius: 0.6rem!important;
+}
+
+
+
+.input-group>.custom-file .custom-file-input:focus~.custom-file-label, .input-group>.custom-select:focus, .input-group>.form-control:focus {
+    box-shadow: 0 0 1px 2px #43435c;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+}
+
+/*Categoria*/
+
+.select-css {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: #606060;
+    line-height: 1.3;
+    padding: .4em 1.4em .3em .8em;
+    width: 100%;
+    height: 45px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    margin: 2px 0 0 0;
+    border: 0px;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: .6em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOC4zMjgiIGhlaWdodD0iMTAuMTY0IiB2aWV3Qm94PSIwIDAgMTguMzI4IDEwLjE2NCI+CiAgPGcgaWQ9ImNoZXZyb24tZG93biIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40MTQgMS40MTQpIj4KICAgIDxwYXRoIGlkPSJQYXRoIiBkPSJNMCwwLDcuNzUsNy43NSwxNS41LDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzYwNjA2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwvZz4KPC9zdmc+Cg==");
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+.select-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 2px #43435c;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222; 
+    outline: none;
+    
+}
+
+/* productos*/
+
+.TiendProduct .row{
+    margin-bottom: 2%;
+
+}
+.TiendProduct .Product{
+   background-color: #fff;
+   padding: 0 5%;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+    border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    margin-bottom: 0px;
+
+
+
+
+}
+
+.TiendProduct .Product .artic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10% 0% 15% 0%;
+}
+
+.TiendProduct .Product h3{
+   font-size: 1.25em;
+   color: #2C2C2C;
+}
+
+.TiendProduct .Product p{
+    font-size: 0.75em;
+    color: #2C2C2C;
+    font-weight: 200;
+    margin-bottom: 0;
+    padding-bottom: 5%;
+    
+ }
+ 
+
+ .TiendProduct .Precio{
+   background-color: #3C3B54;
+   border-radius: 0px 0px 20px 20px;
+   -moz-border-radius: 0px 0px 20px 20px;
+   -webkit-border-radius: 0px 0px 20px 20px;
+  
+ }
+
+ .TiendProduct .Precio h4{
+     text-align: center;
+     padding: 2%;
+     color: #fff;
+     font-size: 2.2em;
+     font-weight: 600;   
+}
+
+ .TiendProduct .Precio img{
+    float: right;
+    padding: 1%;
+ 
+  }
+
+
+  .select_detalle-css {
+    display: block;
+    font-size: 16px;
+    font-weight: 95;
+    height: 95;
+    border: solid 1.2px #3C3B54;
+    color: #606060;
+    line-height: 1.3;
+    padding: .4em 1.4em .3em .8em;
+    width: 80px;
+    height: 45px;
+    box-sizing: border-box;
+    margin: 2px 0 0 0; 
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOC4zMjgiIGhlaWdodD0iMTAuMTY0IiB2aWV3Qm94PSIwIDAgMTguMzI4IDEwLjE2NCI+CiAgPGcgaWQ9ImNoZXZyb24tZG93biIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40MTQgMS40MTQpIj4KICAgIDxwYXRoIGlkPSJQYXRoIiBkPSJNMCwwLDcuNzUsNy43NSwxNS41LDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzYwNjA2MCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwvZz4KPC9zdmc+Cg==");
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+    
+}
+
+.select_detalle-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 2px #43435c;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222; 
+    outline: none;
+    
+}
+
+
+.DescDetalleProduct .metPago ul{
+    list-style: none;  
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.DescDetalleProduct .metPago ul li{
+    margin: 2%; 
+}
+
+.DescDetalleProduct .metPago ul li img{
+    margin-right: 5px;
+    float: left;
+   
+}
+
+
+
+/* ---------------------------------------------------
+    Tienda en línea detalle de producto
+----------------------------------------------------- */
+
+.DetalleProduct{
+    background-color: #fff;
+    margin: 0 10px;
+    padding: 0 5%;
+     -webkit-box-shadow: 0px 2px 6px #0000000a;
+     -moz-box-shadow: 0px 2px 6px #0000000a;
+     box-shadow: 0px 2px 6px #0000000a;
+     opacity: 1;
+     border-radius: 20px 20px 20px 20px;
+     -moz-border-radius: 20px 20px 20px 20px;
+     -webkit-border-radius: 20px 20px 20px 20px;
+     margin-bottom: 0px;
+    
+}
+ 
+.DetalleProduct .ImagenProduct {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+}
+
+.DetalleProduct .DescDetalleProduct{
+    padding: 5%;
+
+}
+
+.DetalleProduct .DescDetalleProduct h3{
+    font-size: 1.875em;
+    text-align: left;
+    color:#3C3B54;
+
+}
+
+.DetalleProduct .DescDetalleProduct p{
+    font-size: 1.25em;
+    text-align: left;
+    color:#3C3B54;
+    font-weight: 300;
+    margin: 0px;
+    
+}
+.DetalleProduct .DescDetalleProduct .precioDetalle{
+    color: #EA2840;
+    font-weight: 600;
+    font-size: 2.5em;
+    margin: 0px;
+
+}
+
+.DescDetalleProduct .pgoVyaNom{
+    background-color: #EA2840;
+    border: 1px solid #EA2840;
+    margin-bottom: 5%;
+    
+}
+
+.DescDetalleProduct .pgoVyaPayPal{
+    background-color:transparent;
+    margin-bottom: 5%;
+}
+
+.DescDetalleProduct .pgoVyaPayPal:hover{
+    background-color:#051E3B;
+}
+
+.marcoPagoQuincenal{
+    border: solid 1px #EA2840;
+    padding: 5%;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+ }
+
+.DescDetalleProduct .marcoPagoQuincenal h3{
+     color:#EA2840;
+     font-size: 1.25em;
+    
+ }
+
+ .DescDetalleProduct .marcoPagoQuincenal p{
+    color: #3C3B54;
+    font-size: 1.0em;
+    font-weight: 200;
+   
+}
+
+.marcoPagoQuincenal .pgoVyaNom{
+    margin-top: 30px;
+    
+   
+}
+
+.DescDetalleProduct .marcoPagoQuincenal .AvisoLegal{
+    font-size: 0.8em;
+    font-weight: 500;
+    
+   
+}
+
+
+/* ---------------------------------------------------
+    Mis pedidos
+----------------------------------------------------- */
+
+.misPedidosFicha{
+    margin-bottom:30px;
+}
+
+.misPedidos{
+    background-color: #fff;
+    padding: 0;
+    -webkit-box-shadow: 0px 2px 6px #0000000a;
+    -moz-box-shadow: 0px 2px 6px #0000000a;
+    box-shadow: 0px 2px 6px #0000000a;
+    opacity: 1;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    margin-bottom: 0px;
+}
+
+
+
+.misPedidos .datosMisPedidos{
+    margin-top: 5%;
+
+}
+
+.datosMisPedidos{
+    padding: 0 5% 5% 5%;
+}
+
+.misPedidos .datosEnvio{
+    background-color: #F8F9FA;
+    text-align:center;
+    border-radius: 20px 20px 0px 0px;
+    -moz-border-radius: 20px 20px 0px 0px;
+    -webkit-border-radius: 20px 20px 0px 0px;
+    padding-bottom: 1%;
+}
+
+
+.misPedidos .datosEnvio ul{
+    list-style: none;
+    padding-top: 2%;
+    
+}
+
+.misPedidos .datosEnvio ul li{
+    display: inline-block;
+    margin: 0 2%;
+}
+
+
+.misPedidos .datosEnvio ul li p{
+   font-size: 1.3em;
+   color: #3C3B54;
+   font-weight: 600;
+    
+}
+
+.misPedidos .datosEnvio ul li img{
+    display: inline-block;
+     
+ }
+
+.misPedidos .datosEnvio ul li .redPrecio {
+    color: #EA2840;
+
+}
+
+
+.misPedidos .artic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0 15% 0%;
+
+}
+
+.misPedidos h3{
+    font-size: 1.625em;
+    color: #3C3B54;
+    font-weight: 600;
+    margin: 0;
+}
+
+.misPedidos p{
+    font-size: 1em;
+    color: #3C3B54;
+    font-weight: 300;
+    margin: 0;
+}
+
+.misPedidos h4{
+    font-size: 1.5em;
+    color: #3C3B54;
+    font-weight: 600;
+    margin: 0;
+}
+
+.misPedidos .misPedidosPago{
+    list-style: none;  
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 2%;
+
+}
+
+
+
+.misPedidos .misPedidosPago li img{
+    margin-right: 10px;
+    float: left;
+   
+
+}
+
+
+/* ---------------------------------------------------
+    Seccion Contácto
+----------------------------------------------------- */
+
+.DetalleProductContact{
+    background-color: #fff;
+    margin: 0 10px;
+    padding: 5%;
+     -webkit-box-shadow: 0px 2px 6px #0000000a;
+     -moz-box-shadow: 0px 2px 6px #0000000a;
+     box-shadow: 0px 2px 6px #0000000a;
+     opacity: 1;
+     border-radius: 20px 20px 20px 20px;
+     -moz-border-radius: 20px 20px 20px 20px;
+     -webkit-border-radius: 20px 20px 20px 20px;
+     margin-bottom: 0px;
+     background-image: url(../img/back_form_contac.png);
+     background-size: contain;
+     background-position:0 50%;
+     background-repeat: no-repeat;
+}
+
+.DetalleProductContact h3{
+    text-align: center;
+    font-size: 2.075em;
+    font-weight: 800;
+    color: #009979;
+    margin-top: 0px;
+}
+
+.DetalleProductContact p{
+    color: #43425D;
+    font-size: 1.125em;
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+    font-weight: 400;
+    text-align: center;
+}
+
+.DetalleProductContact form{
+   margin-top: 10%;
+}
+
+.DetalleProductContact form textarea{
+    border: 1px solid #035fe9;
+   background-color: #F0F0F7;
+ }
+
+ .DetalleProductContact form a{
+   background-color: #035FE9;
+   font-weight: 300;
+
+ }
+
+
+ .ContactRS p{
+    color: #43425D;
+    font-size: 0.875em;
+    width: 120px;
+    float: left;
+    margin-top: 20px;
+    
+}
+
+.ContactRS ul{
+
+    margin-top: 20px;
+   
+}
+.ContactRS ul li{
+    display: inline;
+
+   
+}
+
+
+
+/* ---------------------------------------------------
+    Login
+----------------------------------------------------- */
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.img_derecha {
+    height: 100%;
+    background-color: #14141E;
+    overflow-x: hidden;
+    padding-top: 0;
+    background-image: url(../img/login-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+}
+
+.img_derecha02 {
+    height: 100%;
+    background-color: #14141E;
+    overflow-x: hidden;
+    padding-top: 0;
+    background-image: url(../img/registro_img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+}
+
+.img_derecha .logoLoginMovil{
+    display: none;
+
+}
+
+
+.img_derecha02 .logoLoginMovil{
+    display: none;
+
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+.logoLoginCompany img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form form .enlaceRegAqu{
+    font-weight: 400;
+    color: #14141E;
+    font-size: 0.99em;
+
+   
+}
+
+
+.login-form form a{
+    text-decoration: underline;
+   
+}
+
+
+/*Estilos de checkbox*/
+.control {
+    font-weight: 400;
+    color: #14141E;
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 2px;
+    padding-top: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+    .control input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+.control_indicator {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #ff;
+    border: 2px solid #2699fb;
+    border-radius: 6px;
+}
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+    background: #f3f3f3;
+}
+
+.control input:checked ~ .control_indicator {
+    background: #035fe9;
+}
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+    background: #035fe9;
+}
+.control input:disabled ~ .control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+.control input:checked ~ .control_indicator:after {
+    display: block;
+}
+.control-checkbox .control_indicator:after {
+    left: 6px;
+    top: 3px;
+    width: 3px;
+    height: 7px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.control-checkbox input:disabled ~ .control_indicator:after {
+    border-color: #7b7b7b;
+}
+.control-checkbox .control_indicator::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-left: -1.3rem;
+    margin-top: -1.3rem;
+    background: #2aa1c0;
+    border-radius: 3rem;
+    opacity: 0.6;
+    z-index: 99999;
+    transform: scale(0);
+}
+@keyframes s-ripple {
+    0% {
+        transform: scale(0);
+    }
+    20% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+@keyframes s-ripple-dup {
+   0% {
+       transform: scale(0);
+    }
+   30% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+.control-checkbox input + .control_indicator::before {
+    animation: s-ripple 250ms ease-out;
+}
+.control-checkbox input:checked + .control_indicator::before {
+    animation-name: s-ripple-dup;
+}
+
+
+/* Estilos form login*/
+
+.form-login .form-control{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #035fe9;
+    margin-bottom: 5%;
+}
+
+.login-form .form-login input:focus{
+    color: #035fe9;
+}
+
+.login-form .form-login .btn-form-reg:focus{
+    color: #fff;
+    background-color:#FF4141;
+
+}
+
+/* ---------------------------------------------------
+    Inician media queries
+----------------------------------------------------- */
+
+@media only screen and (min-width: 48.0625em) {
+    #sidebar.active {
+        min-width: 250px;
+        max-width: 250px;
+        background: #43425d;
+        color: #fff;
+    }
+
+    #sidebar.active .sidebar-header strong {
+        display: none;
+        font-size: 1.8em;
+    }
+
+    #sidebar.active ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+    }
+
+    #sidebar.active ul li a {
+        text-align: left;
+    }
+
+    #sidebar.active .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    #sidebar.active .sidebar-header .logo_movil {
+        display: none;
+        font-size: 1.8em;
+    }
+
+    #sidebar.active .sidebar-header img {
+        display: block;
+    }
+
+
+/* ---------------------------------------------------
+    seccion Login
+----------------------------------------------------- */
+
+    .main{
+        margin-left: 40%; 
+    }
+
+    .img_derecha{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .img_derecha02{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+
+
+
+
+
+
+}
+
+
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -188px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #sidebar ul.components li a p {
+        color: #fff;
+        font-size: 0.938em;
+        padding-top: 5px;
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+
+    .sidebarCollapse {
+        display: inline-block;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .iconoAling {
+        margin-top: 3%;
+    }
+
+    .barraDesktop {
+        display: none;
+    }
+
+    .barraDesktop02 {
+        display: flex;
+        padding: 0;
+        background-color: #f8f9fa;
+        -webkit-box-shadow: 0px 2px 6px #0000000a;
+        -moz-box-shadow: 0px 2px 6px #0000000a;
+        box-shadow: 0px 2px 6px #0000000a;
+        opacity: 1;
+    }
+
+    .barraMovil {
+        display: flex !important;
+        padding: 10px;
+        background-color: #14141e;
+    }
+
+    .barraMovil .naxus_logo_movil {
+        width: 80px;
+        height: auto;
+    }
+
+    .encabz {
+        margin: 4% 0;
+    }
+
+    .spaCbz {
+        margin: 5% 0;
+    }
+
+    .fot address {
+        font-size: 0.875em;
+        color: #fff;
+        margin: 0 0 0 10%;
+    }
+
+    .fot p {
+        font-weight: 100;
+        font-size: 0.638em;
+        color: #fff;
+        line-height: 1.2em;
+        text-align: center;
+        margin-top: 5%;
+    }
+
+    .solCred01 h3 {
+        font-size: 1em;
+    }
+
+    /* Estilo seguros */
+    table {
+        width: 100%;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        /* Label the data */
+        content: attr(data-column);
+
+        color: #000;
+        font-weight: 600;
+        text-align: left;
+        font-size: 0.9em;
+    }
+
+    .itemSeg {
+        font-size: 0.8em;
+        color: #43425d;
+        text-align: right;
+        font-weight: 300;
+        margin: 0px;
+    }
+
+    .itemSegFecha {
+        font-size: 0.8em;
+        color: #ff4141;
+        text-align: right;
+        font-weight: 400;
+        margin: 0px;
+    }
+
+    .RightBorder {
+        border: 0px;
+    }
+
+    .NoRightBorder a img {
+        margin-left: 80%;
+    }
+
+/* ---------------------------------------------------
+    Estilos sección adquirir seguros
+----------------------------------------------------- */
+
+/* Promocion especial*/
+
+    .no-gutters img {
+        min-width: 100%;
+        height: auto;
+    
+    }
+    .AdqSegInfo{
+        background-color: #3C3B54;
+        padding: 20px 10px;
+        
+    }
+    
+    .AdqSegInfo p{
+        font-size: 0.938em;
+        text-align: center;
+        margin: 10px 0 ;
+     
+     }
+
+
+/* ---------------------------------------------------
+    Tienda en línea
+----------------------------------------------------- */
+/* Search*/
+
+.select-css {
+    margin-bottom: 5%;
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 0.5rem!important;
+}
+
+
+/* ---------------------------------------------------
+    Mis pedidos
+----------------------------------------------------- */
+.misPedidos .datosEnvio ul li p{
+    font-size: 1.0em;
+
+     
+ }
+
+
+/* ---------------------------------------------------
+    Seccion Contácto
+----------------------------------------------------- */
+ .ContactRS p{
+    color: #43425D;
+    font-size: 0.875em;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    
+}
+
+/* ---------------------------------------------------
+    Login
+----------------------------------------------------- */
+
+
+.login .main-logo-company img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    bottom: 40px;
+    width: 80px;
+}
+
+
+}
+
+@media screen and (max-height: 450px) {
+    .img_derecha {
+        padding-top: 0;
+    }
+
+    .img_derecha02 {
+        padding-top: 0;
+    }
+
+}
+
+@media only screen and (max-width:425px) { 
+    .AdquSegMainInfo{
+        float: left;
+        background-color: #43425d;
+       
+    }
+
+    .AdquSegMainImg img{
+        width: 92.83725490196079vw;
+        min-height: 430px;
+     }
+
+    /* Pasos Obtener beneficios*/
+
+.ObtBene{
+    margin-top: 5%;
+   }
+
+
+
+.ObtBene .ObtBenePasoText .ObtBenePasoTextStep{
+    margin-left: 50px;
+    color: #8898AA;
+    font-size: 1.1em;
+    
+}
+
+.ObtBenePasoTextStep span{
+    color: #43425D;
+    font-size: 1.0em;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* ---------------------------------------------------
+    Mis pedidos
+----------------------------------------------------- */
+ .misPedidos .datosEnvio ul li img{
+    display: none;
+     
+ }
+
+
+ /* ---------------------------------------------------
+    Seccion Contácto
+----------------------------------------------------- */
+.ContactRS p{
+    color: #43425D;
+    font-size: 0.875em;
+    width: 120px;
+    float: left;
+    margin-top: 20px;
+    
+}
+
+
+
+/* ---------------------------------------------------
+    seccion Login
+----------------------------------------------------- */
+
+.login-form{
+    margin-top: 10%;
+}
+
+.register-form{
+    margin-top: 10%;
+}
+
+
+.img_derecha {
+    height: 50px;
+    background-image: none;
+    background-color: #14141E;
+  
+}
+
+.img_derecha .logoLoginDesk{
+    display: none;
+}
+
+.img_derecha .logoLoginMovil{
+    display: block;
+    float: right;
+    padding: 4%;
+    width: 100px;
+
+
+}
+
+
+
+.img_derecha02 {
+    height: 50px;
+    background-image: none;
+    background-color: #14141E;
+  
+}
+
+.img_derecha02 .logoLoginDesk{
+    display: none;
+}
+
+.img_derecha02 .logoLoginMovil{
+    display: block;
+    float: right;
+    padding: 4%;
+    width: 100px;
+
+
+}
+
+
+
+}

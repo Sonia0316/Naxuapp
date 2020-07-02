@@ -1,0 +1,16 @@
+export { HomeComponent } from './home/home.component';
+export { AdquirirSeguroComponent } from './adquirir-seguro/adquirir-seguro.component';
+export { AnticiposComponent } from './anticipos/anticipos.component';
+export { AsistenciaComponent } from './asistencia/asistencia.component';
+export { BeneficiosComponent } from './beneficios/beneficios.component';
+export { ContactoComponent } from './contacto/contacto.component';
+export { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
+export { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
+export { NominaComponent } from './nomina/nomina.component';
+export { PrestamosComponent } from './prestamos/prestamos.component';
+export { ProductosComponent } from './productos/productos.component';
+export { SegurosComponent } from './seguros/seguros.component';
+export { VacacionesComponent } from './vacaciones/vacaciones.component';
+export { LoginComponent } from './login/login.component';
+export { RecuperaComponent } from './recupera/recupera.component';
+export { RegistroComponent } from './registro/registro.component';
