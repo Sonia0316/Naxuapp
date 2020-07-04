@@ -20,6 +20,7 @@ export class AdquirirSeguroComponent implements OnInit {
   htmlSafeHtmlModal: SafeHtml;
   htmlSafeHtmlOtros: SafeHtml;
   mainItem;
+  public status = 'Loading';
 
   constructor(
     private httpClient: HttpClient,

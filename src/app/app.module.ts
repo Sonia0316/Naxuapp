@@ -29,15 +29,9 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { FooterloginComponent } from './components/footerlogin/footerlogin.component';
 import { ControlMessagesComponent } from './control-messages.component';
-import { ValidationService } from './validation.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
-
-
+import { ModalLoadingComponent } from './components/modal-loading/modal-loading.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroComponent,
     PrincipalComponent,
     FooterloginComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    ModalLoadingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -71,10 +66,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    app_routing ,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    app_routing,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

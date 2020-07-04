@@ -1812,7 +1812,6 @@ th {
 }
 
 @media (max-width: 768px) {
-
   #sidebar {
     margin-left: -188px;
   }
@@ -1849,7 +1848,7 @@ th {
   }
 
   .barraDesktop {
-    display: none;
+    visibility: hidden;
   }
 
   .barraDesktop02 {

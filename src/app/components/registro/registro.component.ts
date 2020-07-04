@@ -11,18 +11,18 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
   url = "https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc";
   userForm: any;
   response: any;
-  constructor(private formBuilder:FormBuilder,public http:HttpClient,private router: Router) { 
+  constructor(private formBuilder:FormBuilder,public http:HttpClient,private router: Router) {
 
     this.userForm = this.formBuilder.group({
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-    
+
       email: ['', [Validators.required, ValidationService.emailValidator]],
       rfc: ['', Validators.required]
     }, {
@@ -38,13 +38,13 @@ export class RegistroComponent implements OnInit {
   CheckRegister() {
     if (this.userForm.dirty && this.userForm.valid) {
 
-      let request = {rfc: this.userForm.value.rfc, 
+      let request = {rfc: this.userForm.value.rfc,
         password: this.userForm.value.password,status: "Activo",email:this.userForm.value.email}
-       
-        this.postRegister(request).subscribe(res => { 
+
+        this.postRegister(request).subscribe(res => {
           let Registrocl: ResponseRegistro = res.body;
-        
-          console.log(res.headers.get('Content-Type'));	
+
+          console.log(res.headers.get('Content-Type'));
           if (res.body.codigo=='200')
           {
             //window.localStorage.setItem('rfc',JSON.stringify(res.body.rfc));
@@ -58,45 +58,45 @@ export class RegistroComponent implements OnInit {
           }
           else{
 
-            alert(res.body.descripcion); 
+            alert(res.body.descripcion);
           }
 
-        
+
         },(err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            //A client-side or network error occurred.				 
+            //A client-side or network error occurred.
             console.log('An error occurred:', err.error.message);
-            alert('An error occurred:'  + err.error.message);  
+            alert('An error occurred:'  + err.error.message);
 
           } else {
-            //Errores 404, 500 etc.				 
+            //Errores 404, 500 etc.
             console.log('Backend returned status code: ', err.status);
-            alert('status code: '  + JSON.stringify(err.status));  
+            alert('status code: '  + JSON.stringify(err.status));
             console.log('Response body:', err.message);
-            alert('Response body:' + JSON.stringify(err.message));  
+            alert('Response body:' + JSON.stringify(err.message));
           }
         }
      );
-      
-   
-      
+
+
+
 
 
 
     }
   }
 
-  
+
   postRegister(login: RequestRegistro): Observable<HttpResponse<ResponseRegistro>> {
-    let httpHeaders = new HttpHeaders({    
+    let httpHeaders = new HttpHeaders({
          'Content-Type' : 'application/json'
-    });    
+    });
     return this.http.post<ResponseRegistro>(this.url, login,
         {
           headers: httpHeaders,
           observe: 'response'
         }
     );
-}    
+}
 
 }

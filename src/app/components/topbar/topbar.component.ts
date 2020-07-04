@@ -4,7 +4,7 @@ import { Routes, Router } from 'node_modules/@angular/router';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.css']
+  styleUrls: ['./topbar.component.scss']
 })
 
 
@@ -40,24 +40,24 @@ export class TopbarComponent{
   }
 
   constructor(public router: Router ) { }
-  
-  
+
+
   shouldShow() {
     return !(this.router.url === '/login' || this.router.url === '/registro' || this.router.url === '/');
   }
 
   ngOnInit(): void {
-   
+
     let email = window.localStorage.getItem("email");
     let FlagRegistro = window.localStorage.getItem("FlagRegistro");
 
-     if(!email){ 
-          
+     if(!email){
+
           this.router.navigate(['./login']);
-     } 
-  
-    }  
-  
-  
+     }
+
+    }
+
+
 
 }
