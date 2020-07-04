@@ -1,19 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Routes, Router } from 'node_modules/@angular/router';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { Router } from 'node_modules/@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  constructor(location: Location, public router: Router) {}
-
-  ngOnInit(): void {
-    let email = window.localStorage.getItem('email');
-    let FlagRegistro = window.localStorage.getItem('FlagRegistro');
-  }
+export class HeaderComponent {
+  constructor(public router: Router) {}
 
   async DestroySession() {
     window.localStorage.removeItem('email');
@@ -23,7 +17,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async adquirirseguro() {
-    await this.router.navigate(['./adquirirseguros']);
+    await this.router.navigate(['./adquirirseguro']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
         .display !== 'none'
