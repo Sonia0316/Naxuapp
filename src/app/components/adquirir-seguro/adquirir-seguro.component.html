@@ -1,4 +1,3 @@
-<app-modal-loading [active]="true"></app-modal-loading>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
@@ -19,109 +18,120 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="mainItem">
-    <div class="col-12 col-md-8">
-      <div class="row no-gutters">
-        <div class="col-12 col-md-6 col-xl-4">
-          <img alt="Imagen seguros" src="{{ mainItem['t06_imagenurls3'] }}" />
-        </div>
-        <div class="col-12 col-md-6 col-xl-8">
-          <div class="AdqSegInfo">
-            <p>Promoción especial</p>
-            <h3>
-              {{ mainItem["t06_titulo"] }}
-            </h3>
-            <div
-              class="AdqSegInfoDesc"
-              [innerHTML]="mainItem['t06_descripcion']"
-            ></div>
-            <p class="AdqSegInfoVig">
-              {{ mainItem["t06_vigencia"] }}
-            </p>
-            <br />
-            <a
-              id="modal-destacado"
-              (click)="senmailBackOffice(mainItem['t06_titulo'])"
-              role="button"
-              class="btn btn-primary"
-              >CONTRATAR</a
-            >
+  <ng-container *ngIf="status === 'complete'">
+    <div class="row" *ngIf="mainItem">
+      <div class="col-12 col-md-8">
+        <div class="row no-gutters">
+          <div class="col-12 col-md-6 col-xl-4">
+            <img alt="Imagen seguros" src="{{ mainItem['t06_imagenurls3'] }}" />
+          </div>
+          <div class="col-12 col-md-6 col-xl-8">
+            <div class="AdqSegInfo">
+              <p>Promoción especial</p>
+              <h3>
+                {{ mainItem["t06_titulo"] }}
+              </h3>
+              <div
+                class="AdqSegInfoDesc"
+                [innerHTML]="mainItem['t06_descripcion']"
+              ></div>
+              <p class="AdqSegInfoVig">
+                {{ mainItem["t06_vigencia"] }}
+              </p>
+              <br />
+              <a
+                id="modal-destacado"
+                (click)="senmailBackOffice(mainItem['t06_titulo'])"
+                role="button"
+                class="btn btn-primary"
+                >CONTRATAR</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-md-4">
-      <div class="ObtBene">
-        <h2>COMO OBTENER MIS BENEFICIOS</h2>
-        <hr />
-        <ul>
-          <li>
-            <div class="ObtBenePasoImg">
-              <img
-                src="assets/img/logos_cuerpo/logo_beneficios01.svg"
-                alt="Paso1"
-              />
-            </div>
-            <div class="ObtBenePasoText">
-              <p class="ObtBenePasoTextStep">
-                Paso 1 <br />
-                <span> Let's meet at starbucks today, are you free?</span>
-              </p>
-            </div>
-          </li>
-          <li>
-            <div class="ObtBenePasoImg">
-              <img
-                src="assets/img/logos_cuerpo/logo_beneficios02.svg"
-                alt="Paso2"
-              />
-            </div>
-            <div class="ObtBenePasoText">
-              <p class="ObtBenePasoTextStep">
-                Product Issue <br />
-                <span>
-                  A new issue has been reported, would you be able to help
-                  me?</span
-                >
-              </p>
-            </div>
-          </li>
-          <li>
-            <div class="ObtBenePasoImg">
-              <img
-                src="assets/img/logos_cuerpo/logo_beneficios03.svg"
-                alt="Paso3"
-              />
-            </div>
-            <div class="ObtBenePasoText">
-              <p class="ObtBenePasoTextStep">
-                New Rating <br />
-                <span> Hurray! You\'ve got a new rating.</span>
-              </p>
-            </div>
-          </li>
-        </ul>
+      <div class="col-12 col-md-4">
+        <div class="ObtBene">
+          <h2>COMO OBTENER MIS BENEFICIOS</h2>
+          <hr />
+          <ul>
+            <li>
+              <div class="ObtBenePasoImg">
+                <img
+                  src="assets/img/logos_cuerpo/logo_beneficios01.svg"
+                  alt="Paso1"
+                />
+              </div>
+              <div class="ObtBenePasoText">
+                <p class="ObtBenePasoTextStep">
+                  Paso 1 <br />
+                  <span> Let's meet at starbucks today, are you free?</span>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="ObtBenePasoImg">
+                <img
+                  src="assets/img/logos_cuerpo/logo_beneficios02.svg"
+                  alt="Paso2"
+                />
+              </div>
+              <div class="ObtBenePasoText">
+                <p class="ObtBenePasoTextStep">
+                  Product Issue <br />
+                  <span>
+                    A new issue has been reported, would you be able to help
+                    me?</span
+                  >
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="ObtBenePasoImg">
+                <img
+                  src="assets/img/logos_cuerpo/logo_beneficios03.svg"
+                  alt="Paso3"
+                />
+              </div>
+              <div class="ObtBenePasoText">
+                <p class="ObtBenePasoTextStep">
+                  New Rating <br />
+                  <span> Hurray! You\'ve got a new rating.</span>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="spaCbzSeg">
-        <img
-          src="assets/img/logos_cuerpo/logo_cuerpo_otros_seguros.svg"
-          alt="Imagen Adquirir seguros"
-          class="imgEncabz"
-        />
-        <h3 class="encabz">Otros seguros</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spaCbzSeg">
+          <img
+            src="assets/img/logos_cuerpo/logo_cuerpo_otros_seguros.svg"
+            alt="Imagen Adquirir seguros"
+            class="imgEncabz"
+          />
+          <h3 class="encabz">Otros seguros</h3>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div [innerHTML]="htmlSafeHtmlOtros"></div>
+    <div [innerHTML]="htmlSafeHtmlOtros"></div>
+  </ng-container>
+  <ng-container *ngIf="status === 'empty'">
+    <h3 style="text-align: center;">
+      No hay seguros disponibles
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'error'">
+    <h3 style="text-align: center;">
+      Ocurrío un problema con tu solicitud
+    </h3>
+  </ng-container>
 </div>
 <div>
   <div [innerHTML]="htmlSafeHtmlModal">
     <div></div>
   </div>
 </div>
+<app-modal-loading [active]="loading"></app-modal-loading>

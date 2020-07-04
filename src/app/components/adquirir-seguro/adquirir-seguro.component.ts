@@ -20,12 +20,119 @@ export class AdquirirSeguroComponent implements OnInit {
   htmlSafeHtmlModal: SafeHtml;
   htmlSafeHtmlOtros: SafeHtml;
   mainItem;
-  public status = 'Loading';
-
+  public loading = false;
+  public status: string;
   constructor(
     private httpClient: HttpClient,
     protected sanitizer: DomSanitizer
   ) {}
+
+  public async ngOnInit(): Promise<void> {
+    this.htmlStrModals = '';
+    this.htmlStrOtros = '';
+    this.loading = true;
+    try {
+      const items: [] = ((await this.httpClient
+        .get(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros'
+        )
+        .toPromise()) as any).response.lista;
+      if (items.length) {
+        this.mainItem = items.find(
+          (element: any) =>
+            element.t06_prioridad == '1' && element.t06_estatus === 'Activo'
+        );
+
+        let flagCol = 0;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i]['t06_estatus'] == 'Activo') {
+            let componente = '';
+            let modal = '';
+            if (items[i]['t06_prioridad'] == 2) {
+              if (flagCol == 0) {
+                componente = '<div class="row">';
+              }
+              componente =
+                componente +
+                '<div class="col-md-4 OtroSeg">' +
+                '<img alt="Seguro de gastos médicos" src="' +
+                items[i]['t06_imagenurls3'] +
+                '" />' +
+                '<div class="OtroSegInfo">' +
+                '<h3 class="OtroSegTitle">' +
+                items[i]['t06_titulo'] +
+                '</h3>' +
+                '<p class="OtroSegDesc">' +
+                items[i]['t06_descripcion'] +
+                '</p>' +
+                '<p class="OtroSegDate">' +
+                items[i]['t06_vigencia'] +
+                '</p>' +
+                '<a id="modal-otroseg01" href="#modal-container-otroseg0' +
+                i +
+                '" data-toggle="modal" role="button"  class="btn btn-primary">Conoce más</a>' +
+                '</div>' +
+                '</div>';
+
+              modal =
+                ' <div class="modal fade" id="modal-container-otroseg0' +
+                i +
+                '" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+                '<div class="modal-dialog" role="document">' +
+                '<div class="modal-content AdqOtroSegModal01">' +
+                '<div class="modal-header">' +
+                '<h5 class="modal-title" id="myModalLabel">' +
+                items[i]['t06_titulo'] +
+                '</h5> ' +
+                '<button type="button" class="close" data-dismiss="modal">' +
+                '<span aria-hidden="true">×</span>' +
+                '</button>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                '<div class="imagen">' +
+                '<img src="' +
+                items[i]['t06_imagenurls3'] +
+                '" alt="seguro médico">' +
+                '</div>' +
+                '<div class="OtroSegInfo">' +
+                '<h3 class="OtroSegTitle">' +
+                items[i]['t06_titulo'] +
+                '</h3>' +
+                '<p class="OtroSegDesc">' +
+                items[i]['t06_descripcion'] +
+                '</p>' +
+                '<p class="OtroSegDate">' +
+                items[i]['t06_vigencia'] +
+                '</p>   ' +
+                '</div>' +
+                '</div>' +
+                '<div class="modal-footer">     ' +
+                '<a href="#" data-dismiss="modal">OK</a>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+              flagCol++;
+              if (flagCol == 3) componente = componente + '</div>';
+            }
+            this.htmlStrModals = this.htmlStrModals + modal;
+            this.htmlStrOtros = this.htmlStrOtros + componente;
+          }
+        }
+        this.htmlSafeHtmlModal = this.transform(this.htmlStrModals, 'html');
+        this.htmlSafeHtmlOtros = this.transform(this.htmlStrOtros, 'html');
+        this.status = 'complete';
+      } else {
+        this.status = 'empty';
+      }
+    } catch (error) {
+      console.log(error);
+      this.status = 'error';
+    } finally {
+      this.loading = false;
+    }
+  }
   public transform(
     value: string,
     type: string
@@ -45,7 +152,6 @@ export class AdquirirSeguroComponent implements OnInit {
         throw new Error(`Invalid safe type specified: ${type}`);
     }
   }
-
   public async senmailBackOffice(seguro: string) {
     console.log('Lllamada a la funcion');
     const result = await this.httpClient
@@ -61,102 +167,5 @@ export class AdquirirSeguroComponent implements OnInit {
     console.log('====================================');
     console.log(result);
     console.log('====================================');
-  }
-  async ngOnInit(): Promise<void> {
-    this.htmlStrModals = '';
-    this.htmlStrOtros = '';
-    try {
-      const items: [] = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros'
-        )
-        .toPromise()) as any).response.lista;
-      this.mainItem = items.find(
-        (element: any) =>
-          element.t06_prioridad == '1' && element.t06_estatus === 'Activo'
-      );
-
-      let flag_col = 0;
-
-      for (let i = 0; i < items.length; i++) {
-        if (items[i]['t06_estatus'] == 'Activo') {
-          let componente = '';
-          let modal = '';
-          if (items[i]['t06_prioridad'] == 2) {
-            if (flag_col == 0) {
-              componente = '<div class="row">';
-            }
-            componente =
-              componente +
-              '<div class="col-md-4 OtroSeg">' +
-              '<img alt="Seguro de gastos médicos" src="' +
-              items[i]['t06_imagenurls3'] +
-              '" />' +
-              '<div class="OtroSegInfo">' +
-              '<h3 class="OtroSegTitle">' +
-              items[i]['t06_titulo'] +
-              '</h3>' +
-              '<p class="OtroSegDesc">' +
-              items[i]['t06_descripcion'] +
-              '</p>' +
-              '<p class="OtroSegDate">' +
-              items[i]['t06_vigencia'] +
-              '</p>' +
-              '<a id="modal-otroseg01" href="#modal-container-otroseg0' +
-              i +
-              '" data-toggle="modal" role="button"  class="btn btn-primary">Conoce más</a>' +
-              '</div>' +
-              '</div>';
-
-            modal =
-              ' <div class="modal fade" id="modal-container-otroseg0' +
-              i +
-              '" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
-              '<div class="modal-dialog" role="document">' +
-              '<div class="modal-content AdqOtroSegModal01">' +
-              '<div class="modal-header">' +
-              '<h5 class="modal-title" id="myModalLabel">' +
-              items[i]['t06_titulo'] +
-              '</h5> ' +
-              '<button type="button" class="close" data-dismiss="modal">' +
-              '<span aria-hidden="true">×</span>' +
-              '</button>' +
-              '</div>' +
-              '<div class="modal-body">' +
-              '<div class="imagen">' +
-              '<img src="' +
-              items[i]['t06_imagenurls3'] +
-              '" alt="seguro médico">' +
-              '</div>' +
-              '<div class="OtroSegInfo">' +
-              '<h3 class="OtroSegTitle">' +
-              items[i]['t06_titulo'] +
-              '</h3>' +
-              '<p class="OtroSegDesc">' +
-              items[i]['t06_descripcion'] +
-              '</p>' +
-              '<p class="OtroSegDate">' +
-              items[i]['t06_vigencia'] +
-              '</p>   ' +
-              '</div>' +
-              '</div>' +
-              '<div class="modal-footer">     ' +
-              '<a href="#" data-dismiss="modal">OK</a>' +
-              '</div>' +
-              '</div>' +
-              '</div>' +
-              '</div>';
-
-            flag_col++;
-            if (flag_col == 3) componente = componente + '</div>';
-          }
-          this.htmlStrModals = this.htmlStrModals + modal;
-          this.htmlStrOtros = this.htmlStrOtros + componente;
-        }
-      }
-
-      this.htmlSafeHtmlModal = this.transform(this.htmlStrModals, 'html');
-      this.htmlSafeHtmlOtros = this.transform(this.htmlStrOtros, 'html');
-    } catch (error) {}
   }
 }
