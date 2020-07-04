@@ -1,143 +1,134 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from 'node_modules/@angular/router';
-import { Location } from "@angular/common";
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(location: Location,public router: Router ) { }
+  constructor(location: Location, public router: Router) {}
 
   ngOnInit(): void {
-   
-    let email = window.localStorage.getItem("email");
-    let FlagRegistro = window.localStorage.getItem("FlagRegistro");
-
-     /*if(!email){ 
-          
-          this.router.navigate(['./login'])
-          .then(() => {
-            window.location.reload();
-          });
-        }*/
-  
-    
-  }
-  
-  DestroySession() {
-    window.localStorage.removeItem("email");
-    window.localStorage.removeItem("rfc");
-    window.localStorage.removeItem("FlagRegistro");
-    this.router.navigate(['./login'])
-    .then(() => {
-      window.location.reload();
-    });
-
-    
-  
+    let email = window.localStorage.getItem('email');
+    let FlagRegistro = window.localStorage.getItem('FlagRegistro');
   }
 
-  adquirirseguro() {
-   
-    this.router.navigate(['./adquirirseguro'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  seguros() {
-   
-    this.router.navigate(['./seguros'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  vacaciones() {
-   
-    this.router.navigate(['./vacaciones'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  beneficios() {
-   
-    this.router.navigate(['./beneficios'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  asistencia() {
-   
-    this.router.navigate(['./asistencia'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  contacto() {
-   
-    this.router.navigate(['./contacto'])
-    .then(() => {
-      window.location.reload();
-    });
-  
-  }
-  home() {
-   
-    this.router.navigate(['./home'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async DestroySession() {
+    window.localStorage.removeItem('email');
+    window.localStorage.removeItem('rfc');
+    window.localStorage.removeItem('FlagRegistro');
+    await this.router.navigate(['./login']);
   }
 
-  prestamos() {
-   
-    this.router.navigate(['./prestamos'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async adquirirseguro() {
+    await this.router.navigate(['./adquirirseguros']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
   }
-  anticipos() {
-   
-    this.router.navigate(['./anticipos'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async seguros() {
+    await this.router.navigate(['./seguros']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
   }
-  nomina() {
-   
-    this.router.navigate(['./nomina'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async vacaciones() {
+    await this.router.navigate(['./vacaciones']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
   }
-  productos() {
-   
-    this.router.navigate(['./productos'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async beneficios() {
+    await this.router.navigate(['./beneficios']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
   }
-  mispedidos() {
-   
-    this.router.navigate(['./mispedidos'])
-    .then(() => {
-      window.location.reload();
-    });
-  
+  async asistencia() {
+    await this.router.navigate(['./asistencia']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
   }
-  
+  async contacto() {
+    await this.router.navigate(['./contacto']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+  async home() {
+    await this.router.navigate(['./home']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
 
+  async prestamos() {
+    await this.router.navigate(['./prestamos']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+  async anticipos() {
+    await this.router.navigate(['./anticipos']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+  async nomina() {
+    await this.router.navigate(['./nomina']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+  async productos() {
+    await this.router.navigate(['./productos']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+  async mispedidos() {
+    await this.router.navigate(['./mispedidos']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
 }
