@@ -1,35 +1,51 @@
+<div
+  class="barraMovil"
+  *ngIf="shouldShow()"
+  style="
+    justify-content: space-between;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    height: 80px;
+  "
+>
+  <button type="button" class="sidebarCollapse">
+    <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
+  </button>
+  <img
+    src="assets/img/company_name_bco.svg"
+    alt="Logo naxus"
+    class="naxus_logo_movil"
+  />
+</div>
 <div class="container-fluid">
-   
-    <div class="row barraMovil" *ngIf="shouldShow()">
-        <div class="col-2 col-md-2 iconoAling">
-            <button type="button" class="sidebarCollapse">
-                <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
-            </button>
-        </div>
-        <div class="col-7 col-md-8"></div>
-        <div class="col-2 col-md-2">
-            <img src="assets/img/company_name_bco.svg" alt="Logo naxus" class="naxus_logo_movil" />
-        </div>
+  <!--version desktop-->
+  <div
+    class="barraDesktop"
+    *ngIf="shouldShow()"
+    style="max-height: 80px; display: flex; justify-content: space-between;"
+  >
+    <div>
+      <h1 class="Bienv">¡Bienvenido!</h1>
+      <p class="Usua">Luis Enrique Beltrán Riveraaaa</p>
     </div>
-
-    <!--version desktop-->
-    <div class="row barraDesktop" *ngIf="shouldShow()">
-        <div class="col-10 col-md-10">
-            <h1 class="Bienv" >¡Bienvenido!</h1>
-            <p class="Usua" >Luis Enrique Beltrán Rivera</p>
-
-        </div>
-        <div class="col-1 col-md-2">
-            <img src="assets/img/company_name.svg" alt="Logo de company" class="LogoComName" />
-        </div>
+    <div>
+      <img
+        src="assets/img/company_name.svg"
+        alt="Logo de company"
+        class="LogoComName"
+      />
     </div>
+  </div>
 
-    <div class="row barraDesktop02">
-        <div class="col-10 col-md-10">
-            <h1 class="Bienv" *ngIf="shouldShow()">¡Bienvenido!</h1>
-            <p class="Usua" *ngIf="shouldShow()" >Luis Enrique Beltrán Rivera</p>
-            <button mat-raised-button color="accent" (click)="addToHomeScreen()">Add to home screen</button>
-
-        </div>
+  <div class="row barraDesktop02" style="margin-top: 10px;">
+    <div class="col-10 col-md-10">
+      <h1 class="Bienv" *ngIf="shouldShow()">¡Bienvenido!</h1>
+      <p class="Usua" *ngIf="shouldShow()">Luis Enrique Beltrán Rivera</p>
+      <button mat-raised-button color="accent" (click)="addToHomeScreen()">
+        Add to home screen
+      </button>
     </div>
+  </div>
 </div>

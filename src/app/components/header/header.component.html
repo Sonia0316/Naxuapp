@@ -1,113 +1,126 @@
-<nav id="sidebar" >
-    <div class="sidebar-header">
-        <img src="assets/img/logo_naxu.svg" alt="logo naxu" />
-        <!--<img src="assets/img/logo_naxu_movil.svg" alt="logo naxu movil" class="logo_movil">-->
-    </div>
+<nav id="sidebar">
+  <div class="sidebar-header" style="height: 80px;">
+    <img src="assets/img/logo_naxu.svg" alt="logo naxu" />
+  </div>
 
-    <ul class="list-unstyled components">
-        <li  routerLinkActive="active">
-            <a (click)="home()" >
-                <img src="assets/img/menu/logo_home_hover.svg" alt="home" />
-                <p>Inicio</p>
-            </a>
-        </li>
+  <ul class="list-unstyled components">
+    <li routerLinkActive="active">
+      <a (click)="home()">
+        <img src="assets/img/menu/logo_home_hover.svg" alt="home" />
+        <p>Inicio</p>
+      </a>
+    </li>
 
-        <li routerLinkActive="active">
-            <a (click)="nomina()" target="_self">
-                <img src="assets/img/menu/logo_recibonomina.svg" alt="recibos de nomina" />
-                <p>Recibos de Nómina</p>
-            </a>
-        </li>
+    <li routerLinkActive="active">
+      <a (click)="nomina()" target="_self">
+        <img
+          src="assets/img/menu/logo_recibonomina.svg"
+          alt="recibos de nomina"
+        />
+        <p>Recibos de Nómina</p>
+      </a>
+    </li>
 
-        <li routerLinkActive="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                <img src="assets/img/menu/logo_creditos.svg" alt="creditos" />
-                <i class="fa fa-chevron-down"></i>
-                <p>Créditos</p>
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a (click)="prestamos()" target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Prestamos</p>
-                    </a>
-                </li>
-                <li>
-                    <a (click)="anticipos()"  target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Anticipos</p>
-                    </a>
-                </li>
-            </ul>
+    <li routerLinkActive="active">
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+        <img src="assets/img/menu/logo_creditos.svg" alt="creditos" />
+        <i class="fa fa-chevron-down"></i>
+        <p>Créditos</p>
+      </a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li>
+          <a (click)="prestamos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Prestamos
+            </p>
+          </a>
         </li>
+        <li>
+          <a (click)="anticipos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Anticipos
+            </p>
+          </a>
+        </li>
+      </ul>
+    </li>
 
+    <li routerLinkActive="active">
+      <a (click)="vacaciones()" target="_self">
+        <img src="assets/img/menu/logo_vacaciones.svg" alt="vacaciones" />
+        <p>Vacaciones</p>
+      </a>
+    </li>
 
-        <li routerLinkActive="active">
-            <a (click)="vacaciones()"  target="_self">
-                <img src="assets/img/menu/logo_vacaciones.svg" alt="vacaciones" />
-                <p>Vacaciones</p>
-            </a>
+    <li routerLinkActive="active">
+      <a href="#segurosSubmenu" data-toggle="collapse" aria-expanded="false">
+        <img src="assets/img/menu/logo_seguros.svg" alt="seguros" />
+        <i class="fa fa-chevron-down"></i>
+        <p>Seguros</p>
+      </a>
+      <ul class="collapse list-unstyled" id="segurosSubmenu">
+        <li>
+          <a (click)="seguros()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Mis seguros
+            </p>
+          </a>
         </li>
-
-        <li routerLinkActive="active">
-            <a href="#segurosSubmenu" data-toggle="collapse" aria-expanded="false">
-                <img src="assets/img/menu/logo_seguros.svg" alt="seguros" />
-                <i class="fa fa-chevron-down"></i>
-                <p>Seguros</p>
-            </a>
-            <ul class="collapse list-unstyled" id="segurosSubmenu">
-                <li>
-                    <a (click)="seguros()"  target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Mis seguros</p>
-                    </a>
-                </li>
-                <li>
-                    <a (click)="adquirirseguro()" target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Adquirir seguros</p>
-                    </a>
-                </li>
-            </ul>
+        <li>
+          <a (click)="adquirirseguro()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Adquirir seguros
+            </p>
+          </a>
         </li>
-        <li routerLinkActive="active">
-            <a (click)="beneficios()" target="_self">
-                <img src="assets/img/menu/logo_beneficios.svg" alt="beneficios" />
-                <p>Beneficios</p>
-            </a>
+      </ul>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="beneficios()" target="_self">
+        <img src="assets/img/menu/logo_beneficios.svg" alt="beneficios" />
+        <p>Beneficios</p>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="asistencia()" target="_self">
+        <img src="assets/img/menu/logo_asistencia.svg" alt="asistencia" />
+        <p>Asistencia</p>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a href="#tiendaSubmenu" data-toggle="collapse" aria-expanded="false">
+        <img src="assets/img/menu/logo_tienda.svg" alt="Tienda virtual" />
+        <i class="fa fa-chevron-down"></i>
+        <p>Tienda Virtual</p>
+      </a>
+      <ul class="collapse list-unstyled" id="tiendaSubmenu">
+        <li>
+          <a (click)="productos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Productos
+            </p>
+          </a>
         </li>
-        <li routerLinkActive="active">
-            <a (click)="asistencia()" target="_self">
-                <img src="assets/img/menu/logo_asistencia.svg" alt="asistencia" />
-                <p>Asistencia</p>
-            </a>
+        <li>
+          <a (click)="mispedidos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Mis pedidos
+            </p>
+          </a>
         </li>
-        <li routerLinkActive="active">
-            <a href="#tiendaSubmenu" data-toggle="collapse" aria-expanded="false">
-                <img src="assets/img/menu/logo_tienda.svg" alt="Tienda virtual" />
-                <i class="fa fa-chevron-down"></i>
-                <p>Tienda Virtual</p>
-            </a>
-            <ul class="collapse list-unstyled" id="tiendaSubmenu">
-                <li>
-                    <a (click)="productos()" target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Productos</p>
-                    </a>
-                </li>
-                <li>
-                    <a (click)="mispedidos()" target="_self">
-                        <p class="subItem"><i class="fa fa-chevron-right" id="oc"></i>Mis pedidos</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a (click)="contacto()" target="_self">
-                <img src="assets/img/menu/logo_contacto.svg" alt="contacto" />
-                <p>Contácto</p>
-            </a>
-        </li>
-        <li routerLinkActive="active">
-            <a [routerLink]="" (click)="DestroySession()">
-                <img src="assets/img/menu/logo_salir.svg" alt="salir" />
-                <p>Salir</p>
-            </a>
-        </li>
-    </ul>
+      </ul>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="contacto()" target="_self">
+        <img src="assets/img/menu/logo_contacto.svg" alt="contacto" />
+        <p>Contácto</p>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="" (click)="DestroySession()">
+        <img src="assets/img/menu/logo_salir.svg" alt="salir" />
+        <p>Salir</p>
+      </a>
+    </li>
+  </ul>
 </nav>
