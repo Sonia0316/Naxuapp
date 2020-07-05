@@ -13,6 +13,7 @@ export class HeaderComponent {
     window.localStorage.removeItem('email');
     window.localStorage.removeItem('rfc');
     window.localStorage.removeItem('FlagRegistro');
+    document.getElementById('sidebarCollapse').click();
     await this.router.navigate(['./login']);
   }
 
