@@ -55,19 +55,17 @@ export class BeneficiosComponent implements OnInit {
         )
         .toPromise()) as any).response.lista;
       if (items.length) {
-        let flag_row = 0;
-        let flag_col = 0;
+        let flagRow = 0;
+        let flagCol = 0;
         for (let i = 0; i < items.length; i++) {
           if (items[i]['t02_estatus'] == 'Activo') {
-            console.log(items[i]);
-            //console.log(items[i]);
             let componente = '';
             let modal = '';
-            if (flag_row == 0) {
-              if (flag_col == 0) {
+            if (flagRow == 0) {
+              if (flagCol == 0) {
                 componente = '<div class="row">';
               }
-              if (flag_col < 2) {
+              if (flagCol < 2) {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
@@ -115,7 +113,7 @@ export class BeneficiosComponent implements OnInit {
                   '<a href="#" data-dismiss="modal">OK</a>  ' +
                   '</div></div></div></div>';
 
-                flag_col++;
+                flagCol++;
               } else {
                 componente =
                   componente +
@@ -133,18 +131,18 @@ export class BeneficiosComponent implements OnInit {
                   '</div><div class="ObtBenePasoText">' +
                   '<p class="ObtBenePasoTextStep">New Rating <br> <span> Hurray! You\'ve got a new rating.</span></p>' +
                   '</div></li></ul></div></div>';
-                flag_col = 0;
-                flag_row++;
+                flagCol = 0;
+                flagRow++;
                 i--;
               }
-              if (flag_col == 0) {
+              if (flagCol == 0) {
                 componente = componente + '</div>';
               }
             } else {
-              if (flag_col == 0) {
+              if (flagCol == 0) {
                 componente = componente + '<div class="row">';
               }
-              if (flag_col < 3) {
+              if (flagCol < 3) {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
@@ -192,19 +190,16 @@ export class BeneficiosComponent implements OnInit {
                   '</div></div><div class="modal-footer">' +
                   '<a href="#" data-dismiss="modal">OK</a>  ' +
                   '</div></div></div></div>';
-                flag_col++;
-                console.log(flag_col);
+                flagCol++;
               }
-              if (flag_col == 3) {
+              if (flagCol == 3) {
                 componente = componente + '</div>';
-                flag_col = 0;
+                flagCol = 0;
               }
             }
             this.htmlStrModals = this.htmlStrModals + modal;
             this.htmlStr = this.htmlStr + componente;
           }
-
-          //Hasta aqui llegar el For
         }
         this.htmlSafeHtmlModal = this.transform(this.htmlStrModals, 'html');
         this.htmlSafeHtml = this.transform(this.htmlStr, 'html');

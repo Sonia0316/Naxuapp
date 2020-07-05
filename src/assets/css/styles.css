@@ -134,6 +134,7 @@ span {
 #sidebar ul.components {
   height: 100%;
   padding-bottom: 100%;
+  cursor: pointer;
 }
 
 /* ---------------------------------------------------

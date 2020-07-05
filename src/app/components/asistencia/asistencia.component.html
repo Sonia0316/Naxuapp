@@ -1,21 +1,31 @@
-  <div class="container-fluid">
-                    <div class="row">
-                        <!--adquirir seguros-->
-                        <div class="col-12 col-md-12 col-lg-12">
-                            <div class="spaCbzSeg">
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_asistencia.svg" alt="Imagen Asistencia" class="imgEncabz" />
-                                <h3 class="encabz">Asistencia</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Inicia cuerpo del documento-->
-
-                    <div  [innerHTML]="htmlSafeHtml">
-
-                    </div>
-                </div>
-                <!--Modal asistencia 01-->
-                <div [innerHTML]="htmlSafeHtmlModal" >
-
-                       <div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+      <div class="spaCbzSeg">
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_asistencia.svg"
+          alt="Imagen Asistencia"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Asistencia</h3>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="status === 'complete'">
+    <div [innerHTML]="htmlSafeHtml"></div>
+  </ng-container>
+  <ng-container *ngIf="status === 'empty'">
+    <h3 style="text-align: center;">
+      No hay seguros disponibles
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'error'">
+    <h3 style="text-align: center;">
+      Ocurrío un problema con tu solicitud
+    </h3>
+  </ng-container>
+</div>
+<div [innerHTML]="htmlSafeHtmlModal">
+  <div></div>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>
