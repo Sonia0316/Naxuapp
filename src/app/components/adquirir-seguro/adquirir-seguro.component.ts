@@ -70,6 +70,10 @@ export class AdquirirSeguroComponent implements OnInit {
                 'Vigencia: ' +
                 items[i]['t06_vigencia'] +
                 '</p>' +
+                '<p class="OtroSegDate">' +
+                'Precio:' +
+                items[i]['t06_precio'] +
+                '</p>   ' +
                 '<a id="modal-otroseg01" href="#modal-container-otroseg0' +
                 i +
                 '" data-toggle="modal" role="button"  class="btn btn-primary">Conoce más</a>' +
@@ -106,6 +110,10 @@ export class AdquirirSeguroComponent implements OnInit {
                 '<p class="OtroSegDate">' +
                 'Vigencia:' +
                 items[i]['t06_vigencia'] +
+                '</p>   ' +
+                '<p class="OtroSegDate">' +
+                'Precio:' +
+                items[i]['t06_precio'] +
                 '</p>   ' +
                 '</div>' +
                 '</div>' +
