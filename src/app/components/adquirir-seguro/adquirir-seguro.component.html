@@ -19,7 +19,7 @@
     </div>
   </div>
   <ng-container *ngIf="status === 'complete'">
-    <div class="row" *ngIf="mainItem">
+    <div class="row medium" *ngIf="mainItem">
       <div class="col-12 col-md-8">
         <div class="row no-gutters">
           <div class="col-12 col-md-6 col-xl-4">
@@ -36,7 +36,7 @@
                 [innerHTML]="mainItem['t06_descripcion']"
               ></div>
               <p class="AdqSegInfoVig">
-                {{ mainItem["t06_vigencia"] }}
+                Vigencia: {{ mainItem["t06_vigencia"] }}
               </p>
               <br />
               <a
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-4 description">
         <div class="ObtBene">
           <h2>COMO OBTENER MIS BENEFICIOS</h2>
           <hr />
@@ -104,6 +104,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-12">
         <div class="spaCbzSeg">
@@ -125,7 +126,7 @@
   </ng-container>
   <ng-container *ngIf="status === 'error'">
     <h3 style="text-align: center;">
-      Ocurrío un problema con tu solicitud
+      Ocurrió un problema con tu solicitud
     </h3>
   </ng-container>
 </div>

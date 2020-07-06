@@ -12,6 +12,7 @@ import {
 @Component({
   selector: 'app-adquirir-seguro',
   templateUrl: './adquirir-seguro.component.html',
+  styleUrls: ['./adquirir-seguro.component.scss'],
 })
 export class AdquirirSeguroComponent implements OnInit {
   htmlStrModals: string;
@@ -66,6 +67,7 @@ export class AdquirirSeguroComponent implements OnInit {
                 items[i]['t06_descripcion'] +
                 '</p>' +
                 '<p class="OtroSegDate">' +
+                'Vigencia: ' +
                 items[i]['t06_vigencia'] +
                 '</p>' +
                 '<a id="modal-otroseg01" href="#modal-container-otroseg0' +
@@ -102,6 +104,7 @@ export class AdquirirSeguroComponent implements OnInit {
                 items[i]['t06_descripcion'] +
                 '</p>' +
                 '<p class="OtroSegDate">' +
+                'Vigencia:' +
                 items[i]['t06_vigencia'] +
                 '</p>   ' +
                 '</div>' +

@@ -12,6 +12,7 @@ import {
 @Component({
   selector: 'app-asistencia',
   templateUrl: './asistencia.component.html',
+  styleUrls: ['./asistencia.component.scss'],
 })
 export class AsistenciaComponent implements OnInit {
   public htmlStr: string;
@@ -127,7 +128,7 @@ export class AsistenciaComponent implements OnInit {
               } else {
                 componente =
                   componente +
-                  '<div class="col-12 col-md-4">' +
+                  '<div class="col-12 col-md-4 descriptiononly">' +
                   '<div class="ObtBene"><h2>COMO OBTENER MIS BENEFICIOS</h2>' +
                   '<hr><ul><li><div class="ObtBenePasoImg"><img src="assets/img/logos_cuerpo/logo_beneficios01.svg" alt="Paso1">' +
                   '</div><div class="ObtBenePasoText"><p class="ObtBenePasoTextStep">Paso 1 <br> <span> Let\'s meet at starbucks today, are you free?</span></p>' +

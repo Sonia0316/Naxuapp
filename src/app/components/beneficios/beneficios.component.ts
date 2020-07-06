@@ -12,6 +12,7 @@ import {
 @Component({
   selector: 'app-beneficios',
   templateUrl: './beneficios.component.html',
+  styleUrls: ['./beneficios.component.scss'],
 })
 export class BeneficiosComponent implements OnInit {
   htmlStr: string;
@@ -79,8 +80,8 @@ export class BeneficiosComponent implements OnInit {
                   '<p class="OtroSegDesc">' +
                   items[i]['t02_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  // '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
+                  // '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
                   '<a id="modal-otroseg02" ' +
                   'data-toggle="modal" role="button" class="btn btn-primary Benef" href="#modal-container-otroseg0' +
                   i +
@@ -117,7 +118,7 @@ export class BeneficiosComponent implements OnInit {
               } else {
                 componente =
                   componente +
-                  '<div class="col-12 col-md-4">' +
+                  '<div class="col-12 col-md-4 descriptiononly">' +
                   '<div class="ObtBene"><h2>COMO OBTENER MIS BENEFICIOS</h2>' +
                   '<hr><ul><li><div class="ObtBenePasoImg"><img src="assets/img/logos_cuerpo/logo_beneficios01.svg" alt="Paso1">' +
                   '</div><div class="ObtBenePasoText"><p class="ObtBenePasoTextStep">Paso 1 <br> <span> Let\'s meet at starbucks today, are you free?</span></p>' +
@@ -156,8 +157,8 @@ export class BeneficiosComponent implements OnInit {
                   '<p class="OtroSegDesc">' +
                   items[i]['t02_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  // '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
+                  // '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
                   '<a id="modal-otroseg02"' +
                   'data-toggle="modal" role="button" class="btn btn-primary Benef" ' +
                   ' href="#modal-container-otroseg0' +
