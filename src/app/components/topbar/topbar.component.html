@@ -10,7 +10,12 @@
     height: 80px;
   "
 >
-  <button id="sidebarCollapse" type="button" class="sidebarCollapse">
+  <button
+    id="sidebarCollapse"
+    type="button"
+    class="sidebarCollapse"
+    (click)="toTop()"
+  >
     <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
   </button>
   <img
@@ -38,14 +43,10 @@
       />
     </div>
   </div>
-
-  <div class="row barraDesktop02" style="margin-top: 10px;">
+  <div id="topBar" class="row barraDesktop02" style="margin-top: 10px;">
     <div class="col-10 col-md-10">
       <h1 class="Bienv" *ngIf="shouldShow()">¡Bienvenido!</h1>
       <p class="Usua" *ngIf="shouldShow()">Luis Enrique Beltrán Rivera</p>
-      <button mat-raised-button color="accent" (click)="addToHomeScreen()">
-        Add to home screen
-      </button>
     </div>
   </div>
 </div>

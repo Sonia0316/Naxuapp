@@ -118,7 +118,7 @@ export class AdquirirSeguroComponent implements OnInit {
                 '</div>' +
                 '</div>' +
                 '<div class="modal-footer">     ' +
-                '<a href="#" data-dismiss="modal">OK</a>' +
+                '<a href="#" data-dismiss="modal">Contratar</a>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
