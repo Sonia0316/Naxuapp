@@ -9,24 +9,18 @@ export class HomeComponent {
   showButton = false;
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e) {
-    console.log('====================================');
-    console.log('AQUI2');
-    console.log(e);
-    console.log('====================================');
     e.preventDefault();
     this.deferredPrompt = e;
     this.showButton = true;
   }
-  addToHomeScreen() {
-    this.showButton = false;
+  public async addToHomeScreen() {
     this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
+    const choiceResult = await this.deferredPrompt.userChoice;
+    if (choiceResult.outcome === 'accepted') {
       this.deferredPrompt = null;
-    });
+      this.showButton = false;
+    } else {
+      console.log('User dismissed the A2HS prompt');
+    }
   }
 }
