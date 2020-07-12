@@ -64,9 +64,25 @@ export class AsistenciaComponent implements OnInit {
           if (items[i]['t03_estatus'] == 'Activo') {
             let componente = '';
             let modal = '';
-            if (flagRow == 0) {
-              if (flagCol == 0) {
+            if (flagRow === 0) {
+              if (flagCol === 0) {
                 componente = '<div class="row">';
+                componente =
+                  componente +
+                  '<div class="col-12 col-md-4 descriptiononly">' +
+                  '<div class="ObtBene"><h2>COMO USAR MIS ASITENCIAS</h2>' +
+                  '<hr><ul><li><div class="ObtBenePasoImg"><img src="assets/img/logos_cuerpo/logo_beneficios01.svg" alt="Paso1">' +
+                  '</div><div class="ObtBenePasoText"><p class="ObtBenePasoTextStep">Paso 1 <br> <span> Let\'s meet at starbucks today, are you free?</span></p>' +
+                  '</div></li><li><div class="ObtBenePasoImg">' +
+                  '<img src="assets/img/logos_cuerpo/logo_beneficios02.svg" alt="Paso2">' +
+                  '</div><div class="ObtBenePasoText">' +
+                  '<p class="ObtBenePasoTextStep">Product Issue <br> <span> A new issue has been reported, would you be able to help me?</span></p>' +
+                  '</div></li><li>' +
+                  '<div class="ObtBenePasoImg">' +
+                  '<img src="assets/img/logos_cuerpo/logo_beneficios03.svg" alt="Paso3">' +
+                  '</div><div class="ObtBenePasoText">' +
+                  '<p class="ObtBenePasoTextStep">New Rating <br> <span> Hurray! You\'ve got a new rating.</span></p>' +
+                  '</div></li></ul></div></div>';
               }
               if (flagCol < 2) {
                 componente =
@@ -126,32 +142,15 @@ export class AsistenciaComponent implements OnInit {
                   '</div>';
                 flagCol++;
               } else {
-                componente =
-                  componente +
-                  '<div class="col-12 col-md-4 descriptiononly">' +
-                  '<div class="ObtBene"><h2>COMO USAR MIS ASITENCIAS</h2>' +
-                  '<hr><ul><li><div class="ObtBenePasoImg"><img src="assets/img/logos_cuerpo/logo_beneficios01.svg" alt="Paso1">' +
-                  '</div><div class="ObtBenePasoText"><p class="ObtBenePasoTextStep">Paso 1 <br> <span> Let\'s meet at starbucks today, are you free?</span></p>' +
-                  '</div></li><li><div class="ObtBenePasoImg">' +
-                  '<img src="assets/img/logos_cuerpo/logo_beneficios02.svg" alt="Paso2">' +
-                  '</div><div class="ObtBenePasoText">' +
-                  '<p class="ObtBenePasoTextStep">Product Issue <br> <span> A new issue has been reported, would you be able to help me?</span></p>' +
-                  '</div></li><li>' +
-                  '<div class="ObtBenePasoImg">' +
-                  '<img src="assets/img/logos_cuerpo/logo_beneficios03.svg" alt="Paso3">' +
-                  '</div><div class="ObtBenePasoText">' +
-                  '<p class="ObtBenePasoTextStep">New Rating <br> <span> Hurray! You\'ve got a new rating.</span></p>' +
-                  '</div></li></ul></div></div>';
-
                 i--;
                 flagCol = 0;
                 flagRow++;
               }
-              if (flagCol == 0) {
+              if (flagCol === 0) {
                 componente = componente + '<div>';
               }
             } else {
-              if (flagCol == 0) {
+              if (flagCol === 0) {
                 componente = componente + '<div class="row">';
               }
               if (flagCol < 3) {
@@ -213,7 +212,7 @@ export class AsistenciaComponent implements OnInit {
 
                 flagCol++;
               }
-              if (flagCol == 3) {
+              if (flagCol === 3) {
                 componente = componente + '</div>';
                 flagCol = 0;
               }
