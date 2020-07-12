@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   DomSanitizer,
@@ -25,6 +25,7 @@ export class AdquirirSeguroComponent implements OnInit {
   public status: string;
   constructor(
     private httpClient: HttpClient,
+    private elRef: ElementRef,
     protected sanitizer: DomSanitizer
   ) {}
 
@@ -46,11 +47,11 @@ export class AdquirirSeguroComponent implements OnInit {
 
         let flagCol = 0;
         for (let i = 0; i < items.length; i++) {
-          if (items[i]['t06_estatus'] == 'Activo') {
+          if (items[i]['t06_estatus'] === 'Activo') {
             let componente = '';
             let modal = '';
             if (items[i]['t06_prioridad'] == 2) {
-              if (flagCol == 0) {
+              if (flagCol === 0) {
                 componente = '<div class="row">';
               }
               componente =
@@ -117,15 +118,26 @@ export class AdquirirSeguroComponent implements OnInit {
                 '</p>   ' +
                 '</div>' +
                 '</div>' +
-                '<div class="modal-footer">     ' +
-                '<a href="#" data-dismiss="modal">Contratar</a>' +
+                '<div class="modal-footer">' +
+                '<a href="#" id="contratar' +
+                i +
+                '" data-dismiss="modal">Contratar</a>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>';
-
+              setTimeout(() => {
+                this.elRef.nativeElement
+                  .querySelector('#contratar' + i)
+                  .addEventListener(
+                    'click',
+                    this.senmailBackOffice.bind(this, items[i]['t06_titulo'])
+                  );
+              }, 1000);
               flagCol++;
-              if (flagCol == 3) componente = componente + '</div>';
+              if (flagCol === 3) {
+                componente = componente + '</div>';
+              }
             }
             this.htmlStrModals = this.htmlStrModals + modal;
             this.htmlStrOtros = this.htmlStrOtros + componente;
@@ -163,20 +175,25 @@ export class AdquirirSeguroComponent implements OnInit {
         throw new Error(`Invalid safe type specified: ${type}`);
     }
   }
-  public async senmailBackOffice(seguro: string) {
-    console.log('Lllamada a la funcion');
-    const result = await this.httpClient
-      .post(
-        'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-        {
-          asunto: 'Adquisición de seguros',
-          mensaje: 'El usuario: desea comprar el seguro ' + seguro,
-          grupo: 'SEGUROS',
-        }
-      )
-      .toPromise();
-    console.log('====================================');
-    console.log(result);
-    console.log('====================================');
+  public async senmailBackOffice(seguro: string, fromModal = false) {
+    this.loading = true;
+    try {
+      await this.httpClient
+        .post(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
+          {
+            asunto: 'Adquisición de seguros',
+            mensaje: 'El usuario: desea comprar el seguro ' + seguro,
+            grupo: 'SEGUROS',
+          }
+        )
+        .toPromise();
+      document.getElementById('showModalExitoSolicitud').click();
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
   }
 }

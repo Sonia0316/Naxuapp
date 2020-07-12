@@ -38,9 +38,7 @@
               <p class="AdqSegInfoVig">
                 Vigencia: {{ mainItem["t06_vigencia"] }}
               </p>
-               <p class="AdqSegInfoVig">
-                Precio: {{ mainItem["t06_precio"] }}
-              </p>
+              <p class="AdqSegInfoVig">Precio: {{ mainItem["t06_precio"] }}</p>
               <br />
               <a
                 id="modal-destacado"
@@ -139,3 +137,88 @@
   </div>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
+
+<a
+  href="#exitoSolicitud"
+  id="showModalExitoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+
+<div
+  class="modal fade"
+  id="exitoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Solicitud recibida
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Se ha recibido tu petición, un ejecutivo te contactará.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
