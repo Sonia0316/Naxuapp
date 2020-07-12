@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       email: ['', [Validators.required, ValidationService.emailValidator]],
     });
-
-    console.log(this.userForm);
   }
 
   public async CheckUser() {
@@ -99,6 +97,5 @@ export class LoginComponent implements OnInit {
   }
   FlagRecupera() {
     window.localStorage.setItem('FlagRecupera', '1');
-    //this.router.navigate(['./recupera']);
   }
 }
