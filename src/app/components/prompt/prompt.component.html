@@ -1,0 +1,14 @@
+<div *ngIf="data.mobileType === 'ios'" class="ios-prompt">
+  <button class="close-ios-inv" mat-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div>
+    Para instalar esta webapp, presiona sobre el botón menu y selecciona
+    "Agregar a la pantalla de inicio"
+  </div>
+  <div style="display: flex; align-items: flex-end;">
+    <img alt="iosImage" src="./assets/ios-menu-btn.png" />
+    <mat-icon style="margin: 0 10px 0 10px;">navigate_next</mat-icon>
+    <img alt="iosImage1" src="./assets/ios-add-btn.png" />
+  </div>
+</div>

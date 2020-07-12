@@ -32,6 +32,11 @@ import { ControlMessagesComponent } from './control-messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalLoadingComponent } from './components/modal-loading/modal-loading.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { PromptComponent } from './components/prompt/prompt.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +64,12 @@ import { ModalLoadingComponent } from './components/modal-loading/modal-loading.
     FooterloginComponent,
     ControlMessagesComponent,
     ModalLoadingComponent,
+    PromptComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -70,6 +77,9 @@ import { ModalLoadingComponent } from './components/modal-loading/modal-loading.
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    MatBottomSheetModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
