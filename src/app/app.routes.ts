@@ -31,7 +31,7 @@ const app_routes: Routes = [
 	{path: 'mispedidos',component: MisPedidosComponent},
 	{path: 'nomina',component: NominaComponent},
 	{path: 'prestamos',component: PrestamosComponent},
-	{path: 'productos',component: ProductosComponent},
+	{path: 'productos',component: DetalleProductoComponent},
 	{path: 'seguros',component: SegurosComponent},
 	{path: 'vacaciones',component: VacacionesComponent},
 	{path: 'login',component: LoginComponent},

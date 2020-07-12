@@ -58,4 +58,7 @@ export class TopbarComponent {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+  public sideBarClose() {
+    document.getElementById('sidebar').classList.remove('active');
+  }
 }

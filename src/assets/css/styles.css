@@ -2109,23 +2109,6 @@ th {
     margin-top: 10%;
   }
 
-  .img_derecha {
-    height: 50px;
-    background-image: none;
-    background-color: #14141e;
-  }
-
-  .img_derecha .logoLoginDesk {
-    display: none;
-  }
-
-  .img_derecha .logoLoginMovil {
-    display: block;
-    float: right;
-    padding: 4%;
-    width: 100px;
-  }
-
   .img_derecha02 {
     height: 50px;
     background-image: none;
@@ -2144,9 +2127,24 @@ th {
   }
 }
 
-
 @media only screen and (max-width: 767px) {
   .descriptiononly {
     margin-bottom: 30px;
+  }
+  .img_derecha {
+    height: 50px;
+    background-image: none;
+    background-color: #14141e;
+  }
+
+  .img_derecha .logoLoginMovil {
+    display: block;
+    float: right;
+    padding: 1rem;
+    width: 100px;
+  }
+
+  .img_derecha .logoLoginDesk {
+    display: none;
   }
 }
