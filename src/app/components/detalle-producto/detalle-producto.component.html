@@ -1,117 +1,129 @@
-  <div class="container-fluid">
-                    <!--Tienda en línea detalle de producto-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+      <div class="spaCbzSeg">
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_tienda_virtual.svg"
+          alt="Tienda Virtual"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Tienda en Línea</h3>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="status === 'complete'">
+    <!-- <div class="row DetalleProduct">
+      <div class="col-12 col-md-4 col-lg-4 ImagenProduct">
+        <img alt="Imagen detalle" src="assets/img/img_tienda/apple-watch.png" />
+      </div>
+      <div class="col-12 col-md-8 col-lg-8 DescDetalleProduct">
+        <h3>
+          Apple Watch Series 4 GPS
+        </h3>
+        <p>
+          Redesigned from scratch and completely revised.
+        </p>
 
-                    <div class="row">
-                        <!--tienda en línea detalle de producto-->
-                        <div class="col-12 col-md-12 col-lg-12">
-                            <div class="spaCbzSeg">
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_tienda_virtual.svg" alt="Tienda Virtual" class="imgEncabz" />
-                                <h3 class="encabz">Tienda en Línea</h3>
-                            </div>
-                        </div>
-                    </div>
+        <span class="precioDetalle">
+          $399.00 MXN
+        </span>
 
+        <hr />
+        <div class="row">
+          <div class="col-md-4">
+            <p>Cantidad</p>
+            <form role="form">
+              <select class="select_detalle-css">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </form>
+          </div>
+          <div class="col-md-8 metPago">
+            <ul>
+              <li class="list-item">
+                <img
+                  src="assets/img/img_tienda/paga_via_nomina.svg"
+                  alt="paga vía nómina"
+                />
+                <p>Paga vía nómina</p>
+              </li>
+              <li class="list-item">
+                <img
+                  src="assets/img/img_tienda/paga_via_paypal.svg"
+                  alt="paga vía paypal"
+                />
+                <p>Paga vía PayPal</p>
+              </li>
+              <li class="list-item">
+                <img
+                  src="assets/img/img_tienda/paga_via_quincena.svg"
+                  alt="paga quincenalmente"
+                />
+                <p>Difiere tu pago quincenalmente</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-12 col-md-8 col-lg-6">
+            <a href="#" class="btn btn-block btn-lg btn-primary pgoVyaNom">
+              PAGAR VÍA NÓMINA
+            </a>
+          </div>
+          <div class="col-12 col-md-4 col-lg-4">
+            <a
+              href=""
+              class="btn btn-block btn-lg btn-outline-primary pgoVyaPayPal"
+            >
+              <img
+                src="assets/img/img_tienda/logo_paypal.svg"
+                alt="paga vía paypal"
+              />
+            </a>
+          </div>
+        </div>
+        <br />
 
-
-                    <!--Cuerpo tienda detalle de producto-->
-
-                    <div class="row DetalleProduct" >
-                        <div class="col-12 col-md-4 col-lg-4 ImagenProduct">
-                            <img alt="Imagen detalle" src="assets/img/img_tienda/apple-watch.png" />
-                        </div>
-                        <div class="col-12 col-md-8 col-lg-8 DescDetalleProduct">
-                                    <h3>
-                                        Apple Watch Series 4 GPS
-                                    </h3>
-                                    <p>
-                                        Redesigned from scratch and completely revised.
-                                    </p>
-                                    
-                                    <span class="precioDetalle">
-                                        $399.00 MXN
-                                    </span>
-                                    
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>Cantidad</p>
-                                            <form role="form">
-                                                <select class="select_detalle-css">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                </select>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-8 metPago">
-                                            <ul>
-                                                <li class="list-item">
-                                                    <img src="assets/img/img_tienda/paga_via_nomina.svg" alt="paga vía nómina">
-                                                    <p>Paga vía nómina</p>
-                                                </li>
-                                                <li class="list-item">
-                                                    <img src="assets/img/img_tienda/paga_via_paypal.svg" alt="paga vía paypal">
-                                                   <p> Paga vía PayPal</p>
-                                                </li>
-                                                <li class="list-item">
-                                                    <img src="assets/img/img_tienda/paga_via_quincena.svg" alt="paga quincenalmente">
-                                                   <p> Difiere tu pago quincenalmente</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <br>
-                                        <div class="row">
-                                            <div class="col-12 col-md-8 col-lg-6">
-                                                
-                                                <a href="#" class="btn btn-block btn-lg btn-primary pgoVyaNom">
-                                                    PAGAR VÍA NÓMINA
-                                                </a>
-                                            
-                                            </div>
-                                            <div class="col-12 col-md-4 col-lg-4" >
-                                                <a href="" class="btn btn-block btn-lg btn-outline-primary pgoVyaPayPal">
-                                                    <img src="assets/img/img_tienda/logo_paypal.svg" alt="paga vía paypal">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <br>
-
-                                    <div class="marcoPagoQuincenal">
-                                        <h3>
-                                            DIFIERE TU PAGO QUINCENALMENTE
-                                        </h3>
-                                        <p>
-                                            Escoge el plazo que mejor se ajuste a tus necesidades recibirás el descuento vía nómina.
-                                        </p>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-12 col-md-4 col-lg-3">
-                                                <p>Quincenas</p>
-                                                <form role="form">
-                                                    <select class="select_detalle-css">
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                    </select>
-                                                </form>
-                                               
-                                            </div>
-                                            <div class="col-12 col-md-8 col-lg-6">
-                                                
-                                                <a href="#" class="btn btn-primary btn-lg btn-block pgoVyaNom">
-                                                    PAGAR CADA QUINCENA
-                                                </a>
-                                            </div>
-                                      
-                                            
-                                        </div>
-                                        <p class="AvisoLegal">Avisos legales CAT Promedio %</p>
-                                    </div>
-
-
-                        </div>
-                    </div>
-                </div>
+        <div class="marcoPagoQuincenal">
+          <h3>
+            DIFIERE TU PAGO QUINCENALMENTE
+          </h3>
+          <p>
+            Escoge el plazo que mejor se ajuste a tus necesidades recibirás el
+            descuento vía nómina.
+          </p>
+          <br />
+          <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+              <p>Quincenas</p>
+              <form role="form">
+                <select class="select_detalle-css">
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </form>
+            </div>
+            <div class="col-12 col-md-8 col-lg-6">
+              <a href="#" class="btn btn-primary btn-lg btn-block pgoVyaNom">
+                PAGAR CADA QUINCENA
+              </a>
+            </div>
+          </div>
+          <p class="AvisoLegal">Avisos legales CAT Promedio %</p>
+        </div>
+      </div>
+    </div> -->
+  </ng-container>
+  <ng-container *ngIf="status === 'error'">
+    <h3 style="text-align: center;">
+      Ocurrió un problema con tu solicitud
+    </h3>
+  </ng-container>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>

@@ -1,182 +1,103 @@
 <div class="container-fluid">
-                    <!--Tienda en línea-->
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+      <div class="spaCbzSeg">
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_tienda_virtual.svg"
+          alt="Tienda Virtual"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Tienda en Línea</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <form action="">
+        <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+          <div class="input-group">
+            <input
+              type="search"
+              placeholder="Buscar..."
+              aria-describedby="button-addon1"
+              class="form-control border-0 bg-light"
+            />
+            <div class="input-group-append">
+              <button
+                id="button-addon1"
+                type="submit"
+                class="btn btn-link text-primary"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <select class="select-css">
+        <option disabled selected>Selecciona la categoría</option>
+        <ng-container *ngFor="let categoria of categorias">
+          <option
+            [value]="categoria['c01id']"
+            *ngIf="categoria['c01_estatus']"
+            >{{ categoria["c01_descripcion"] }}</option
+          >
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <ng-container *ngIf="status === 'complete'">
+    <div class="TiendProduct">
+      <div class="row">
+        <ng-container *ngFor="let producto of productos">
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            style="cursor: pointer;"
+            [routerLink]="'/detalle-producto/' + producto['c02id']"
+            *ngIf="producto['c02_estatus']"
+          >
+            <div class="Product">
+              <img
+                alt="articulo tienda"
+                [src]="producto['c02_imagenurls3']"
+                class="artic img-fluid"
+              />
+              <h3>
+                <span>
+                  {{ producto["c02_titulo"] }}
+                </span>
+              </h3>
+              <div
+                class="AdqSegInfoDesc"
+                [innerHTML]="producto['c02_descripcion']"
+              ></div>
+            </div>
+            <div class="Precio">
+              <h4>
+                <span>${{ producto["c02_precio"] }}</span> MXN
+                <img
+                  alt="carrito de compra"
+                  src="assets/img/img_tienda/carrito.svg"
+                />
+              </h4>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="status === 'empty'">
+    <h3 style="text-align: center;">
+      No hay artículos disponibles
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'error'">
+    <h3 style="text-align: center;">
+      Ocurrió un problema con tu solicitud
+    </h3>
+  </ng-container>
+</div>
 
-                    <div class="row">
-                        <!--adquirir seguros-->
-                        <div class="col-12 col-md-12 col-lg-12">
-                            <div class="spaCbzSeg">
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_tienda_virtual.svg" alt="Tienda Virtual" class="imgEncabz" />
-                                <h3 class="encabz">Tienda en Línea</h3>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!--Cuerpo tienda-->
-
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4">
-
-                              <form action="">
-                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                                  <div class="input-group">
-                                    <input type="search" placeholder="Buscar..." aria-describedby="button-addon1" class="form-control border-0 bg-light">
-                                    <div class="input-group-append">
-                                      <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </form>
-                            
-                            
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            
-                            <select class="select-css">
-                                <option>Selecciona la categoría</option>
-                                <option>Electrodomesticos</option>
-                                <option>Gadgets</option>
-                                <option>Celulares</option>
-                                <option>Muebles</option>
-                                <option>Computadoras</option>
-                              </select>
-                            
-                            
-                        </div>
-                    </div>
-
-                    <div class="TiendProduct">
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="Product">
-                                    <img alt="articulo tienda" src="assets/img/img_tienda/apple-watch.png" class="artic" />
-                                    <h3>
-                                        <span>
-                                        Apple Watch Series 4 GPS
-                                        </span>
-                                    </h3>
-                                    <p>
-                                        <span>
-                                        Redesigned from scratch and completely revised.
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="Precio">
-                                    <h4>
-                                    <a href="detalle_producto.html" target="_self">
-                                    <span>$399</span> MXN
-                                    <img alt="carrito de compra" src="assets/img/img_tienda/carrito.svg"/>
-                                    </a>
-                                    </h4>
-                              
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="Product">
-                                    <img alt="articulo tienda" src="assets/img/img_tienda/jbl-speaker.png" class="artic" />
-                                    <h3>
-                                        <span>
-                                            JBL Speaker
-                                        </span>
-                                    </h3>
-                                    <p>
-                                        <span>
-                                            Redesigned from scratch and completely revised.
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="Precio">
-                                    <h4>
-                                    <a href="detalle_producto.html" target="_self">
-                                    <span>$199</span> MXN
-                                    <img alt="carrito de compra" src="assets/img/img_tienda/carrito.svg"/>
-                                    </a>
-                                    </h4>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="Product">
-                                    <img alt="articulo tienda" src="assets/img/img_tienda/beats-headphones.png" class="artic" />
-                                    <h3>
-                                        <span>
-                                            Beats Headphones
-                                        </span>
-                                    </h3>
-                                    <p>
-                                        <span>
-                                            Redesigned from scratch and completely revised.
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="Precio">
-                                    <h4>
-                                    <a href="detalle_producto.html" target="_self">
-                                    <span>$459</span> MXN
-                                    <img alt="carrito de compra" src="assets/img/img_tienda/carrito.svg"/>
-                                    </a>
-                                    </h4>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="Product">
-                                    <img alt="articulo tienda" src="assets/img/img_tienda/homepod.png" class="artic" />
-                                    <h3>
-                                        <span>
-                                        Apple Homepod
-                                        </span>
-                                    </h3>
-                                    <p>
-                                        <span>
-                                            Redesigned from scratch and completely revised.
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="Precio">
-                                    <h4>
-                                    <a href="detalle_producto.html" target="_self">
-                                    <span>$399</span> MXN
-                                    <img alt="carrito de compra" src="assets/img/img_tienda/carrito.svg"/>
-                                    </a>
-                                    </h4>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="Product">
-                                    <img alt="articulo tienda" src="assets/img/img_tienda/iphone-x.png" class="artic" />
-                                    <h3>
-                                        <span>
-                                            Apple iPhone X 128GB
-                                        </span>
-                                    </h3>
-                                    <p>
-                                        <span>
-                                            Redesigned from scratch and completely revised.
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="Precio">
-                                    <h4>
-                                    <a href="detalle_producto.html" target="_self">
-                                    <span>$8,999</span> MXN
-                                    <img alt="carrito de compra" src="assets/img/img_tienda/carrito.svg"/>
-                                    </a>
-                                    </h4>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-
-                  
-                </div>
+<app-modal-loading [active]="loading"></app-modal-loading>
