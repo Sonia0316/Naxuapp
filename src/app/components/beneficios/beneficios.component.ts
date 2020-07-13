@@ -86,7 +86,7 @@ export class BeneficiosComponent implements OnInit {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
-                  '<img alt="Burger King descuentos" src="' +
+                  '<img alt="imagen" src="' +
                   items[i]['t02_imagenurls3'] +
                   '" />' +
                   '<div class="OtroSegInfo">' +
@@ -96,8 +96,9 @@ export class BeneficiosComponent implements OnInit {
                   '<p class="OtroSegDesc">' +
                   items[i]['t02_descripcion'] +
                   '</p>' +
-                  // '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
-                  // '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  '<p style="color: #43425d;font-size: 0.9em;text-align: center;font-weight: 400;">Vigencia: ' +
+                  items[i]['t02_vigencia'] +
+                  '</p>' +
                   '<a id="modal-otroseg02" ' +
                   'data-toggle="modal" role="button" class="btn btn-primary Benef" href="#modal-container-otroseg0' +
                   i +
@@ -120,12 +121,14 @@ export class BeneficiosComponent implements OnInit {
                   '<div class="imagen">' +
                   '<img src="' +
                   items[i]['t02_imagenurls3'] +
-                  '" alt="Burger king">' +
+                  '" alt="imagen">' +
                   '</div><div class="OtroSegInfo">' +
-                  '<p class="OtroSegCod">Código: <span>QWERTY123</span></p>' +
                   '<p class="OtroSegDesc"> ' +
                   items[i]['t02_descripcion'] +
-                  '</p><p class="OtroSegDate">Valido hasta el 23 de Agosto de 2020</p> ' +
+                  '</p>' +
+                  '<p style="color: #43425d;font-size: 0.9em;text-align: center;font-weight: 400;">Vigencia: ' +
+                  items[i]['t02_vigencia'] +
+                  '</p>' +
                   '</div></div><div class="modal-footer">' +
                   '<a href="#" data-dismiss="modal">OK</a>  ' +
                   '</div></div></div></div>';
@@ -147,7 +150,7 @@ export class BeneficiosComponent implements OnInit {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
-                  '<img alt="Burger King descuentos" src="' +
+                  '<img alt="Imagen" src="' +
                   items[i]['t02_imagenurls3'] +
                   '" />' +
                   '<div class="OtroSegInfo">' +
@@ -156,6 +159,9 @@ export class BeneficiosComponent implements OnInit {
                   '</h3>' +
                   '<p class="OtroSegDesc">' +
                   items[i]['t02_descripcion'] +
+                  '</p>' +
+                  '<p style="color: #43425d;font-size: 0.9em;text-align: center;font-weight: 400;">Vigencia: ' +
+                  items[i]['t02_vigencia'] +
                   '</p>' +
                   '<a id="modal-otroseg02"' +
                   'data-toggle="modal" role="button" class="btn btn-primary Benef" ' +
@@ -180,12 +186,14 @@ export class BeneficiosComponent implements OnInit {
                   '<div class="imagen">' +
                   '<img src="' +
                   items[i]['t02_imagenurls3'] +
-                  '" alt="Burger king">' +
+                  '" alt="Imagen">' +
                   '</div><div class="OtroSegInfo">' +
-                  '<p class="OtroSegCod">Código: <span>QWERTY123</span></p>' +
                   '<p class="OtroSegDesc"> ' +
                   items[i]['t02_descripcion'] +
-                  '</p><p class="OtroSegDate">Valido hasta el 23 de Agosto de 2020</p> ' +
+                  '</p>' +
+                  '<p style="color: #43425d;font-size: 0.9em;text-align: center;font-weight: 400;">Vigencia: ' +
+                  items[i]['t02_vigencia'] +
+                  '</p>' +
                   '</div></div><div class="modal-footer">' +
                   '<a href="#" data-dismiss="modal">OK</a>  ' +
                   '</div></div></div></div>';

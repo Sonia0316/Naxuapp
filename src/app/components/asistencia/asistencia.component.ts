@@ -88,7 +88,7 @@ export class AsistenciaComponent implements OnInit {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
-                  '<img alt="Burger King descuentos" src="' +
+                  '<img alt="Imagen" src="' +
                   items[i]['t03_imagenurls3'] +
                   '" />' +
                   '<div class="OtroSegInfo">' +
@@ -98,8 +98,9 @@ export class AsistenciaComponent implements OnInit {
                   '<p class="OtroSegDesc">' +
                   items[i]['t03_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  '<p class="OtroSegDate">Vigencia: ' +
+                  items[i]['t03_vigencia'] +
+                  '</p>' +
                   '<a id="modal-otroseg02" href="#modal-container-asistseg0' +
                   i +
                   '" ' +
@@ -127,11 +128,12 @@ export class AsistenciaComponent implements OnInit {
                   '" alt="Asistencia Telefónica">' +
                   '</div>' +
                   '<div class="OtroSegInfo">' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
                   '<p class="OtroSegDesc">' +
                   items[i]['t03_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  '<p class="OtroSegDate">Vigencia: ' +
+                  items[i]['t03_vigencia'] +
+                  '</p>' +
                   '</div>' +
                   '</div>' +
                   '<div class="modal-footer">' +
@@ -157,7 +159,7 @@ export class AsistenciaComponent implements OnInit {
                 componente =
                   componente +
                   '<div class="col-md-4 OtroSeg">' +
-                  '<img alt="Burger King descuentos" src="' +
+                  '<img alt="Imagen" src="' +
                   items[i]['t03_imagenurls3'] +
                   '" />' +
                   '<div class="OtroSegInfo">' +
@@ -167,8 +169,9 @@ export class AsistenciaComponent implements OnInit {
                   '<p class="OtroSegDesc">' +
                   items[i]['t03_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  '<p class="OtroSegDate">Vigencia: ' +
+                  items[i]['t03_vigencia'] +
+                  '</p>' +
                   '<a id="modal-otroseg02" href="#modal-container-asistseg0' +
                   i +
                   '" ' +
@@ -196,11 +199,12 @@ export class AsistenciaComponent implements OnInit {
                   '" alt="Asistencia Telefónica">' +
                   '</div>' +
                   '<div class="OtroSegInfo">' +
-                  '<p class="OtroSegCod">Código: <span>ABC123</span></p>' +
                   '<p class="OtroSegDesc">' +
                   items[i]['t03_descripcion'] +
                   '</p>' +
-                  '<p class="OtroSegDate">Valido hasta el 12 de Julio de 2020</p>' +
+                  '<p class="OtroSegDate">Vigencia: ' +
+                  items[i]['t03_vigencia'] +
+                  '</p>' +
                   '</div>' +
                   '</div>' +
                   '<div class="modal-footer">' +

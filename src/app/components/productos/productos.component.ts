@@ -15,7 +15,7 @@ export class ProductosComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     try {
-      // this.categorias: [] = ((await this.httpClient
+      // this.categorias = ((await this.httpClient
       //   .get(
       //     'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/categorias'
       //   )
