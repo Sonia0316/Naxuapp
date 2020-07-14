@@ -10,16 +10,18 @@ export class ProductosComponent implements OnInit {
   public status: string;
   public productos = [];
   public categorias = [];
+  public categoriaSelected = 0;
+  public searchValue = '';
 
   constructor(private readonly httpClient: HttpClient) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     try {
-      // this.categorias = ((await this.httpClient
-      //   .get(
-      //     'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/categorias'
-      //   )
-      //   .toPromise()) as any).response.lista;
+      this.categorias = ((await this.httpClient
+        .get(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/categorias'
+        )
+        .toPromise()) as any).response.lista;
       this.productos = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos'
@@ -36,5 +38,12 @@ export class ProductosComponent implements OnInit {
     } finally {
       this.loading = false;
     }
+  }
+
+  public checkValueSearch(productTitle: string) {
+    const searchValue = this.searchValue.trim().toUpperCase();
+    return (
+      searchValue === '' || productTitle.toUpperCase().includes(searchValue)
+    );
   }
 }
