@@ -12,38 +12,39 @@
     </div>
   </div>
   <ng-container *ngIf="status === 'complete'">
-    <!-- <div class="row DetalleProduct">
+    <div class="row DetalleProduct">
       <div class="col-12 col-md-4 col-lg-4 ImagenProduct">
-        <img alt="Imagen detalle" src="assets/img/img_tienda/apple-watch.png" />
+        <img
+          alt="Imagen detalle"
+          class="img-fluid"
+          [src]="dataProduct['c02_imagenurls3']"
+        />
       </div>
       <div class="col-12 col-md-8 col-lg-8 DescDetalleProduct">
         <h3>
-          Apple Watch Series 4 GPS
+          {{ dataProduct["c02_titulo"] }}
         </h3>
-        <p>
-          Redesigned from scratch and completely revised.
-        </p>
-
+        <div [innerHTML]="dataProduct['c02_descripcion']"></div>
         <span class="precioDetalle">
-          $399.00 MXN
+          {{ getPrice(dataProduct["c02_precio"]) }} MXN
         </span>
-
         <hr />
         <div class="row">
           <div class="col-md-4">
             <p>Cantidad</p>
-            <form role="form">
-              <select class="select_detalle-css">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </form>
+            <select
+              class="select_detalle-css"
+              [(ngModel)]="quantity"
+              (ngModelChange)="changeQuantity()"
+            >
+              <option *ngFor="let item of quantityStock" [value]="item">{{
+                item
+              }}</option>
+            </select>
           </div>
           <div class="col-md-8 metPago">
             <ul>
-              <li class="list-item">
+              <li class="list-item" *ngIf="checkToPayByPayroll">
                 <img
                   src="assets/img/img_tienda/paga_via_nomina.svg"
                   alt="paga vía nómina"
@@ -57,7 +58,7 @@
                 />
                 <p>Paga vía PayPal</p>
               </li>
-              <li class="list-item">
+              <li class="list-item" *ngIf="paysAvailable.length">
                 <img
                   src="assets/img/img_tienda/paga_via_quincena.svg"
                   alt="paga quincenalmente"
@@ -70,7 +71,11 @@
         <br />
         <div class="row">
           <div class="col-12 col-md-8 col-lg-6">
-            <a href="#" class="btn btn-block btn-lg btn-primary pgoVyaNom">
+            <a
+              href="#"
+              class="btn btn-block btn-lg btn-primary pgoVyaNom"
+              *ngIf="checkToPayByPayroll"
+            >
               PAGAR VÍA NÓMINA
             </a>
           </div>
@@ -87,8 +92,7 @@
           </div>
         </div>
         <br />
-
-        <div class="marcoPagoQuincenal">
+        <div class="marcoPagoQuincenal" *ngIf="paysAvailable.length">
           <h3>
             DIFIERE TU PAGO QUINCENALMENTE
           </h3>
@@ -100,14 +104,11 @@
           <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
               <p>Quincenas</p>
-              <form role="form">
-                <select class="select_detalle-css">
-                  <option>0</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </form>
+              <select class="select_detalle-css">
+                <option *ngFor="let pay of paysAvailable" [value]="pay">{{
+                  pay
+                }}</option>
+              </select>
             </div>
             <div class="col-12 col-md-8 col-lg-6">
               <a href="#" class="btn btn-primary btn-lg btn-block pgoVyaNom">
@@ -118,7 +119,7 @@
           <p class="AvisoLegal">Avisos legales CAT Promedio %</p>
         </div>
       </div>
-    </div> -->
+    </div>
   </ng-container>
   <ng-container *ngIf="status === 'error'">
     <h3 style="text-align: center;">
