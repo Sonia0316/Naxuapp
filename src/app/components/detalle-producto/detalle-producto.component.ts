@@ -10,7 +10,7 @@ export class DetalleProductoComponent implements OnInit {
   public loading = false;
   public status: string;
 
-  public readonly salarioQuincenal = 3000;
+  public readonly salarioQuincenal = 300;
   public dataProduct: any;
 
   public quantityStock = [];
