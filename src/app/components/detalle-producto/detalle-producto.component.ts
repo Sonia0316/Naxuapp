@@ -17,6 +17,7 @@ export class DetalleProductoComponent implements OnInit {
   public quantity: number;
   public paysAvailable = [];
   public checkToPayByPayroll: boolean;
+  public payAvailableSelected;
 
   public formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -36,13 +37,12 @@ export class DetalleProductoComponent implements OnInit {
           `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/${idProducto}`
         )
         .toPromise()) as any).response.lista[0];
-      if (
-        this.dataProduct['c02_estatus'] === 'Activo' &&
-        Number(this.dataProduct['c02_stock'])
-      ) {
+      const stock = Number(this.dataProduct.c02_stock);
+      if (this.dataProduct.c02_estatus === 'Activo' && stock) {
         this.quantityStock = Array(5)
           .fill(0)
-          .map((x, i) => i + 1);
+          .map((x, i) => (stock >= i + 1 ? i + 1 : undefined))
+          .filter((item) => item);
         this.quantity = 1;
         await this.changeQuantity();
       } else {
@@ -74,7 +74,7 @@ export class DetalleProductoComponent implements OnInit {
         .post(
           `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/calculadora`,
           {
-            producto: this.dataProduct['c02id'],
+            producto: this.dataProduct.c02id,
             cantidad: this.quantity,
             metodopago: 'NOMINA',
             quincenas: '',
@@ -98,7 +98,7 @@ export class DetalleProductoComponent implements OnInit {
               .post(
                 `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/calculadora`,
                 {
-                  producto: this.dataProduct['c02id'],
+                  producto: this.dataProduct.c02id,
                   cantidad: this.quantity,
                   metodopago: 'DIFERIDO',
                   quincenas: i + 1,
@@ -109,13 +109,22 @@ export class DetalleProductoComponent implements OnInit {
           })
       );
       this.paysAvailable = results
-        .map((response, i) =>
-          Number(response.codigo) === 200 ? i + 1 : undefined
-        )
-        .filter((pay) => pay !== undefined);
+        .map((response, i) => {
+          console.log(response);
+          return Number(response.codigo) === 200
+            ? { quantity: i + 1, price: response.diferido }
+            : undefined;
+        })
+        .filter((pay) => pay);
     } catch (error) {
       console.log(error);
       this.paysAvailable = [];
     }
+  }
+  public getPaymentFormated(quantity) {
+    const value = this.paysAvailable.find(
+      (pay) => pay.quantity === Number(quantity)
+    );
+    return this.formatter.format(Number(value.price));
   }
 }

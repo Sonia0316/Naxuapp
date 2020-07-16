@@ -104,13 +104,25 @@
           <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
               <p>Quincenas</p>
-              <select class="select_detalle-css">
-                <option *ngFor="let pay of paysAvailable" [value]="pay">{{
-                  pay
-                }}</option>
+              <select
+                class="select_detalle-css"
+                [(ngModel)]="payAvailableSelected"
+              >
+                <option
+                  *ngFor="let pay of paysAvailable"
+                  [value]="pay.quantity"
+                  >{{ pay.quantity }}</option
+                >
               </select>
             </div>
             <div class="col-12 col-md-8 col-lg-6">
+              <h3
+                class="pay-quantity"
+                style="color: #ea2840; font-size: 1.25em;"
+                *ngIf="payAvailableSelected"
+              >
+                PAGOS DE: {{ getPaymentFormated(payAvailableSelected) }}
+              </h3>
               <a href="#" class="btn btn-primary btn-lg btn-block pgoVyaNom">
                 PAGAR CADA QUINCENA
               </a>

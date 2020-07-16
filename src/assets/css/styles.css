@@ -1364,7 +1364,7 @@ th {
 }
 
 .marcoPagoQuincenal .pgoVyaNom {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .DescDetalleProduct .marcoPagoQuincenal .AvisoLegal {
@@ -2005,6 +2005,10 @@ th {
   .mb-4,
   .my-4 {
     margin-bottom: 0.5rem !important;
+  }
+
+  .pay-quantity {
+    margin-top: 20px;
   }
 
   /* ---------------------------------------------------
