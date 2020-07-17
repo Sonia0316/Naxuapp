@@ -24,7 +24,10 @@
                 <img src="assets/img/img_tienda/separador.svg" alt="" />
               </li>
               <li>
-                <p>Comprado el -</p>
+                <p>
+                  Comprado el
+                  {{ moment(pedido["t09_fecha"]).format("DD-MM-YYYY") }}
+                </p>
               </li>
               <li>
                 <img src="assets/img/img_tienda/separador.svg" alt="" />
@@ -40,17 +43,18 @@
             <div class="col-md-4 col-lg-4">
               <img
                 alt="articulo tienda"
-                src="assets/img/img_tienda/jbl-speaker.png"
-                class="artic"
+                [src]="pedido['t09_imagen']"
+                class="artic img-fluid"
               />
             </div>
             <div class="col-md-8 col-lg-8">
               <h3>
                 {{ pedido["t09_producto"] }}
               </h3>
-              <p>
-                DESCRIPCIÓN
-              </p>
+              <div
+                class="AdqSegInfoDesc"
+                [innerHTML]="pedido['t09_descripcion']"
+              ></div>
               <hr />
               <h4>
                 Método de pago

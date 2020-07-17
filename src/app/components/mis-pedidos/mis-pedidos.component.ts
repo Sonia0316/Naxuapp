@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -9,6 +10,7 @@ export class MisPedidosComponent implements OnInit {
   public loading = false;
   public status: string;
   public pedidos = [];
+  public moment = moment;
   constructor(private readonly httpClient: HttpClient) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
