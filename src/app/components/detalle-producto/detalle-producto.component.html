@@ -71,13 +71,13 @@
         <br />
         <div class="row">
           <div class="col-12 col-md-8 col-lg-6">
-            <a
-              href="#"
+            <button
               class="btn btn-block btn-lg btn-primary pgoVyaNom"
               *ngIf="checkToPayByPayroll"
+              (click)="buyProduct('NOMINA', 1)"
             >
               PAGAR VÍA NÓMINA
-            </a>
+            </button>
           </div>
           <div class="col-12 col-md-4 col-lg-4">
             <a
@@ -123,9 +123,13 @@
               >
                 PAGOS DE: {{ getPaymentFormated(payAvailableSelected) }}
               </h3>
-              <a href="#" class="btn btn-primary btn-lg btn-block pgoVyaNom">
+              <button
+                class="btn btn-primary btn-lg btn-block pgoVyaNom"
+                (click)="buyProduct('DIFERIDO', payAvailableSelected)"
+                [disabled]="!payAvailableSelected"
+              >
                 PAGAR CADA QUINCENA
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -139,3 +143,91 @@
   </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
+
+<a
+  href="#exitoSolicitud"
+  id="showModalExitoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<div
+  class="modal fade"
+  id="exitoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Solicitud recibida
+        </h5>
+        <button
+          [routerLink]="'/productos'"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Tu compra se esta procesando
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a [routerLink]="'/productos'" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>

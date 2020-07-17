@@ -19,6 +19,8 @@ export class DetalleProductoComponent implements OnInit {
   public checkToPayByPayroll: boolean;
   public payAvailableSelected;
 
+  private readonly userRFC = 'BAGN900415TIA';
+
   public formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -110,7 +112,6 @@ export class DetalleProductoComponent implements OnInit {
       );
       this.paysAvailable = results
         .map((response, i) => {
-          console.log(response);
           return Number(response.codigo) === 200
             ? { quantity: i + 1, price: response.diferido }
             : undefined;
@@ -126,5 +127,41 @@ export class DetalleProductoComponent implements OnInit {
       (pay) => pay.quantity === Number(quantity)
     );
     return this.formatter.format(Number(value.price));
+  }
+  public async buyProduct(payment: 'NOMINA' | 'DIFERIDO', payments: number) {
+    this.loading = true;
+    let data: any = {
+      usuario: this.userRFC,
+      producto: this.dataProduct.c02id,
+      cantidad: this.quantity,
+      salario: this.salarioQuincenal,
+    };
+    if (payment === 'NOMINA') {
+      data = {
+        ...data,
+        metodopago: 'NOMINA',
+        quincenas: '',
+      };
+    } else {
+      data = {
+        ...data,
+        metodopago: 'DIFERIDO',
+        quincenas: payments,
+      };
+    }
+    try {
+      await this.httpClient
+        .post(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/registraventa`,
+          data
+        )
+        .toPromise();
+      document.getElementById('showModalExitoSolicitud').click();
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
   }
 }
