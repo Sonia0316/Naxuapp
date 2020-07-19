@@ -142,18 +142,18 @@ export class DetalleProductoComponent implements OnInit {
       usuario: this.userRFC,
       producto: this.dataProduct.c02id,
       cantidad: this.quantity,
-      salario: this.salarioQuincenal.toString(),
+      salario: this.salarioQuincenal,
     };
     if (payment === 'NOMINA') {
       data = {
         ...data,
-        metodopago: 'NOMINA',
+        metodo_pago: 'NOMINA',
         quincenas: '',
       };
     } else {
       data = {
         ...data,
-        metodopago: 'DIFERIDO',
+        metodo_pago: 'DIFERIDO',
         quincenas: payments,
       };
     }
