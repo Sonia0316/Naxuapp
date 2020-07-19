@@ -70,7 +70,7 @@
         </div>
         <br />
         <div class="row">
-          <div class="col-12 col-md-8 col-lg-6">
+          <div class="col-12 payments-button-data">
             <button
               class="btn btn-block btn-lg btn-primary pgoVyaNom"
               *ngIf="checkToPayByPayroll"
@@ -79,16 +79,10 @@
               PAGAR VÍA NÓMINA
             </button>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <a
-              href=""
-              class="btn btn-block btn-lg btn-outline-primary pgoVyaPayPal"
-            >
-              <img
-                src="assets/img/img_tienda/logo_paypal.svg"
-                alt="paga vía paypal"
-              />
-            </a>
+        </div>
+        <div class="row">
+          <div class="col-12 payments-button-data">
+            <div #paypal id="paypal-button-container"></div>
           </div>
         </div>
         <br />

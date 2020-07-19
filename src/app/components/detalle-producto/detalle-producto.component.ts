@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from 'node_modules/@angular/router';
 import { HttpClient } from '@angular/common/http';
+
+declare var paypal;
 
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
+  styleUrls: ['./detalle-producto.component.scss'],
 })
 export class DetalleProductoComponent implements OnInit {
   public loading = false;
@@ -25,6 +28,8 @@ export class DetalleProductoComponent implements OnInit {
     style: 'currency',
     currency: 'USD',
   });
+
+  @ViewChild('paypal') paypalElement: ElementRef;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -64,8 +69,11 @@ export class DetalleProductoComponent implements OnInit {
       this.checkToPayByPayrollData(),
       this.getPaysAvailable(),
     ]);
-    this.loading = false;
     this.status = 'complete';
+    setTimeout(async () => {
+      await this.paypalCheckoutRender();
+      this.loading = false;
+    });
   }
   public getPrice(price: string) {
     return this.formatter.format(Number(price) * this.quantity);
@@ -134,7 +142,7 @@ export class DetalleProductoComponent implements OnInit {
       usuario: this.userRFC,
       producto: this.dataProduct.c02id,
       cantidad: this.quantity,
-      salario: this.salarioQuincenal,
+      salario: this.salarioQuincenal.toString(),
     };
     if (payment === 'NOMINA') {
       data = {
@@ -163,5 +171,55 @@ export class DetalleProductoComponent implements OnInit {
     } finally {
       this.loading = false;
     }
+  }
+  public async paypalCheckoutRender() {
+    const originalPrice = Number(this.dataProduct.c02_precio);
+    const total = this.quantity * originalPrice;
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = this.dataProduct.c02_descripcion;
+    const description = tmp.textContent || tmp.innerText || '';
+    paypal
+      .Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: `Compra de ${this.dataProduct.c02_titulo}`,
+                amount: {
+                  currency_code: 'MXN',
+                  value: total,
+                  breakdown: {
+                    item_total: {
+                      currency_code: 'MXN',
+                      value: total,
+                    },
+                  },
+                },
+                items: [
+                  {
+                    name: this.dataProduct.c02_titulo,
+                    unit_amount: {
+                      currency_code: 'MXN',
+                      value: originalPrice,
+                    },
+                    quantity: this.quantity,
+                    description,
+                    sku: this.dataProduct.c02id,
+                  },
+                ],
+              },
+            ],
+          });
+        },
+        onApprove: async (data, actions) => {
+          console.log('====================================');
+          console.log(data);
+          console.log('====================================');
+        },
+        onError: (err) => {
+          console.log(err);
+        },
+      })
+      .render(this.paypalElement.nativeElement);
   }
 }
