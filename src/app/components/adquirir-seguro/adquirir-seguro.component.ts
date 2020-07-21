@@ -24,7 +24,7 @@ export class AdquirirSeguroComponent implements OnInit {
   public loading = false;
   public status: string;
   constructor(
-    private httpClient: HttpClient,
+    private readonly httpClient: HttpClient,
     private elRef: ElementRef,
     protected sanitizer: DomSanitizer
   ) {}

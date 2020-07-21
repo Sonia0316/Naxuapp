@@ -1,73 +1,189 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <div>
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_solicitud_anticipo.svg"
+          alt="imagen solicitar anticipo"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Solicitud de anticipo</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-6">
+      <div class="infoUsuaPrest">
+        <h3>
+          <strong>Solicito el pago anticipado de mi quincena.</strong> <br />
+          <strong
+            >Aceptando el cobro de los intereses correspondientes en la quincena
+            próxima.</strong
+          >
+        </h3>
+        <hr />
+        <p>Monto a anticipar</p>
+        <p class="variable">
+          <span>{{ formatter.format(salarioQuincenal) }}</span> MXN
+        </p>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div>
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_solicitud_anticipo.svg" alt="imagen solicitar anticipo" class="imgEncabz" />
-                                <h3 class="encabz">Solicitud de anticipo</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="solCred01">
-                                <h3>Selecciona el monto del anticipo</h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p>Cantidad a prestar</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span class="variable pct02">$15,000</span>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="col-md-12 row align-item-center justify-content-center">
-                                    <div class="circular-progress">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic">
-                                            <title id="title">svg circular progress bar</title>
-                                            <circle cx="50" cy="50" r="40"></circle>
-                                            <circle cx="50" cy="50" r="40" id="pct-ind"></circle>
-                                        </svg>
+        <br />
 
-                                        <p class="pct">70,000 MXN</p>
-                                    </div>
+        <input type="checkbox" #tacs />
+        Acepto solicitar el préstamo en los términos seleccionados
 
-                                    <label for="slider" class="sr-only">range slider</label>
-                                    <input type="range" class="custom-range" id="slider" value="70" />
-                                </div>
-                                <br />
-                                <div class="row calcRang">
-                                    <div class="col-md-6">
-                                        <p class="izq"><i class="fas fa-circle"></i>Mínimo</p>
-                                        <p class="izq01">$5,000 MXN</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="der"><i class="fas fa-circle"></i>Máxico</p>
-                                        <p class="der01">$100,000 MXN</p>
-                                    </div>
-                                </div>
-                                <hr />
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-6">
-                            <div class="infoUsuaPrest">
-                                <h3>
-                                    <b>Solicito el pago anticipado de mi quincena.</b> <br />
-                                    <b>Aceptando el cobro de los intereses correspondientes en la quincena próxima.</b>
-                                </h3>
-                                <hr />
-                                <p>Monto del prestamo</p>
-                                <p class="variable"><span>$35,000</span> MXN</p>
+        <br />
+        <br />
 
-                                <br />
+        <button
+          [disabled]="!tacs.checked"
+          (click)="requestAdvancePayment()"
+          class="btn btn-block btn-primary enlace"
+        >
+          Solicitar anticipo
+        </button>
 
-                                <a href="#" class="btn btn-block btn-primary enlace">Solicitar anticipo</a>
-                                <br />
-                                <a href="#" class="btn btn-block btn-primary enlace02">Ver plazos de pago</a>
-                                <br />
-                                <input type="checkbox" />
-                                <a href="#" class="termCond">Acepto solicitar el préstamo en los términos seleccionados</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <br />
+        <a
+          href="#infoSolicitud"
+          data-toggle="modal"
+          class="btn btn-block btn-primary enlace02"
+          >Ver plazos de pago</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>
+<div
+  class="modal fade"
+  id="infoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Información de anticipos
+        </h5>
+        <button
+          [routerLink]="'/productos'"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              En la siguiente quincena se te hará un descuento de
+              {{ formatter.format(salarioQuincenal * interesAnticipo) }},
+              quedando tu quincena siguiente de
+              {{
+                formatter.format(
+                  salarioQuincenal - salarioQuincenal * interesAnticipo
+                )
+              }}
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a
+  href="#exitoSolicitud"
+  id="showModalExitoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+
+<div
+  class="modal fade"
+  id="exitoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Solicitud recibida
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Se ha recibido tu petición, un ejecutivo te contactará.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
