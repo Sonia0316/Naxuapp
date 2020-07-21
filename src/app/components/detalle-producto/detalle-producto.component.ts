@@ -136,7 +136,15 @@ export class DetalleProductoComponent implements OnInit {
     );
     return this.formatter.format(Number(value.price));
   }
-  public async buyProduct(payment: 'NOMINA' | 'DIFERIDO', payments: number) {
+  public async buyProduct({
+    payment,
+    payments = 1,
+    paypalOrder,
+  }: {
+    payment: 'NOMINA' | 'DIFERIDO' | 'TDC';
+    payments?: number;
+    paypalOrder?: string;
+  }) {
     this.loading = true;
     let data: any = {
       usuario: this.userRFC,
@@ -150,11 +158,18 @@ export class DetalleProductoComponent implements OnInit {
         metodo_pago: 'NOMINA',
         quincenas: '',
       };
-    } else {
+    } else if (payment === 'DIFERIDO') {
       data = {
         ...data,
         metodo_pago: 'DIFERIDO',
         quincenas: payments,
+      };
+    } else {
+      data = {
+        ...data,
+        metodo_pago: 'TDC',
+        quincenas: '',
+        foliopaypal: paypalOrder,
       };
     }
     try {
@@ -181,6 +196,7 @@ export class DetalleProductoComponent implements OnInit {
     paypal
       .Buttons({
         createOrder: (data, actions) => {
+          this.loading = true;
           return actions.order.create({
             purchase_units: [
               {
@@ -212,12 +228,14 @@ export class DetalleProductoComponent implements OnInit {
           });
         },
         onApprove: async (data, actions) => {
-          console.log('====================================');
-          console.log(data);
-          console.log('====================================');
+          this.buyProduct({ payment: 'TDC', paypalOrder: data.orderID });
         },
         onError: (err) => {
           console.log(err);
+          this.loading = false;
+        },
+        onCancel: (data) => {
+          this.loading = false;
         },
       })
       .render(this.paypalElement.nativeElement);
