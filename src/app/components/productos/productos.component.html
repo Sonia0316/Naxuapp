@@ -36,7 +36,7 @@
     </div>
     <div class="col-12 col-md-6 col-lg-4">
       <select class="select-css" [(ngModel)]="categoriaSelected">
-        <option selected [value]="0">Selecciona la categoría</option>
+        <option selected [value]="0">Todos</option>
         <ng-container *ngFor="let categoria of categorias">
           <option
             [value]="categoria['c01id']"
