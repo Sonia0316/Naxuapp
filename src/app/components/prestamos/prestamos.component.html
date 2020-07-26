@@ -1,130 +1,247 @@
 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <img src="assets/img/logos_cuerpo/logo_cuerpo_calculadora_prestamos.svg" alt="imagen solicitar credito" class="imgEncabzPrest" />
-                                    <h3 class="encabz">Calculadora de prestamos</h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="solCred01">
-                                        <h3>Selecciona el monto del préstamo</h3>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>Cantidad a prestar</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span class="variable pct02">$15,000</span>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="col-12 col-md-12 row align-item-center justify-content-center">
-                                            <div class="circular-progress">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic">
-                                                    <title id="title">svg circular progress bar</title>
-                                                    <circle cx="50" cy="50" r="40"></circle>
-                                                    <circle cx="50" cy="50" r="40" id="pct-ind"></circle>
-                                                </svg>
+  <div class="row" *ngIf="status === 'Available'">
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col-lg-12">
+          <img
+            src="assets/img/logos_cuerpo/logo_cuerpo_calculadora_prestamos.svg"
+            alt="imagen solicitar credito"
+            class="imgEncabzPrest"
+          />
+          <h3 class="encabz">Calculadora de prestamos</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="solCred01">
+            <h3>Selecciona el monto del préstamo</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <p>Cantidad a prestar</p>
+              </div>
+              <div class="col-md-6">
+                <span class="variable pct02"
+                  >{{
+                    formatter.format(
+                      (amountRange.value / 100) * maxAmountAvailable
+                    )
+                  }}
+                  MXN</span
+                >
+              </div>
+            </div>
+            <hr />
+            <div
+              class="col-12 col-md-12 row align-item-center justify-content-center"
+            >
+              <div class="circular-progress">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  aria-labelledby="title"
+                  role="graphic"
+                >
+                  <title id="title">svg circular progress bar</title>
+                  <circle cx="50" cy="50" r="40"></circle>
+                  <circle cx="50" cy="50" r="40" id="pct-ind"></circle>
+                </svg>
 
-                                                <p class="pct">70,000 MXN</p>
-                                            </div>
+                <p class="pct">
+                  {{
+                    formatter.format(
+                      (amountRange.value / 100) * maxAmountAvailable
+                    )
+                  }}
+                  MXN
+                </p>
+              </div>
 
-                                            <label for="slider" class="sr-only">range slider</label>
-                                            <input type="range" class="custom-range" id="slider" value="70" />
-                                        </div>
-                                        <br />
-                                        <div class="row calcRang">
-                                            <div class="col-md-6">
-                                                <p class="izq"><i class="fas fa-circle"></i>Mínimo</p>
-                                                <p class="izq01">$5,000 MXN</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="der"><i class="fas fa-circle"></i>Máxico</p>
-                                                <p class="der01">$100,000 MXN</p>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                    </div>
-                                </div>
+              <label for="slider" class="sr-only">range slider</label>
+              <input
+                #amountRange
+                type="range"
+                class="custom-range"
+                id="slider"
+                [min]="(minAmountAvailable * 100) / maxAmountAvailable"
+                [value]="((minAmountAvailable * 100) / maxAmountAvailable) * 10"
+                [step]="0.5"
+              />
+            </div>
+            <br />
+            <div class="row calcRang">
+              <div class="col-md-6">
+                <p class="izq" style="font-size: 1.1em;">
+                  <i class="fas fa-circle"></i>Mínimo
+                </p>
+                <p class="izq01" style="font-size: 1.1em; text-align: center;">
+                  {{ formatter.format(minAmountAvailable) }} MXN
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="der" style="font-size: 1.1em;">
+                  <i class="fas fa-circle"></i>Máximo
+                </p>
+                <p class="der01" style="font-size: 1.1em; text-align: center;">
+                  {{ formatter.format(maxAmountAvailable) }} MXN
+                </p>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
 
-                                <div class="col-lg-6">
-                                    <div class="solCred01">
-                                        <h3>Selecciona el monto del préstamo</h3>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>Numero de plazos</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span class="variable pct_plazos02">14 Quincenas</span>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="col-12 col-md-12 row align-item-center justify-content-center">
-                                            <div class="circular-progress_plazos">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic">
-                                                    <title id="title">svg circular progress bar</title>
-                                                    <circle cx="50" cy="50" r="40"></circle>
-                                                    <circle cx="50" cy="50" r="40" id="pct_plazos-ind"></circle>
-                                                </svg>
+        <div class="col-lg-6">
+          <div class="solCred01">
+            <h3>Selecciona el monto del préstamo</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <p>Numero de plazos</p>
+              </div>
+              <div class="col-md-6">
+                <span class="variable pct_plazos02">{{
+                  getPeriodRange(dateRange.value)
+                }}</span>
+              </div>
+            </div>
+            <hr />
+            <div
+              class="col-12 col-md-12 row align-item-center justify-content-center"
+            >
+              <div class="circular-progress_plazos">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  aria-labelledby="title"
+                  role="graphic"
+                >
+                  <title id="title">svg circular progress bar</title>
+                  <circle cx="50" cy="50" r="40"></circle>
+                  <circle cx="50" cy="50" r="40" id="pct_plazos-ind"></circle>
+                </svg>
 
-                                                <p class="pct_plazos">14 Quincenas</p>
-                                            </div>
+                <p class="pct_plazos">
+                  {{ getPeriodRange(dateRange.value) }}
+                </p>
+              </div>
 
-                                            <label for="slider_plazos" class="sr-only">range slider</label>
-                                            <input type="range" class="custom-range" id="slider_plazos" value="10" />
-                                        </div>
-                                        <br />
-                                        <div class="row calcRang">
-                                            <div class="col-md-6">
-                                                <p class="izqQ"><i class="fas fa-circle"></i>Mínimo</p>
-                                                <p class="izq01">0 Quincenas</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="derQ"><i class="fas fa-circle"></i>Máxico</p>
-                                                <p class="der01">24 Quincenas</p>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              <label for="slider_plazos" class="sr-only">range slider</label>
 
-                        <div class="col-lg-4">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="spaCbzPrest">
-                                        <img src="assets/img/logos_cuerpo/logo_cuerpo_mi_prestamo.svg" alt="Mi prestamo" class="imgEncabzPrest01" />
-                                        <h3 class="encabz">Mi prestamo</h3>
-                                    </div>
-                                </div>
-                            </div>
+              <input
+                #dateRange
+                type="range"
+                class="custom-range"
+                id="slider"
+                [min]="(minPeriods * 100) / maxPeriods"
+                [value]="(minPeriods * 100) / maxPeriods"
+                [step]="(minPeriods * 100) / maxPeriods"
+              />
+            </div>
+            <br />
+            <div class="row calcRang">
+              <div class="col-md-6">
+                <p class="izqQ" style="font-size: 1.1em;">
+                  <i class="fas fa-circle"></i>Mínimo
+                </p>
+                <p
+                  class="izq01"
+                  style="
+                    font-size: 1.1em;
+                    text-align: center;
+                    white-space: break-spaces;
+                  "
+                >
+                  {{ minPeriods }}
+                  {{ minPeriods > 1 ? "Quincenas" : "Quincena" }}
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="derQ" style="font-size: 1.1em;">
+                  <i class="fas fa-circle"></i>Máximo
+                </p>
+                <p
+                  class="der01"
+                  style="
+                    font-size: 1.1em;
+                    text-align: center;
+                    white-space: break-spaces;
+                  "
+                >
+                  {{ maxPeriods }}
+                  {{ maxPeriods > 1 ? "Quincenas" : "Quincena" }}
+                </p>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="spaCbzPrest">
+            <img
+              src="assets/img/logos_cuerpo/logo_cuerpo_mi_prestamo.svg"
+              alt="Mi prestamo"
+              class="imgEncabzPrest01"
+            />
+            <h3 class="encabz">Mi prestamo</h3>
+          </div>
+        </div>
+      </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="infoUsuaPrest">
-                                        <h3>RESUMEN DEL PRESTAMO</h3>
-                                        <hr />
-                                        <p>Monto del prestamo</p>
-                                        <p class="variable"><span>$35,000</span> MXN</p>
-                                        <br />
-                                        <p>Plazos a pagar el préstamo</p>
-                                        <p class="variable"><span>5</span> Quincenas</p>
-                                        <br />
-                                        <form role="form">
-                                            <div class="checkbox">
-                                                <input type="checkbox" />
-                                                <a href="#" class="termCond">Acepto solicitar el préstamo en los términos seleccionados</a>
-                                            </div>
-                                            <a href="#" class="btn btn-block btn-primary enlace">Solicitar préstamo</a>
-                                            <br />
-                                            <a href="#" class="btn btn-block btn-primary enlace02">Ver plazos de pago</a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoUsuaPrest">
+            <h3>RESUMEN DEL PRESTAMO</h3>
+            <hr />
+            <p>Monto del prestamo</p>
+            <p class="variable">
+              <span
+                >{{
+                  formatter.format(
+                    (amountRange.value / 100) * maxAmountAvailable
+                  )
+                }}
+                MXN</span
+              >
+            </p>
+            <br />
+            <p>Plazos a pagar el préstamo</p>
+            <p class="variable">
+              <span>{{ getPeriodRange(dateRange.value) }}</span>
+            </p>
+            <br />
+            <form role="form">
+              <div class="checkbox" style="display: flex;">
+                <div style="margin-right: 7px;">
+                  <input type="checkbox" #tacs />
                 </div>
+                <a class="termCond" style="text-decoration: none;" #tacs>
+                  Acepto solicitar el préstamo en los términos seleccionados</a
+                >
+              </div>
+              <button
+                class="btn btn-block btn-primary enlace"
+                [disabled]="!tacs.checked"
+                style="margin-top: 10px;"
+              >
+                Solicitar préstamo
+              </button>
+              <br />
+              <a href="#" class="btn btn-block btn-primary enlace02"
+                >Ver plazos de pago</a
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="status === 'Not available'">
+    <h3 style="text-align: center; margin-top: 50px;">
+      Prestamos no disponibles
+    </h3>
+  </ng-container>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>
