@@ -1,55 +1,176 @@
- <div class="container-fluid">
-                    <div class="row">
-                        <!--modulo Días disponibles-->
-                        <div class="col-12 col-md-12 col-lg-4">
-                            <div class="spaCbz">
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_calendario.svg" alt="Dias disponibles" class="imgEncabz" />
-                                <h3 class="encabz">Días disponibles</h3>
-                            </div>
-                            <div class="diasDisp">
-                                <div class="col-md-12">
-                                    <h3>
-                                        10 días
-                                    </h3>
-                                    <p>Disfrútalas antes del: 01 Enero de 2021</p>
-                                </div>
-                            </div>
-                        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-4">
+      <div class="spaCbz">
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_calendario.svg"
+          alt="Dias disponibles"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Días disponibles</h3>
+      </div>
+      <div class="diasDisp">
+        <div class="col-md-12">
+          <h3 style="text-align: center;">
+            {{ availableDays }} {{ availableDays !== 1 ? "días" : "día" }}
+          </h3>
+        </div>
+      </div>
+    </div>
 
-                        <!--modulo solicita vacaciones-->
-                        <div class="col-12 col-md-12 col-lg-6">
-                            <img src="assets/img/logos_cuerpo/logo_cuerpo_vacaciones.svg" alt="Dias disponibles" class="imgEncabzVaca" />
-                            <h3 class="encabz">Solicita aquí tus vacaciones</h3>
+    <div class="col-12 col-md-12 col-lg-6">
+      <img
+        src="assets/img/logos_cuerpo/logo_cuerpo_vacaciones.svg"
+        alt="Dias disponibles"
+        class="imgEncabzVaca"
+      />
+      <h3 class="encabz">Solicita aquí tus vacaciones</h3>
 
-                            <div class="infoUsua">
-                                <form>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6 col-lg-6">
-                                                <label>Fecha de inicio</label>
-                                                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control" />
-                                            </div>
+      <div class="infoUsua">
+        <form>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-6">
+                <label>Fecha de inicio</label>
+                <input
+                  #initialDate
+                  type="date"
+                  [max]="moment().add(1, 'year').format('YYYY-MM-DD')"
+                  [min]="moment().format('YYYY-MM-DD')"
+                  class="form-control"
+                  (keydown)="$event.preventDefault()"
+                  (change)="
+                    initialChangeDate(initialDate, finalDate);
+                    calcHolidays(initialDate.value, finalDate.value)
+                  "
+                />
+              </div>
 
-                                            <div class="col-12 col-md-6 col-lg-6">
-                                                <label>Fecha de termino</label>
-                                                <input type="date" name="bday" max="3000-12-31" min="1000-01-01" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row diasSoli">
-                                <div class="col-12 col-md-12">
-                                    <p>Has solicitado <span> 5 </span> días de vacaciones</p>
-                                    <a href="#" class="btn btn-block btn-primary enlace">Enviar solicitud</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="col-12 col-md-6 col-lg-6">
+                <label>Fecha de termino</label>
+                <input
+                  #finalDate
+                  [disabled]="!initialDate.value"
+                  type="date"
+                  (keydown)="$event.preventDefault()"
+                  [max]="moment().add(1, 'year').format('YYYY-MM-DD')"
+                  [min]="
+                    initialDate.value
+                      ? moment(initialDate.value).format('YYYY-MM-DD')
+                      : moment().format('YYYY-MM-DD')
+                  "
+                  class="form-control"
+                  (change)="calcHolidays(initialDate.value, finalDate.value)"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row diasSoli" style="margin-top: 10px;">
+        <div class="col-12 col-md-12">
+          <p *ngIf="totalDays">
+            Estas solicitando <span> {{ totalDays }} </span>
+            {{ totalDays !== 1 ? "días" : "día" }} de vacaciones
+          </p>
+          <button
+            (click)="registerHolidays(initialDate.value, finalDate.value)"
+            [disabled]="!totalDays || totalDays > availableDays"
+            class="btn btn-block btn-primary enlace"
+          >
+            Enviar solicitud
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>
+<!-- <div class="row bannerVaca">
+  <div class="col-md-12">
+    <img src="assets/img/banner_vacaciones.png" alt="" />
+  </div>
+</div> -->
+<a
+  href="#exitoSolicitud"
+  id="showModalExitoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
 
-                <div class="row bannerVaca">
-                    <div class="col-md-12">
-                        <img src="assets/img/banner_vacaciones.png" alt="" />
-                    </div>
-                </div>
+<div
+  class="modal fade"
+  id="exitoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Solicitud recibida
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Se ha recibido tu petición, un ejecutivo te contactará.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
