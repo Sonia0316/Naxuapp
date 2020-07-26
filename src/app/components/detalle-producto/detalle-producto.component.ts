@@ -24,9 +24,9 @@ export class DetalleProductoComponent implements OnInit {
 
   private readonly userRFC = 'BAGN900415TIA';
 
-  public formatter = new Intl.NumberFormat('en-US', {
+  public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'MXN',
   });
 
   @ViewChild('paypal') paypalElement: ElementRef;

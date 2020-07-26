@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="status === 'complete'">
     <div class="col-12 col-md-12 col-lg-6">
       <div class="infoUsuaPrest">
         <h3>
@@ -37,7 +37,7 @@
 
         <button
           [disabled]="!tacs.checked"
-          (click)="requestAdvancePayment()"
+          (click)="registerLendData()"
           class="btn btn-block btn-primary enlace"
         >
           Solicitar anticipo
@@ -53,6 +53,16 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="status === 'empty'">
+    <h3 style="text-align: center;">
+      No hay anticipos disponibles
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'error'">
+    <h3 style="text-align: center;">
+      Ocurrió un problema con tu solicitud
+    </h3>
+  </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
 <div
@@ -81,35 +91,31 @@
         <div class="row">
           <div
             class="col-12 d-flex align-items-center"
-            style="min-height: 150px; text-align: center;"
+            style="min-height: 150px;"
           >
             <h5 style="font-size: 1.2rem;">
-              En la siguiente quincena se te hará un descuento de
-              {{ formatter.format(salarioQuincenal * interesAnticipo) }},
-              quedando tu quincena siguiente de
+              En la quincena posterior al anticipo se te hará un descuento de
+              {{ formatter.format(Number(lendData?.intereses)) }}, quedando tu
+              quincena de
               {{
-                formatter.format(
-                  salarioQuincenal - salarioQuincenal * interesAnticipo
-                )
+                formatter.format(salarioQuincenal - Number(lendData?.intereses))
               }}
             </h5>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a data-dismiss="modal">Entendido</a>
+        <a data-dismiss="modal" style="cursor: pointer;">Entendido</a>
       </div>
     </div>
   </div>
 </div>
-
 <a
   href="#exitoSolicitud"
   id="showModalExitoSolicitud"
   data-toggle="modal"
   style="display: none;"
 ></a>
-
 <a
   href="#errorSolicitud"
   id="showModalErrorSolicitud"
