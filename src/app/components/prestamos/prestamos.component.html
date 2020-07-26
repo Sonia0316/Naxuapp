@@ -63,7 +63,7 @@
                 class="custom-range"
                 id="slider"
                 [min]="(minAmountAvailable * 100) / maxAmountAvailable"
-                [value]="((minAmountAvailable * 100) / maxAmountAvailable) * 10"
+                [value]="(minAmountAvailable * 100) / maxAmountAvailable"
                 [step]="0.5"
               />
             </div>
@@ -229,9 +229,17 @@
                 Solicitar préstamo
               </button>
               <br />
-              <a href="#" class="btn btn-block btn-primary enlace02"
-                >Ver plazos de pago</a
+              <button
+                (click)="
+                  calcLendData(
+                    (amountRange.value / 100) * maxAmountAvailable,
+                    (dateRange.value / 100) * maxPeriods
+                  )
+                "
+                class="btn btn-block btn-primary enlace02"
               >
+                Ver plazos de pago
+              </button>
             </form>
           </div>
         </div>
@@ -245,3 +253,49 @@
   </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
+<a
+  href="#infoSolicitud"
+  id="showModalInfoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<div
+  class="modal fade"
+  id="infoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Información de prestamos
+        </h5>
+        <button
+          [routerLink]="'/productos'"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 d-flex">
+            <h5 style="font-size: 1.2rem; text-align: center; width: 100%;">
+              Tabla de pagos
+            </h5>
+            <table>
+              <thead></thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" style="cursor: pointer;">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
