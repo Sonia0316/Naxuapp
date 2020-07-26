@@ -12,7 +12,7 @@
       <div class="diasDisp">
         <div class="col-md-12">
           <h3 style="text-align: center;">
-            {{ availableDays }} {{ availableDays !== 1 ? "días" : "día" }}
+            {{ availableDays }} {{ availableDays > 1 ? "días" : "día" }}
           </h3>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <div class="col-12 col-md-12">
           <p *ngIf="totalDays">
             Estas solicitando <span> {{ totalDays }} </span>
-            {{ totalDays !== 1 ? "días" : "día" }} de vacaciones
+            {{ totalDays > 1 ? "días" : "día" }} de vacaciones
           </p>
           <button
             (click)="registerHolidays(initialDate.value, finalDate.value)"
