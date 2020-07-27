@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { PromptComponent } from '../prompt/prompt.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,9 +11,12 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 export class HomeComponent implements OnInit {
   deferredPrompt: any;
   showButton = false;
+  public loading = false;
+  private readonly userRFC = 'BAGN900415TIA';
   constructor(
-    private platform: Platform,
-    private bottomSheet: MatBottomSheet
+    private readonly platform: Platform,
+    private readonly bottomSheet: MatBottomSheet,
+    private readonly httpClient: HttpClient
   ) {}
 
   @HostListener('window:beforeinstallprompt', ['$event'])
@@ -44,5 +48,30 @@ export class HomeComponent implements OnInit {
     this.bottomSheet.open(PromptComponent, {
       data: { mobileType, promptEvent: this.deferredPrompt },
     });
+  }
+  public async toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  public async senmailBackOffice() {
+    this.loading = true;
+    try {
+      await this.httpClient
+        .post(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
+          {
+            asunto: 'Información de Crédito hipotecarios',
+            mensaje: `El usuario ${this.userRFC} requiere información de crédito hipotecario`,
+            grupo: 'HIPOTECARIO',
+          }
+        )
+        .toPromise();
+      document.getElementById('showModalExitoSolicitud').click();
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
   }
 }

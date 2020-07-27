@@ -14,10 +14,12 @@ export class HeaderComponent {
     window.localStorage.removeItem('rfc');
     window.localStorage.removeItem('FlagRegistro');
     document.getElementById('sidebarCollapse').click();
+    await this.toTop();
     await this.router.navigate(['./login']);
   }
 
   async adquirirseguro() {
+    await this.toTop();
     await this.router.navigate(['./adquirirseguro']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -27,6 +29,7 @@ export class HeaderComponent {
     }
   }
   async seguros() {
+    await this.toTop();
     await this.router.navigate(['./seguros']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -36,6 +39,7 @@ export class HeaderComponent {
     }
   }
   async vacaciones() {
+    await this.toTop();
     await this.router.navigate(['./vacaciones']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -45,6 +49,7 @@ export class HeaderComponent {
     }
   }
   async beneficios() {
+    await this.toTop();
     await this.router.navigate(['./beneficios']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -54,6 +59,7 @@ export class HeaderComponent {
     }
   }
   async asistencia() {
+    await this.toTop();
     await this.router.navigate(['./asistencia']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -63,6 +69,7 @@ export class HeaderComponent {
     }
   }
   async contacto() {
+    await this.toTop();
     await this.router.navigate(['./contacto']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -72,6 +79,7 @@ export class HeaderComponent {
     }
   }
   async home() {
+    await this.toTop();
     await this.router.navigate(['./home']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -82,6 +90,7 @@ export class HeaderComponent {
   }
 
   async prestamos() {
+    await this.toTop();
     await this.router.navigate(['./prestamos']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -91,6 +100,7 @@ export class HeaderComponent {
     }
   }
   async anticipos() {
+    await this.toTop();
     await this.router.navigate(['./anticipos']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -100,6 +110,7 @@ export class HeaderComponent {
     }
   }
   async nomina() {
+    await this.toTop();
     await this.router.navigate(['./nomina']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -109,6 +120,7 @@ export class HeaderComponent {
     }
   }
   async productos() {
+    await this.toTop();
     await this.router.navigate(['./productos']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -118,6 +130,7 @@ export class HeaderComponent {
     }
   }
   async mispedidos() {
+    await this.toTop();
     await this.router.navigate(['./mispedidos']);
     if (
       window.getComputedStyle(document.getElementById('sidebarCollapse'))
@@ -125,5 +138,9 @@ export class HeaderComponent {
     ) {
       document.getElementById('sidebarCollapse').click();
     }
+  }
+  public async toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

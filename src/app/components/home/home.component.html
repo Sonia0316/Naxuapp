@@ -138,15 +138,15 @@
           alt="imagen solicitar credito"
           class="imgEncabz"
         />
-        <h3 class="encabz">Solicitar Crédito</h3>
+        <h3 class="encabz">Solicitar Prestamo</h3>
       </div>
       <div class="solCred">
         <div class="col-md-12">
-          <p>Actualmente tienes un prestamos de</p>
+          <p>Actualmente tienes un prestamo de</p>
           <h2>
             $000.00
           </h2>
-          <a href="#">VER DETALLE</a>
+          <a [routerLink]="'/prestamos'" (click)="toTop()">VER DETALLE</a>
         </div>
       </div>
 
@@ -160,9 +160,12 @@
             />
             <h3 class="encabz">Crédito Hipotecario</h3>
           </div>
-          <a href="#" class="btn btn-block btn-primary enlace"
-            >Más información</a
+          <button
+            (click)="senmailBackOffice()"
+            class="btn btn-block btn-primary enlace"
           >
+            Más información
+          </button>
         </div>
       </div>
     </div>
@@ -182,8 +185,94 @@
           <h2>
             10 días
           </h2>
-          <a href="#">VER DETALLE</a>
+          <a [routerLink]="'/vacaciones'" (click)="toTop()">VER DETALLE</a>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-loading [active]="loading"></app-modal-loading>
+
+<a
+  href="#exitoSolicitud"
+  id="showModalExitoSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+
+<div
+  class="modal fade"
+  id="exitoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Solicitud recibida
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Se ha recibido tu petición, un ejecutivo te contactará.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
       </div>
     </div>
   </div>

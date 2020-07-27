@@ -69,7 +69,10 @@
       </div>
       <div class="row diasSoli" style="margin-top: 10px;">
         <div class="col-12 col-md-12">
-          <p *ngIf="totalDays">
+          <p
+            *ngIf="totalDays"
+            [ngStyle]="{ color: totalDays > availableDays ? 'red' : 'inherit' }"
+          >
             Estas solicitando <span> {{ totalDays }} </span>
             {{ totalDays > 1 ? "días" : "día" }} de vacaciones
           </p>

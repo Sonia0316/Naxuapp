@@ -83,10 +83,20 @@ export class AnticiposComponent implements OnInit {
         )
         .toPromise()) as any).response.resultCode;
       if (Number(resultCode) === 200) {
+        await this.httpClient
+          .post(
+            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
+            {
+              asunto: 'Solicitud de anticipo',
+              mensaje: `El usuario ${this.userRFC} esta solicitando un anticipo`,
+              grupo: 'ANTICIPO',
+            }
+          )
+          .toPromise();
         document.getElementById('showModalExitoSolicitud').click();
-      } else {
-        document.getElementById('showModalErrorSolicitud').click();
+        return;
       }
+      document.getElementById('showModalErrorSolicitud').click();
     } catch (error) {
       console.log(error);
       document.getElementById('showModalErrorSolicitud').click();

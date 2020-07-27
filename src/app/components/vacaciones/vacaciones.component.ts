@@ -68,10 +68,20 @@ export class VacacionesComponent {
         )
         .toPromise()) as any).codigo;
       if (Number(resultCode) === 200) {
+        await this.httpClient
+          .post(
+            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
+            {
+              asunto: 'Registro vacaciones',
+              mensaje: `El usuario ${this.userRFC} desea registar sus vacaciones`,
+              grupo: 'VACACIONES',
+            }
+          )
+          .toPromise();
         document.getElementById('showModalExitoSolicitud').click();
-      } else {
-        document.getElementById('showModalErrorSolicitud').click();
+        return;
       }
+      document.getElementById('showModalErrorSolicitud').click();
     } catch (error) {
       console.log(error);
       document.getElementById('showModalErrorSolicitud').click();

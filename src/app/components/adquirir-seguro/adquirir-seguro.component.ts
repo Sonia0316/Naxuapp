@@ -175,7 +175,7 @@ export class AdquirirSeguroComponent implements OnInit {
         throw new Error(`Invalid safe type specified: ${type}`);
     }
   }
-  public async senmailBackOffice(seguro: string, fromModal = false) {
+  public async senmailBackOffice(seguro: string) {
     this.loading = true;
     try {
       await this.httpClient
