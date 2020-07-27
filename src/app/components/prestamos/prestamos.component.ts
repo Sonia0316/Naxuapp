@@ -111,4 +111,34 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
       this.loading = false;
     }
   }
+
+  public async registerLendData(value: number, periods: number) {
+    this.loading = true;
+    try {
+      const resultCode = ((await this.httpClient
+        .put(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos',
+          {
+            t11id: '',
+            t11_rfc: this.userRFC,
+            t11_cantidad: value,
+            t11_numero_plazos: periods,
+            t11_estatus: '',
+            t11_fecha: '',
+            t11_idtipocredito: this.mainData.c05id,
+          }
+        )
+        .toPromise()) as any).response.resultCode;
+      if (Number(resultCode) === 200) {
+        document.getElementById('showModalExitoSolicitud').click();
+      } else {
+        document.getElementById('showModalErrorSolicitud').click();
+      }
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
+  }
 }
