@@ -14,7 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./prestamos.component.scss'],
 })
 export class PrestamosComponent implements OnInit, AfterContentChecked {
-  public readonly startDate = '2018-01-01';
+  public readonly startDate = '2019-01-01';
   public readonly salarioQuincenal = 300;
   private readonly userRFC = 'BAGN900415TIA';
   public maxAmountAvailable = 0;
