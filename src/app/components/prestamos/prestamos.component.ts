@@ -3,12 +3,15 @@ import {
   OnInit,
   ChangeDetectorRef,
   AfterContentChecked,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 @Component({
   selector: 'app-prestamos',
   templateUrl: './prestamos.component.html',
+  styleUrls: ['./prestamos.component.scss'],
 })
 export class PrestamosComponent implements OnInit, AfterContentChecked {
   public readonly startDate = '2019-01-01';
@@ -18,14 +21,22 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public maxPeriods = 0;
   public readonly minAmountAvailable = this.salarioQuincenal * 0.1;
   public readonly minPeriods = 1;
+  public stepPeriod = 0;
 
   public readonly moment = moment;
+  public readonly Math = Math;
 
   public loading = false;
   public status: string;
   private readonly creditType = 'CREDITO NOMINA';
   public mainData;
   public lendData;
+
+  public inputPeriod;
+  public inputAmount;
+
+  @ViewChild('dateRange') dateRangeRef: ElementRef;
+  @ViewChild('amountRange') amountRangeRef: ElementRef;
 
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
@@ -65,6 +76,12 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
               this.maxPeriods = 6;
               break;
           }
+          const calcDec = Math.pow(10, 3);
+          this.stepPeriod =
+            Math.trunc(((this.minPeriods * 100) / this.maxPeriods) * calcDec) /
+            calcDec;
+          this.inputPeriod = this.minPeriods;
+          this.inputAmount = this.minAmountAvailable;
           this.status = 'Available';
           return;
         }
@@ -83,7 +100,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   }
 
   public getPeriodRange(dateRangeValue: number) {
-    const value = (dateRangeValue / 100) * this.maxPeriods;
+    const value = Math.round((dateRangeValue / 100) * this.maxPeriods);
     return `${value} ${value > 1 ? 'Quincenas' : 'Quincena'}`;
   }
 
@@ -149,6 +166,37 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
       document.getElementById('showModalErrorSolicitud').click();
     } finally {
       this.loading = false;
+    }
+  }
+  public checkPeriodInput(event) {
+    if (/[^0-9]+/.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+  public checkAmountInput(event): void {
+    event.target.value = event.target.value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^0-9,.$]+/g, '');
+  }
+  public changeInputPeriod() {
+    if (
+      this.inputPeriod >= this.minPeriods &&
+      this.inputPeriod <= this.maxPeriods
+    ) {
+      const calcDec = Math.pow(10, 3);
+      this.dateRangeRef.nativeElement.value =
+        Math.trunc(((this.inputPeriod * 100) / this.maxPeriods) * calcDec) /
+        calcDec;
+    }
+  }
+  public changeAmountPeriod() {
+    if (
+      this.inputAmount >= this.minAmountAvailable &&
+      this.inputAmount <= this.maxAmountAvailable
+    ) {
+      this.amountRangeRef.nativeElement.value =
+        (this.inputAmount * 100) / this.maxAmountAvailable;
     }
   }
 }

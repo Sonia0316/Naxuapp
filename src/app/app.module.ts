@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { app_routing } from './app.routes';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgxCurrencyModule } from 'ngx-currency';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -80,6 +83,25 @@ import { PromptComponent } from './components/prompt/prompt.component';
     MatBottomSheetModule,
     MatIconModule,
     MatButtonModule,
+    NgCircleProgressModule.forRoot({
+      backgroundStrokeWidth: 0,
+      backgroundPadding: 1,
+      radius: 50,
+      space: 4,
+      maxPercent: 100,
+      outerStrokeWidth: 10,
+      innerStrokeWidth: 0,
+      imageHeight: 0,
+      imageWidth: 0,
+      animationDuration: 300,
+      showTitle: false,
+      showSubtitle: false,
+      showUnits: false,
+      showBackground: false,
+      showInnerStroke: false,
+      startFromZero: false,
+    }),
+    NgxCurrencyModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
