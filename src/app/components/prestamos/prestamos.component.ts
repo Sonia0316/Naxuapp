@@ -120,7 +120,6 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
         .toPromise()) as any).response.lista;
       if (Array.isArray(data) && data.length && data[0].totalpagar !== 'None') {
         this.lendData = data[0];
-        console.log(this.lendData);
         document.getElementById('showModalInfoSolicitud').click();
       }
     } catch (error) {

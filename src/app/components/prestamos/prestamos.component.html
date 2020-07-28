@@ -337,11 +337,61 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-12 d-flex">
-            <h5 style="font-size: 1.2rem; text-align: center; width: 100%;">
-              Tabla de pagos
-            </h5>
-            <table>
-              <thead></thead>
+            <table aria-describedby="pagos" *ngIf="lendData">
+              <thead>
+                <tr>
+                  <th id="Quincena">
+                    Quincena
+                  </th>
+                  <th id="Pago">
+                    Acumulado
+                  </th>
+                  <th id="TotalAcumulado">
+                    Cabtidad Restante
+                  </th>
+                  <th id="Adeudo">
+                    Pago
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let item of [].constructor(Number(lendData?.p_periodo));
+                    let i = index
+                  "
+                >
+                  <td>
+                    {{ i + 1 }}
+                  </td>
+                  <td>
+                    {{
+                      formatter.format(
+                        Number(lendData?.pagoquincenal) * (i + 1)
+                      )
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      formatter.format(
+                        Number(lendData?.totalpagar) -
+                          Number(lendData?.pagoquincenal) * (i + 1)
+                      )
+                    }}
+                  </td>
+                  <td>
+                    {{ formatter.format(Number(lendData?.pagoquincenal)) }}
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" style="text-align: right;">Total a pagar</td>
+                  <td>
+                    {{ formatter.format(Number(lendData?.totalpagar)) }}
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
