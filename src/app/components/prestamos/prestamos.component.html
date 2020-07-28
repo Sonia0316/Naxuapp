@@ -36,6 +36,7 @@
                     prefix: '$',
                     thousands: ',',
                     decimal: '.',
+                    precision: '0',
                     max: maxAmountAvailable,
                     allowNegative: false,
                     suffix: ' MXN'
@@ -58,7 +59,11 @@
               <p class="pct_plazos">
                 {{
                   formatter.format(
-                    (amountRange.value / 100) * maxAmountAvailable
+                    Number(
+                      ((amountRange.value / 100) * maxAmountAvailable).toFixed(
+                        0
+                      )
+                    )
                   )
                 }}
                 MXN
@@ -162,9 +167,7 @@
                 [value]="stepPeriod"
                 [step]="stepPeriod"
                 (change)="
-                  inputPeriod = Math.round(
-                    (dateRange.value / 100) * maxPeriods
-                  )
+                  inputPeriod = Math.round((dateRange.value / 100) * maxPeriods)
                 "
               />
             </div>
@@ -232,7 +235,11 @@
               <span
                 >{{
                   formatter.format(
-                    (amountRange.value / 100) * maxAmountAvailable
+                    Number(
+                      ((amountRange.value / 100) * maxAmountAvailable).toFixed(
+                        0
+                      )
+                    )
                   )
                 }}
                 MXN</span
@@ -256,8 +263,12 @@
               <button
                 (click)="
                   registerLendData(
-                    (amountRange.value / 100) * maxAmountAvailable,
-                    (dateRange.value / 100) * maxPeriods
+                    Number(
+                      ((amountRange.value / 100) * maxAmountAvailable).toFixed(
+                        0
+                      )
+                    ),
+                    Math.round((dateRange.value / 100) * maxPeriods)
                   )
                 "
                 class="btn btn-block btn-primary enlace"
@@ -270,8 +281,12 @@
               <button
                 (click)="
                   calcLendData(
-                    (amountRange.value / 100) * maxAmountAvailable,
-                    (dateRange.value / 100) * maxPeriods
+                    Number(
+                      ((amountRange.value / 100) * maxAmountAvailable).toFixed(
+                        0
+                      )
+                    ),
+                    Math.round((dateRange.value / 100) * maxPeriods)
                   )
                 "
                 class="btn btn-block btn-primary enlace02"
