@@ -140,7 +140,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
             t11_rfc: this.userRFC,
             t11_cantidad: value,
             t11_numero_plazos: periods,
-            t11_estatus: '',
+            t11_estatus: 'Pendiente',
             t11_fecha: '',
             t11_idtipocredito: this.mainData.c05id,
           }

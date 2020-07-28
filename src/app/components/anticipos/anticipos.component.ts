@@ -76,7 +76,7 @@ export class AnticiposComponent implements OnInit {
             t11_rfc: this.userRFC,
             t11_cantidad: this.salarioQuincenal,
             t11_numero_plazos: '1',
-            t11_estatus: '',
+            t11_estatus: 'Pendiente',
             t11_fecha: '',
             t11_idtipocredito: this.mainData.c05id,
           }
