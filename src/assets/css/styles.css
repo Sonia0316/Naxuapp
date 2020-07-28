@@ -705,7 +705,7 @@ SecciÃ³n crÃ©ditos
 /* ---------------------------------------------------
     Estilos seccion seguros
 ----------------------------------------------------- */
-table {
+app-seguros table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -728,10 +728,10 @@ table {
   border-right: 0px;
 }
 
-table,
-thead,
-tr,
-th,
+app-seguros table,
+app-seguros thead,
+app-seguros tr,
+app-seguros th,
 .titleSeg {
   font-size: 1em;
   color: #43425d;
@@ -1901,30 +1901,30 @@ th {
   }
 
   /* Estilo seguros */
-  table {
+  app-seguros table {
     width: 100%;
   }
 
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
+  app-seguros table,
+  app-seguros thead,
+  app-seguros tbody,
+  app-seguros th,
+  app-seguros td,
+  app-seguros tr {
     display: block;
   }
 
-  thead tr {
+  app-seguros thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  tr {
+  app-seguros tr {
     border: 1px solid #ccc;
   }
 
-  td {
+  app-seguros td {
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee;
@@ -1932,7 +1932,7 @@ th {
     padding-left: 50%;
   }
 
-  td:before {
+  app-seguros td:before {
     position: absolute;
     top: 6px;
     left: 6px;
