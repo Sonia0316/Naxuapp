@@ -1,61 +1,97 @@
-
 <div class="img_derecha02">
-<img src="assets/img/logo-login-naxu.svg" alt="logo naxu" class="logoLoginDesk">
-<img src="assets/img/logo_naxu.svg" alt="logo naxu movil" class="logoLoginMovil">
+  <img
+    src="assets/img/logo-login-naxu.svg"
+    alt="logo naxu"
+    class="logoLoginDesk"
+  />
+  <img
+    src="assets/img/logo_naxu.svg"
+    alt="logo naxu movil"
+    class="logoLoginMovil"
+  />
 </div>
 <div class="main row align-items-center justify-content-center vh-100">
-<div class="col-12 col-md-10 col-lg-10 col-xl-8">
-
-  <div class="logoLoginCompany">
-    <img alt="Company Name" src="assets/img/companyname_loging.svg">
-  </div>
-   <div class="login-form">
-
-    <form class="form-login" [formGroup]="userForm" (submit)="CheckRegister()">
-     <div class="form-group">
-      <label>RFC</label>
-      <input type="text" class="form-control" formControlName="rfc" id="rfc">
-      <control-messages [control]="userForm.get('rfc')"></control-messages>
-     </div>
-     <div class="form-group">
-      <label>Correo</label>
-      <input type="text" class="form-control" formControlName="email" id="email" >
-      <control-messages [control]="userForm.get('email')"></control-messages>
-     </div>
-     <div class="form-group">
-      <label>Contraseña</label>
-      <input type="password" class="form-control" formControlName="password" id="password">
-      <control-messages [control]="userForm.get('password')"></control-messages>
-
-     </div>
-     <div class="form-group">
-      <label>Confirmar contraseña</label>
-      <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword">
-      <control-messages [control]="userForm.get('confirmPassword')"></control-messages>
-
-     </div>
-
-     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <input type="submit"  [disabled]="!userForm.valid" class="btn btn-block btn-lg btn-primary btn-form-reg" value="Registrar">
-        <br>
-        <label class="control control-checkbox">
-          Acepto términos y condiciones
-          <input type="checkbox" />
-          <div class="control_indicator"></div>
-        </label>
-        <br>
-        <p class="enlaceRegAqu">¿Ya tienes una cuenta? <a  routerLink="" target="_self">Ingresa aquí</a></p>
-      </div>
-      <div class="col-md-3"></div>
+  <div class="col-12 col-md-10 col-lg-10 col-xl-8">
+    <div class="logoLoginCompany">
+      <img alt="Company Name" src="assets/img/companyname_loging.svg" />
     </div>
+    <div class="login-form">
+      <form
+        class="form-login"
+        [formGroup]="userForm"
+        (submit)="CheckRegister()"
+      >
+        <div class="form-group">
+          <label>RFC</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="rfc"
+            id="rfc"
+          />
+          <control-messages [control]="userForm.get('rfc')"></control-messages>
+        </div>
+        <div class="form-group">
+          <label>Correo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            id="email"
+          />
+          <control-messages
+            [control]="userForm.get('email')"
+          ></control-messages>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="password"
+          />
+          <control-messages
+            [control]="userForm.get('password')"
+          ></control-messages>
+        </div>
+        <div class="form-group">
+          <label>Confirmar contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+            id="confirmPassword"
+          />
+          <control-messages
+            [control]="userForm.get('confirmPassword')"
+          ></control-messages>
+        </div>
 
-
-
-
-
-    </form>
-   </div>
-</div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <input
+              type="submit"
+              [disabled]="!userForm.valid"
+              class="btn btn-block btn-lg btn-primary btn-form-reg"
+              value="Registrar"
+            />
+            <br />
+            <label class="control control-checkbox">
+              Acepto términos y condiciones
+              <input type="checkbox" />
+              <div class="control_indicator"></div>
+            </label>
+            <br />
+            <p class="enlaceRegAqu">
+              ¿Ya tienes una cuenta?
+              <a routerLink="" target="_self">Ingresa aquí</a>
+            </p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

@@ -53,9 +53,7 @@
 
           <div class="col-6" style="display: flex; justify-content: center;">
             <div class="form-group">
-              <a href="recupera_pass.html" target="_blank"
-                >¿Olvidaste tu contraseña?</a
-              >
+              <a [routerLink]="'/recupera'">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
         </div>
@@ -76,7 +74,6 @@
           <div class="col-6">
             <a
               (click)="FlagRegistro()"
-              target="_blank"
               style="margin-left: 10px;"
               >Registrate aquí</a
             >

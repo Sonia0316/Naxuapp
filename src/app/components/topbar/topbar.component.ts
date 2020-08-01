@@ -11,6 +11,7 @@ export class TopbarComponent {
   shouldShow() {
     return !(
       this.router.url === '/login' ||
+      this.router.url === '/recupera' ||
       this.router.url === '/registro' ||
       this.router.url === '/'
     );
