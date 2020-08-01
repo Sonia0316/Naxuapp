@@ -12,7 +12,9 @@ export class HomeComponent implements OnInit {
   deferredPrompt: any;
   showButton = false;
   public loading = false;
+  public status = 'Not available';
   private readonly userRFC = 'BAGN900415TIA';
+  public sliderData: Array<any>;
   constructor(
     private readonly platform: Platform,
     private readonly bottomSheet: MatBottomSheet,
@@ -27,12 +29,33 @@ export class HomeComponent implements OnInit {
       this.showButton = true;
     }
   }
-  public ngOnInit(): void {
-    if (this.platform.IOS) {
-      const isInStandaloneMode =
-        'standalone' in window.navigator && window.navigator['standalone'];
-      if (!isInStandaloneMode) {
-        this.openPromptComponent('ios');
+  public async ngOnInit(): Promise<void> {
+    this.loading = true;
+    try {
+      this.sliderData = ((await this.httpClient
+        .get(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/carrusel/status/Activo'
+        )
+        .toPromise()) as any).body.find(
+        (element) => element.t13_status === 'Activo'
+      );
+      if (this.sliderData.length) {
+        this.status = 'Available';
+      }
+      this.status = 'Not available';
+      return;
+    } catch (error) {
+      console.log(error);
+      // this.status = 'Not available';
+      this.status = 'Available';
+    } finally {
+      this.loading = false;
+      if (this.platform.IOS) {
+        const isInStandaloneMode =
+          'standalone' in window.navigator && window.navigator['standalone'];
+        if (!isInStandaloneMode) {
+          this.openPromptComponent('ios');
+        }
       }
     }
   }

@@ -14,11 +14,31 @@
   <ng-container *ngIf="status === 'complete'">
     <div class="row DetalleProduct">
       <div class="col-12 col-md-4 col-lg-4 ImagenProduct">
-        <img
-          alt="Imagen detalle"
-          class="img-fluid"
-          [src]="dataProduct['c02_imagenurls3']"
-        />
+        <div class="carousel slide" id="carousel-513524">
+          <div class="carousel-inner">
+            <ng-container
+              *ngFor="let imagen of dataProduct.imagenes; let i = index"
+            >
+              <div [ngClass]="{ 'carousel-item': true, active: i === 0 }">
+                <img [src]="imagen.c03_imagenurls3" [alt]="'Imagen ' + i" />
+              </div>
+            </ng-container>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carousel-513524"
+            data-slide="prev"
+            ><span class="carousel-control-prev-icon"></span>
+            <span class="sr-only">Previous</span></a
+          >
+          <a
+            class="carousel-control-next"
+            href="#carousel-513524"
+            data-slide="next"
+            ><span class="carousel-control-next-icon"></span>
+            <span class="sr-only">Next</span></a
+          >
+        </div>
       </div>
       <div class="col-12 col-md-8 col-lg-8 DescDetalleProduct">
         <h3>

@@ -44,6 +44,13 @@ export class DetalleProductoComponent implements OnInit {
           `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/${idProducto}`
         )
         .toPromise()) as any).response.lista[0];
+      this.dataProduct.imagenes = ((await this.httpClient
+        .get(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/detalle/${idProducto}`
+        )
+        .toPromise()) as any).response.lista.filter(
+        (element) => element.c03_estatus === 'Activo'
+      );
       const stock = Number(this.dataProduct.c02_stock);
       if (this.dataProduct.c02_estatus === 'Activo' && stock) {
         this.quantityStock = Array(5)

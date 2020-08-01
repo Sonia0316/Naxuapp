@@ -1,58 +1,59 @@
 <div class="container-fluid">
-                    <div class="row">
-                        <!--modulo informacion personal-->
-                        <div class="col-12 col-md-12 col-lg-12">
-                            <div class="spaCbzSeg">
-                                <img src="assets/img/logos_cuerpo/logo_cuerpo_mis_seguros.svg" alt="Imagen Mis seguros" class="imgEncabz" />
-                                <h3 class="encabz">Mis seguros</h3>
-                            </div>
+  <div class="row">
+    <!--modulo informacion personal-->
+    <div class="col-12 col-md-12 col-lg-12">
+      <div class="spaCbzSeg">
+        <img
+          src="assets/img/logos_cuerpo/logo_cuerpo_mis_seguros.svg"
+          alt="Imagen Mis seguros"
+          class="imgEncabz"
+        />
+        <h3 class="encabz">Mis seguros</h3>
+      </div>
 
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="Noborder"><p class="titleSeg">NOMBRE DEL TITULAR</p></th>
-                                        <th class="Noborder"><p class="titleSeg">SEGURO</p></th>
-                                        <th class="Noborder"><p class="titleSeg">No. POLIZA</p></th>
-                                        <th class="Noborder"><p class="titleSeg">MONTO ASEGURADO</p></th>
-                                        <th class="Noborder"><p class="titleSeg">FECHA DE VENCIMIENTO</p></th>
-                                        <th class="Noborder"><p class="titleSeg">VISUALIZAR</p></th>
-                                    </tr>
-                                </thead>
-                            <tbody>
-                                    <tr *ngFor="let data of JsonResp">
-                                        <td data-column="Nombre" class="RightBorder"><p class="itemSeg">{{data.t07_rfc}}</p></td>
-                                        <td data-column="Seguro" class="RightBorder"><p class="itemSeg">{{data.t07_titulo}}</p></td>
-                                        <td data-column="Poliza" class="RightBorder"><p class="itemSeg"></p></td>
-                                        <td data-column="Monto" class="RightBorder"><p class="itemSeg">{{data.t07_precio}}</p></td>
-                                        <td data-column="fecha vencimiento" class="RightBorder"><p class="itemSegFecha">{{data.t07_fecha}}</p></td>
-                                        <td data-column="Descargar" class="NoRightBorder">
-                                            <a href="{{data.t07_fileurls3}}"><img src="assets/img/iconopdf.svg" alt="img pdf descragable" /></a>
-                                        </td>
-                                    </tr>
-
-                                     <!-- <tr>
-                                        <td data-column="Nombre" class="RightBorder"><p class="itemSeg">Luis Enrique Beltran R.</p></td>
-                                        <td data-column="Seguro" class="RightBorder"><p class="itemSeg">AFIRME</p></td>
-                                        <td data-column="Poliza" class="RightBorder"><p class="itemSeg">02522656ETUA</p></td>
-                                        <td data-column="Monto" class="RightBorder"><p class="itemSeg">$7000.00 mxn</p></td>
-                                        <td data-column="fecha vencimiento" class="RightBorder"><p class="itemSegFecha">05-MAY-2025</p></td>
-                                        <td data-column="Descargar" class="NoRightBorder">
-                                            <a href="#"><img src="assets/img/iconopdf.svg" alt="img pdf descragable" /></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td data-column="Nombre" class="RightBorder"><p class="itemSeg">Luis Enrique Beltran R.</p></td>
-                                        <td data-column="Seguro" class="RightBorder"><p class="itemSeg">AFIRME</p></td>
-                                        <td data-column="Poliza" class="RightBorder"><p class="itemSeg">02522656ETUA</p></td>
-                                        <td data-column="Monto" class="RightBorder"><p class="itemSeg">$7000.00 mxn</p></td>
-                                        <td data-column="fecha vencimiento" class="RightBorder"><p class="itemSegFecha">05-MAY-2025</p></td>
-                                        <td data-column="Descargar" class="NoRightBorder">
-                                            <a href="#"><img src="assets/img/iconopdf.svg" alt="img pdf descragable" /></a>
-                                        </td>
-                                    </tr>-->  
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="Noborder"><p class="titleSeg">NOMBRE DEL TITULAR</p></th>
+            <th class="Noborder"><p class="titleSeg">SEGURO</p></th>
+            <th class="Noborder"><p class="titleSeg">No. POLIZA</p></th>
+            <th class="Noborder"><p class="titleSeg">MONTO ASEGURADO</p></th>
+            <th class="Noborder">
+              <p class="titleSeg">FECHA DE VENCIMIENTO</p>
+            </th>
+            <th class="Noborder"><p class="titleSeg">VISUALIZAR</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of JsonResp">
+            <td data-column="Nombre" class="RightBorder">
+              <p class="itemSeg">{{ data.t07_rfc }}</p>
+            </td>
+            <td data-column="Seguro" class="RightBorder">
+              <p class="itemSeg">{{ data.t07_titulo }}</p>
+            </td>
+            <td data-column="Poliza" class="RightBorder">
+              <p class="itemSeg"></p>
+            </td>
+            <td data-column="Monto" class="RightBorder">
+              <p class="itemSeg">{{ data.t07_precio }}</p>
+            </td>
+            <td data-column="fecha vencimiento" class="RightBorder">
+              <p class="itemSegFecha">{{ data.t07_fecha }}</p>
+            </td>
+            <td data-column="Descargar" class="NoRightBorder">
+              <a
+                [href]="data.t07_fileurls3"
+                *ngIf="data.t07_fileurls3"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="assets/img/iconopdf.svg" alt="img pdf descragable"
+              /></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
