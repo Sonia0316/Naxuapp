@@ -1,4 +1,4 @@
-<ng-container *ngIf="shouldShow()">
+<ng-container *ngIf="shouldShow() && logoUrl">
   <div
     class="barraMovil"
     style="
@@ -18,11 +18,7 @@
     >
       <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
     </button>
-    <img
-      src="assets/img/company_name_bco.svg"
-      alt="Logo naxus"
-      class="naxus_logo_movil"
-    />
+    <img [src]="logoUrl" alt="Logo naxus" class="naxus_logo_movil" />
   </div>
   <div class="container-fluid" (click)="sideBarClose()">
     <div
@@ -31,14 +27,10 @@
     >
       <div>
         <h1 class="Bienv">¡Bienvenido!</h1>
-        <p class="Usua">Luis Enrique Beltrán Riveraaaa</p>
+        <p class="Usua">Luis Enrique Beltrán Rivera</p>
       </div>
       <div>
-        <img
-          src="assets/img/company_name.svg"
-          alt="Logo de company"
-          class="LogoComName"
-        />
+        <img [src]="logoUrl" alt="Logo de company" class="LogoComName" />
       </div>
     </div>
     <div class="row barraDesktop02" style="margin-top: 10px;">

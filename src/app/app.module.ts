@@ -41,6 +41,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PromptComponent } from './components/prompt/prompt.component';
 
+import { SafePipeModule } from 'safe-pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +74,7 @@ import { PromptComponent } from './components/prompt/prompt.component';
   ],
   imports: [
     HttpClientModule,
+    SafePipeModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
