@@ -36,18 +36,17 @@ export class HomeComponent implements OnInit {
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/carrusel/status/Activo'
         )
-        .toPromise()) as any).body.find(
-        (element) => element.t13_status === 'Activo'
-      );
+        .toPromise()) as any).body
+        .filter((element) => element.t13_status === 'Activo')
+        .sort((a, b) => Number(a.t13_orden) - Number(b.t13_orden));
       if (this.sliderData.length) {
         this.status = 'Available';
+        return;
       }
       this.status = 'Not available';
-      return;
     } catch (error) {
       console.log(error);
-      // this.status = 'Not available';
-      this.status = 'Available';
+      this.status = 'Not available';
     } finally {
       this.loading = false;
       if (this.platform.IOS) {

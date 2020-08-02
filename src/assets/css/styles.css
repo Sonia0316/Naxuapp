@@ -1286,8 +1286,8 @@ th {
 
 .DetalleProduct {
   background-color: #fff;
-  margin: 0 10px;
-  padding: 0 5%;
+  /* margin: 0 10px;
+  padding: 0 5%; */
   -webkit-box-shadow: 0px 2px 6px #0000000a;
   -moz-box-shadow: 0px 2px 6px #0000000a;
   box-shadow: 0px 2px 6px #0000000a;

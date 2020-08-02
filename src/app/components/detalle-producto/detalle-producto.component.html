@@ -19,8 +19,17 @@
             <ng-container
               *ngFor="let imagen of dataProduct.imagenes; let i = index"
             >
-              <div [ngClass]="{ 'carousel-item': true, active: i === 0 }">
-                <img [src]="imagen.c03_imagenurls3" [alt]="'Imagen ' + i" />
+              <div
+                [ngClass]="{
+                  'carousel-item': true,
+                  active: i === 0
+                }"
+              >
+                <img
+                  class="img-fluid"
+                  [src]="imagen.c03_imagenurls3"
+                  [alt]="'Imagen ' + i"
+                />
               </div>
             </ng-container>
           </div>
