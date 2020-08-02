@@ -17,8 +17,8 @@ import {
   LoginComponent,
   RecuperaComponent,
   RegistroComponent,
+  OtpComponent,
 } from './components/index.paginas';
-import { OtpComponent } from './components/otp/otp.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

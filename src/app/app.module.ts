@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxCurrencyModule } from 'ngx-currency';
 
+import { environment } from '../environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
@@ -27,11 +30,10 @@ import { VacacionesComponent } from './components/vacaciones/vacaciones.componen
 import { LoginComponent } from './components/login/login.component';
 import { RecuperaComponent } from './components/recupera/recupera.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { PrincipalComponent } from './components/principal/principal.component';
-import { ControlMessagesComponent } from './control-messages.component';
+import { ControlMessagesComponent } from './components/resources/control-messages/control-messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalLoadingComponent } from './components/modal-loading/modal-loading.component';
+import { ModalLoadingComponent } from './components/resources/modal-loading/modal-loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
@@ -62,11 +64,10 @@ import { SafePipeModule } from 'safe-pipe';
     LoginComponent,
     RecuperaComponent,
     RegistroComponent,
-    PrincipalComponent,
     ControlMessagesComponent,
     ModalLoadingComponent,
     PromptComponent,
-    OtpComponent
+    OtpComponent,
   ],
   imports: [
     HttpClientModule,

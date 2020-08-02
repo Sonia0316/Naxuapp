@@ -40,13 +40,16 @@ export class TopbarComponent implements OnInit {
   }
 
   public shouldShow() {
-    return !(
-      this.router.url === '/login' ||
-      this.router.url === '/recupera' ||
-      this.router.url === '/registro' ||
-      this.router.url === '/otp' ||
-      this.router.url === '/'
-    );
+    switch (this.router.url) {
+      case '/login':
+      case '/recupera':
+      case '/registro':
+      case '/otp':
+      case '/':
+        return false;
+      default:
+        return true;
+    }
   }
   public toTop() {
     document.body.scrollTop = 0;

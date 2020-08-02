@@ -1,4 +1,4 @@
 export interface RequestContacto {
-    asunto: string;
-    mensaje: string;
-} 
+  asunto: string;
+  mensaje: string;
+}

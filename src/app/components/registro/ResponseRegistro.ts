@@ -1,5 +1,5 @@
 export interface ResponseRegistro {
-    codigo: String;
-    descripcion: String;
-    body: String;   
-} 
+  codigo: string;
+  descripcion: string;
+  body: string;
+}

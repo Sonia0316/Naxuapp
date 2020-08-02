@@ -12,7 +12,6 @@ export class HeaderComponent {
   async DestroySession() {
     window.localStorage.removeItem('email');
     window.localStorage.removeItem('rfc');
-    window.localStorage.removeItem('FlagRegistro');
     document.getElementById('sidebarCollapse').click();
     await this.toTop();
     await this.router.navigate(['./login']);

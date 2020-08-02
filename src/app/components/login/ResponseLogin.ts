@@ -1,8 +1,8 @@
 export interface ResponseLogin {
-    codigo: String;
-    descripcion: String;
-    email: String;
-    status: String;
-    fecha_registro: String;
-    rfc: String;   
-} 
+  codigo: string;
+  descripcion: string;
+  email: string;
+  status: string;
+  fecha_registro: string;
+  rfc: string;
+}

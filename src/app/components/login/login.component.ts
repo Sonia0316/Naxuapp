@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidationService } from '../../validation.service';
+import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/login';
-  userForm: any;
+  userForm: FormGroup;
   response: any;
 
   constructor(
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   public async CheckUser() {
     if (this.userForm.dirty && this.userForm.valid) {
-      let request = {
+      const request = {
         email: this.userForm.value.email,
         passw: this.userForm.value.password,
         ipRemota: '127.0.0.1',
@@ -83,19 +83,12 @@ export class LoginComponent implements OnInit {
   }
 
   postLogin(login: RequestLogin): Observable<HttpResponse<ResponseLogin>> {
-    let httpHeaders = new HttpHeaders({
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
     return this.http.post<ResponseLogin>(this.url, login, {
       headers: httpHeaders,
       observe: 'response',
     });
-  }
-  FlagRegistro() {
-    window.localStorage.setItem('FlagRegistro', '1');
-    this.router.navigate(['./registro']);
-  }
-  FlagRecupera() {
-    window.localStorage.setItem('FlagRecupera', '1');
   }
 }

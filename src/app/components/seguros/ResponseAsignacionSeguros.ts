@@ -1,4 +1,3 @@
 export interface ResponseAsignacionSeguros {
-    response: JSON;
-    
-} 
+  response: JSON;
+}

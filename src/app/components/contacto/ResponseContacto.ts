@@ -1,4 +1,4 @@
 export interface ResponseContacto {
-    codigo: String;
-    descripcion: String;
-} 
+  codigo: string;
+  descripcion: string;
+}

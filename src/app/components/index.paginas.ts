@@ -14,3 +14,4 @@ export { VacacionesComponent } from './vacaciones/vacaciones.component';
 export { LoginComponent } from './login/login.component';
 export { RecuperaComponent } from './recupera/recupera.component';
 export { RegistroComponent } from './registro/registro.component';
+export { OtpComponent } from './otp/otp.component';
