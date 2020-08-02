@@ -18,22 +18,14 @@
     <div class="login-form">
       <form
         class="form-login"
-        #f="ngForm"
-        [formGroup]="userForm"
-        (submit)="sendData()"
+        #f1="ngForm"
+        [formGroup]="otpForm"
+        (submit)="sendDataOtpData(); f1.reset();"
+        *ngIf="otpStep"
       >
         <div class="form-group">
-          <label>Correo</label>
-          <input
-            #email
-            type="text"
-            formControlName="email"
-            class="form-control"
-          />
-        </div>
-        <div class="form-group">
-          <label>RFC</label>
-          <input #rfc type="text" formControlName="rfc" class="form-control" />
+          <label>Codigo OTP</label>
+          <input #otp type="text" formControlName="otp" class="form-control" />
         </div>
 
         <div class="row">
@@ -41,15 +33,14 @@
           <div class="col-md-6">
             <input
               type="submit"
-              [disabled]="!f.form.valid"
+              [disabled]="!f1.form.valid"
               class="btn btn-block btn-lg btn-primary btn-form-reg"
-              value="Recuperar contraseña"
+              value="Enviar codigo"
             />
             <br />
             <br />
             <p class="enlaceRegAqu" style="text-align: center;">
-              ¿Ya tienes una cuenta?<br />
-              <a [routerLink]="'/'">Ingresa aquí</a>
+              <a [routerLink]="'/'">Regresar al inicio</a>
             </p>
           </div>
           <div class="col-md-3"></div>
@@ -66,8 +57,8 @@
   style="display: none;"
 ></a>
 <a
-  href="#errorUserNotFound"
-  id="showModalErrorUserNotFound"
+  href="#errorOtpNotFound"
+  id="showModalErrorOtpNotFound"
   data-toggle="modal"
   style="display: none;"
 ></a>
@@ -108,7 +99,7 @@
 </div>
 <div
   class="modal fade"
-  id="errorUserNotFound"
+  id="errorOtpNotFound"
   role="dialog"
   aria-labelledby="myModalLabel"
   aria-hidden="true"
@@ -130,7 +121,7 @@
             style="min-height: 150px; text-align: center;"
           >
             <h5 style="font-size: 1.2rem;">
-              El usuario no se encuentra registrado, verifique su información.
+              La clave introducida es inválida.
             </h5>
           </div>
         </div>

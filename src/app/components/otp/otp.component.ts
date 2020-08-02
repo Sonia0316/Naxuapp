@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidationService } from '../../validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,8 +8,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./otp.component.scss'],
 })
 export class OtpComponent implements OnInit {
+  public otpForm: FormGroup;
   public userForm: FormGroup;
   public loading = false;
+  public otpStep = true;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -19,7 +20,10 @@ export class OtpComponent implements OnInit {
   public ngOnInit(): void {
     this.userForm = this.formBuilder.group({
       rfc: ['', Validators.required],
-      email: ['', [Validators.required, ValidationService.emailValidator]],
+      password: ['', Validators.required],
+    });
+    this.otpForm = this.formBuilder.group({
+      otp: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
   public async sendData() {
@@ -41,6 +45,31 @@ export class OtpComponent implements OnInit {
     } catch (error) {
       console.log(error);
       document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
+  }
+  public async sendDataOtpData() {
+    this.loading = true;
+    try {
+      const data: any = await this.httpClient
+        .post(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/loginotp',
+          {
+            ...this.otpForm.value,
+          }
+        )
+        .toPromise();
+      if (Number(data.codigo) === 200) {
+        console.log('====================================');
+        console.log('flagtrue');
+        console.log('====================================');
+      } else {
+        document.getElementById('showModalErrorOtpNotFound').click();
+      }
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorOtpNotFound').click();
     } finally {
       this.loading = false;
     }
