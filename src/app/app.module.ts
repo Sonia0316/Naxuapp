@@ -11,7 +11,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { AdquirirSeguroComponent } from './components/adquirir-seguro/adquirir-seguro.component';
 import { AnticiposComponent } from './components/anticipos/anticipos.component';
@@ -29,7 +28,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RecuperaComponent } from './components/recupera/recupera.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { FooterloginComponent } from './components/footerlogin/footerlogin.component';
 import { ControlMessagesComponent } from './control-messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,7 +46,6 @@ import { SafePipeModule } from 'safe-pipe';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent,
     TopbarComponent,
     AdquirirSeguroComponent,
     AnticiposComponent,
@@ -66,7 +63,6 @@ import { SafePipeModule } from 'safe-pipe';
     RecuperaComponent,
     RegistroComponent,
     PrincipalComponent,
-    FooterloginComponent,
     ControlMessagesComponent,
     ModalLoadingComponent,
     PromptComponent,
