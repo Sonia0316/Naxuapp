@@ -1,0 +1,143 @@
+<div class="img_derecha">
+  <img
+    src="assets/img/logo-login-naxu.svg"
+    alt="logo naxu"
+    class="logoLoginDesk"
+  />
+  <img
+    src="assets/img/logo_naxu.svg"
+    alt="logo naxu movil"
+    class="logoLoginMovil"
+  />
+</div>
+<div class="main row align-items-center justify-content-center vh-100">
+  <div class="col-12 col-md-10 col-lg-10 col-xl-8">
+    <div class="logoLoginCompany">
+      <img alt="Company Name" src="assets/img/companyname_loging.svg" />
+    </div>
+    <div class="login-form">
+      <form
+        class="form-login"
+        #f="ngForm"
+        [formGroup]="userForm"
+        (submit)="sendData()"
+      >
+        <div class="form-group">
+          <label>Correo</label>
+          <input
+            #email
+            type="text"
+            formControlName="email"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label>RFC</label>
+          <input #rfc type="text" formControlName="rfc" class="form-control" />
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <input
+              type="submit"
+              [disabled]="!f.form.valid"
+              class="btn btn-block btn-lg btn-primary btn-form-reg"
+              value="Recuperar contraseña"
+            />
+            <br />
+            <br />
+            <p class="enlaceRegAqu" style="text-align: center;">
+              ¿Ya tienes una cuenta?<br />
+              <a [routerLink]="'/'">Ingresa aquí</a>
+            </p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-modal-loading [active]="loading"></app-modal-loading>
+<a
+  href="#errorSolicitud"
+  id="showModalErrorSolicitud"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<a
+  href="#errorUserNotFound"
+  id="showModalErrorUserNotFound"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<div
+  class="modal fade"
+  id="errorSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              Ha ocurrido un error con tu petición, inténtalo mas tarde.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="errorUserNotFound"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              El usuario no se encuentra registrado, verifique su información.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>

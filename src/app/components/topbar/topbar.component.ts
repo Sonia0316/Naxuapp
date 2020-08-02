@@ -44,6 +44,7 @@ export class TopbarComponent implements OnInit {
       this.router.url === '/login' ||
       this.router.url === '/recupera' ||
       this.router.url === '/registro' ||
+      this.router.url === '/otp' ||
       this.router.url === '/'
     );
   }

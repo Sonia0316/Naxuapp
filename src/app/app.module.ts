@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { app_routing } from './app.routes';
-
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -40,9 +39,9 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PromptComponent } from './components/prompt/prompt.component';
+import { OtpComponent } from './components/otp/otp.component';
 
 import { SafePipeModule } from 'safe-pipe';
-
 
 @NgModule({
   declarations: [
@@ -71,16 +70,16 @@ import { SafePipeModule } from 'safe-pipe';
     ControlMessagesComponent,
     ModalLoadingComponent,
     PromptComponent,
+    OtpComponent
   ],
   imports: [
     HttpClientModule,
     SafePipeModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    app_routing,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
@@ -107,7 +106,6 @@ import { SafePipeModule } from 'safe-pipe';
     }),
     NgxCurrencyModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
