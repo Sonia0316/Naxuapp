@@ -12,7 +12,7 @@ export class OtpComponent implements OnInit {
   public otpForm: FormGroup;
   public userForm: FormGroup;
   public loading = false;
-  public otpStep = false;
+  public otpStep = true;
 
   constructor(
     private readonly formBuilder: FormBuilder,
