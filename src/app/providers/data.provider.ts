@@ -12,6 +12,11 @@ export class DataProvider {
     return this.dataNaxu;
   }
 
+  public async clearDataNaxu() {
+    await asyncLocalStorage.clearItem('naxu');
+    this.dataNaxu = null;
+  }
+
   public async setDataNaxu(dataNaxu: DataModel) {
     await asyncLocalStorage.setItem('naxu', JSON.stringify(dataNaxu));
     this.dataNaxu = dataNaxu;

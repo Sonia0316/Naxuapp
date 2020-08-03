@@ -41,7 +41,6 @@ export class TopbarComponent implements OnInit {
 
   public shouldShow() {
     switch (this.router.url) {
-      case '/login':
       case '/recupera':
       case '/registro':
       case '/otp':

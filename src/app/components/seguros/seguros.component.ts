@@ -1,44 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ResponseAsignacionSeguros } from './ResponseAsignacionSeguros';
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-seguros',
   templateUrl: './seguros.component.html',
 })
 export class SegurosComponent implements OnInit {
-  url =
-    'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros/asignacion/' +
-    window.localStorage.getItem('rfc').replace('"', '').replace('"', '');
+  public url: string;
   JsonResp: [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    public http: HttpClient,
-    private router: Router
+    private readonly http: HttpClient,
+    private dataProvider: DataProvider
   ) {}
-  ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
+    const dataNaxu = this.dataProvider.getDataNaxu();
+    this.url = `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros/asignacion/${dataNaxu.rfc}`;
     this.getAsignacionesbyRFC();
   }
 
   getAsignacionesbyRFC() {
     this.getAsignacionSeguro().subscribe(
       (res) => {
-        //let resp: ResponseAsignacionSeguros = res.body.response;
-        this.JsonResp = JSON.parse(JSON.stringify(res.body.response['lista']));
-        console.log(res.headers.get('Content-Type'));
+        this.JsonResp = JSON.parse(JSON.stringify(res.body.response.lista));
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          //A client-side or network error occurred.
           console.log('An error occurred:', err.error.message);
           alert('An error occurred:' + err.error.message);
         } else {
-          //Errores 404, 500 etc.
           console.log('Backend returned status code: ', err.status);
           alert('status code: ' + JSON.stringify(err.status));
           console.log('Response body:', err.message);
@@ -48,11 +41,11 @@ export class SegurosComponent implements OnInit {
     );
   }
 
-  getAsignacionSeguro(): Observable<HttpResponse<ResponseAsignacionSeguros>> {
-    let httpHeaders = new HttpHeaders({
+  private getAsignacionSeguro(): Observable<HttpResponse<any>> {
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get<ResponseAsignacionSeguros>(this.url, {
+    return this.http.get<any>(this.url, {
       headers: httpHeaders,
       observe: 'response',
     });

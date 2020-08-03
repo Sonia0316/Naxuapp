@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from 'node_modules/@angular/router';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,16 @@ import { Router } from 'node_modules/@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private readonly dataProvider: DataProvider
+  ) {}
 
-  async DestroySession() {
-    window.localStorage.removeItem('email');
-    window.localStorage.removeItem('rfc');
+  public async DestroySession() {
+    await this.dataProvider.clearDataNaxu();
     document.getElementById('sidebarCollapse').click();
     await this.toTop();
-    await this.router.navigate(['./login']);
+    await this.router.navigate(['/']);
   }
 
   async adquirirseguro() {

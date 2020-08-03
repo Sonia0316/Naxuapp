@@ -48,7 +48,7 @@ export class RegistroComponent {
       this.postRegister(request).subscribe(
         (res) => {
           if (Number(res.body.codigo) === 200) {
-            this.router.navigate(['./login']).then(() => {
+            this.router.navigate(['/']).then(() => {
               window.location.reload();
             });
           } else {
