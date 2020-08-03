@@ -1726,10 +1726,6 @@ th {
   margin-bottom: 5%;
 }
 
-.login-form .form-login input:focus {
-  color: #035fe9;
-}
-
 .login-form .form-login .btn-form-reg:focus {
   color: #fff;
   background-color: #ff4141;

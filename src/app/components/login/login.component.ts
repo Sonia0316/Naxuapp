@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestLogin } from './RequestLogin';
-import { ResponseLogin } from './ResponseLogin';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { DataModel } from 'src/app/models/data.interface';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/login';
-  userForm: FormGroup;
+  public userForm: FormGroup;
   response: any;
 
   constructor(
-    private formBuilder: FormBuilder,
-    public http: HttpClient,
-    private router: Router
+    private readonly formBuilder: FormBuilder,
+    public readonly http: HttpClient,
+    private readonly router: Router,
+    private readonly dataProvider: DataProvider
   ) {
     this.userForm = this.formBuilder.group({
       password: ['', Validators.required],
@@ -38,34 +40,25 @@ export class LoginComponent implements OnInit {
       };
       this.postLogin(request).subscribe(
         (res) => {
-          let logincl: ResponseLogin = res.body;
-
-          //  console.log(logincl.email);
-          console.log(res.headers.get('Content-Type'));
-          //alert('Respuesta '  + res.body.codigo);
-          if (res.body.codigo == '200') {
-            //window.localStorage.setItem('rfc',JSON.stringify(res.body.rfc));
-            window.localStorage.setItem('rfc', JSON.stringify(res.body.rfc));
-            window.localStorage.setItem(
-              'email',
-              JSON.stringify(res.body.email)
-            );
+          const loginData = res.body;
+          if (Number(loginData.codigo) === 200) {
+            this.dataProvider.setDataNaxu(loginData);
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             this.router.navigate(['./home']).then(() => {
               window.location.reload();
             });
           } else {
-            alert(res.body.descripcion);
+            console.error(res.body.descripcion);
           }
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            //A client-side or network error occurred.
+            // A client-side or network error occurred.
             console.log('An error occurred:', err.error.message);
             alert('An error occurred:' + err.error.message);
           } else {
-            //Errores 404, 500 etc.
+            // Errores 404, 500 etc.
             console.log('Backend returned status code: ', err.status);
             alert('status code: ' + JSON.stringify(err.status));
             console.log('Response body:', err.message);
@@ -75,18 +68,12 @@ export class LoginComponent implements OnInit {
       );
     }
   }
-  ngOnInit(): void {
-    let email = window.localStorage.getItem('email');
-    if (email) {
-      this.router.navigate(['./home']);
-    }
-  }
 
-  postLogin(login: RequestLogin): Observable<HttpResponse<ResponseLogin>> {
+  postLogin(login: RequestLogin): Observable<HttpResponse<DataModel>> {
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<ResponseLogin>(this.url, login, {
+    return this.http.post<DataModel>(this.url, login, {
       headers: httpHeaders,
       observe: 'response',
     });

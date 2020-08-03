@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestRegistro } from './RequestRegistro';
-import { ResponseRegistro } from './ResponseRegistro';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent {
   url =
     'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc';
   userForm: FormGroup;
@@ -35,15 +34,11 @@ export class RegistroComponent implements OnInit {
         validator: ValidationService.MatchPassword, // your validation method
       }
     );
-
-    console.log(this.userForm);
   }
-
-  ngOnInit(): void {}
 
   CheckRegister() {
     if (this.userForm.dirty && this.userForm.valid) {
-      let request = {
+      const request = {
         rfc: this.userForm.value.rfc,
         password: this.userForm.value.password,
         status: 'Activo',
@@ -52,23 +47,19 @@ export class RegistroComponent implements OnInit {
 
       this.postRegister(request).subscribe(
         (res) => {
-          const Registrocl: ResponseRegistro = res.body;
-          console.log(res.headers.get('Content-Type'));
-          if (res.body.codigo == '200') {
+          if (Number(res.body.codigo) === 200) {
             this.router.navigate(['./login']).then(() => {
               window.location.reload();
             });
           } else {
-            alert(res.body.descripcion);
+            console.error(res.body.descripcion);
           }
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            //A client-side or network error occurred.
             console.log('An error occurred:', err.error.message);
             alert('An error occurred:' + err.error.message);
           } else {
-            //Errores 404, 500 etc.
             console.log('Backend returned status code: ', err.status);
             alert('status code: ' + JSON.stringify(err.status));
             console.log('Response body:', err.message);
@@ -79,13 +70,11 @@ export class RegistroComponent implements OnInit {
     }
   }
 
-  postRegister(
-    login: RequestRegistro
-  ): Observable<HttpResponse<ResponseRegistro>> {
-    let httpHeaders = new HttpHeaders({
+  public postRegister(login: RequestRegistro): Observable<HttpResponse<any>> {
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<ResponseRegistro>(this.url, login, {
+    return this.http.post<any>(this.url, login, {
       headers: httpHeaders,
       observe: 'response',
     });

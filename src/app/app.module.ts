@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxCurrencyModule } from 'ngx-currency';
@@ -42,6 +42,11 @@ import { PromptComponent } from './components/prompt/prompt.component';
 import { OtpComponent } from './components/otp/otp.component';
 
 import { SafePipeModule } from 'safe-pipe';
+import { DataProvider } from './providers/data.provider';
+
+export function dataProviderFactory(provider: DataProvider) {
+  return () => provider.load();
+}
 
 @NgModule({
   declarations: [
@@ -104,5 +109,14 @@ import { SafePipeModule } from 'safe-pipe';
     NgxCurrencyModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    DataProvider,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: dataProviderFactory,
+      deps: [DataProvider],
+      multi: true,
+    },
+  ],
 })
 export class AppModule {}
