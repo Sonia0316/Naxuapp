@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 @Component({
   selector: 'app-vacaciones',
   templateUrl: './vacaciones.component.html',
 })
-export class VacacionesComponent {
+export class VacacionesComponent implements OnInit {
   public readonly availableDays = 10;
+  public dataNaxu: DataModel;
   public moment = moment;
   public totalDays = 0;
   public loading = false;
-  private readonly userRFC = 'BAGN900415TIA';
+  private userRFC: string;
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
+  ) {}
+
+  public async ngOnInit(): Promise<void> {
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.userRFC = this.dataNaxu.RFCEmpleado;
+  }
 
   public initialChangeDate(initialDate, finalDate) {
     if (

@@ -8,20 +8,21 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 @Component({
   selector: 'app-prestamos',
   templateUrl: './prestamos.component.html',
   styleUrls: ['./prestamos.component.scss'],
 })
 export class PrestamosComponent implements OnInit, AfterContentChecked {
-  public readonly startDate = '2019-01-01';
-  public readonly salarioQuincenal = 300;
-  private readonly userRFC = 'BAGN900415TIA';
+  public dataNaxu: DataModel;
   public maxAmountAvailable = 0;
   public maxPeriods = 0;
-  public readonly minAmountAvailable = this.salarioQuincenal * 0.1;
+  public minAmountAvailable = 0;
   public readonly minPeriods = 1;
   public stepPeriod = 0;
+  public readonly startDate = '2019-01-01';
 
   public readonly moment = moment;
   public readonly Math = Math;
@@ -46,10 +47,13 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private changeDetector: ChangeDetectorRef
+    private readonly changeDetector: ChangeDetectorRef,
+    private readonly dataProvider: DataProvider
   ) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.minAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 0.1;
     try {
       this.mainData = ((await this.httpClient
         .get(
@@ -65,15 +69,15 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
         if (years > 1) {
           switch (true) {
             case years > 1 && years <= 1.5:
-              this.maxAmountAvailable = this.salarioQuincenal * 2;
+              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 2;
               this.maxPeriods = 3;
               break;
             case years > 1.5 && years <= 2:
-              this.maxAmountAvailable = this.salarioQuincenal * 4;
+              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 4;
               this.maxPeriods = 4;
               break;
             case years > 2:
-              this.maxAmountAvailable = this.salarioQuincenal * 6;
+              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 6;
               this.maxPeriods = 6;
               break;
           }
@@ -137,7 +141,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos',
           {
             t11id: '',
-            t11_rfc: this.userRFC,
+            t11_rfc: this.dataNaxu.RFCEmpleado,
             t11_cantidad: value,
             t11_numero_plazos: periods,
             t11_estatus: 'Pendiente',
@@ -152,7 +156,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
             'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
             {
               asunto: 'Solicitud de prestamo',
-              mensaje: `El usuario ${this.userRFC} esta solicitando un prestamo`,
+              mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un prestamo`,
               grupo: 'PRESTAMO',
             }
           )

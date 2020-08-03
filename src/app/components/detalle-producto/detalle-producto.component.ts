@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from 'node_modules/@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 declare var paypal;
 
@@ -13,7 +14,9 @@ export class DetalleProductoComponent implements OnInit {
   public loading = false;
   public status: string;
 
-  public readonly salarioQuincenal = 300;
+  public salarioQuincenal: number;
+  private userRFC: string;
+
   public dataProduct: any;
 
   public quantityStock = [];
@@ -21,8 +24,6 @@ export class DetalleProductoComponent implements OnInit {
   public paysAvailable = [];
   public checkToPayByPayroll: boolean;
   public payAvailableSelected;
-
-  private readonly userRFC = 'BAGN900415TIA';
 
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
@@ -33,10 +34,14 @@ export class DetalleProductoComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
   ) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
+    const dataNaxu = this.dataProvider.getDataNaxu();
+    this.salarioQuincenal = Number(dataNaxu.sueldoNeto);
+    this.userRFC = dataNaxu.RFCEmpleado;
     try {
       const idProducto = Number(this.route.snapshot.paramMap.get('idProducto'));
       this.dataProduct = ((await this.httpClient

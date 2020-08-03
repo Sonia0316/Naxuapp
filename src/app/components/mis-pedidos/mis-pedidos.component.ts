@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -11,18 +12,20 @@ export class MisPedidosComponent implements OnInit {
   public status: string;
   public pedidos = [];
   public moment = moment;
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
+  ) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
-    // Cambiar el RFC
-    const RFC = 'BAGN900415TIA';
+    const RFC = this.dataProvider.getDataNaxu().RFCEmpleado;
     try {
       this.pedidos = ((await this.httpClient
         .get(
           `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/ventas/webapp/${RFC}`
         )
         .toPromise()) as any).body;
-      if (this.pedidos.length) {
+      if (Array.isArray(this.pedidos) && this.pedidos.length) {
         this.status = 'complete';
       } else {
         this.status = 'empty';

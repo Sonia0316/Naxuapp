@@ -3,6 +3,8 @@ import { Platform } from '@angular/cdk/platform';
 import { PromptComponent } from '../prompt/prompt.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { HttpClient } from '@angular/common/http';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,10 +17,12 @@ export class HomeComponent implements OnInit {
   public status = 'Not available';
   private readonly userRFC = 'BAGN900415TIA';
   public sliderData: Array<any>;
+  public dataNaxu: DataModel;
   constructor(
     private readonly platform: Platform,
     private readonly bottomSheet: MatBottomSheet,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
   ) {}
 
   @HostListener('window:beforeinstallprompt', ['$event'])
@@ -31,6 +35,7 @@ export class HomeComponent implements OnInit {
   }
   public async ngOnInit(): Promise<void> {
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
     try {
       this.sliderData = ((await this.httpClient
         .get(

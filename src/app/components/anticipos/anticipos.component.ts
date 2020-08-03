@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 
 @Component({
   selector: 'app-anticipos',
@@ -7,23 +9,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AnticiposComponent implements OnInit {
   public loading = false;
+  public dataNaxu: DataModel;
   public status: string;
   private readonly creditType = 'ANTICIPO DE NOMINA';
   public mainData;
   public lendData;
   public Number = Number;
 
-  public readonly salarioQuincenal = 300;
-  private readonly userRFC = 'BAGN900415TIA';
+  public salarioQuincenal: number;
 
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: 'MXN',
   });
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
+  ) {}
 
   public async ngOnInit(): Promise<void> {
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.salarioQuincenal = Number(this.dataNaxu.sueldoNeto);
     try {
       this.mainData = ((await this.httpClient
         .get(
@@ -73,7 +80,7 @@ export class AnticiposComponent implements OnInit {
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos',
           {
             t11id: '',
-            t11_rfc: this.userRFC,
+            t11_rfc: this.dataNaxu.RFCEmpleado,
             t11_cantidad: this.salarioQuincenal,
             t11_numero_plazos: '1',
             t11_estatus: 'Pendiente',
@@ -88,7 +95,7 @@ export class AnticiposComponent implements OnInit {
             'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
             {
               asunto: 'Solicitud de anticipo',
-              mensaje: `El usuario ${this.userRFC} esta solicitando un anticipo`,
+              mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un anticipo`,
               grupo: 'ANTICIPO',
             }
           )

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestContacto } from './RequestContacto';
 import { ResponseContacto } from './ResponseContacto';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contacto',
@@ -12,7 +12,7 @@ import { Observable, of } from 'rxjs';
 })
 export class ContactoComponent implements OnInit {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/contacto';
-  userForm: any;
+  userForm: FormGroup;
   response: any;
   public loading = false;
 
@@ -57,7 +57,7 @@ export class ContactoComponent implements OnInit {
   postLogin(
     login: RequestContacto
   ): Observable<HttpResponse<ResponseContacto>> {
-    let httpHeaders = new HttpHeaders({
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
     return this.http.post<ResponseContacto>(this.url, login, {

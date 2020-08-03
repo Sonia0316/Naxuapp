@@ -77,22 +77,29 @@
           <h3 class="encabz">Información personal</h3>
         </div>
         <div class="infoUsua">
-          <p>Luis Enrique Beltrán Rivera</p>
+          <p>
+            {{ dataNaxu?.nombreEmpleado }} {{ dataNaxu?.segundoNombreEmpleado }}
+          </p>
           <ul>
             <li>
-              <p>No.Empleado: <span>02536</span></p>
+              <p>
+                No.Empleado: <span>{{ dataNaxu?.idempleado }}</span>
+              </p>
             </li>
             <li>
-              <p>Empresa: <span>Company S.A C.V</span></p>
+              <p>
+                Empresa: <span>{{ dataNaxu?.empresa }}</span>
+              </p>
             </li>
             <li>
-              <p>RFC: <span>RITEL800509</span></p>
+              <p>
+                RFC: <span>{{ dataNaxu?.RFCEmpleado }}</span>
+              </p>
             </li>
             <li>
-              <p>IMSS: <span>09823327</span></p>
-            </li>
-            <li>
-              <p>CURP: <span>RITEL800509HDFF</span></p>
+              <p>
+                IMSS: <span>{{ dataNaxu?.NSS }}</span>
+              </p>
             </li>
           </ul>
         </div>
