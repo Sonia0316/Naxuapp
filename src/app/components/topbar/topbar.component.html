@@ -14,11 +14,15 @@
       id="sidebarCollapse"
       type="button"
       class="sidebarCollapse"
-      (click)="toTop()"
+      (click)="sideBarEvent()"
     >
       <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
     </button>
-    <img [src]="logoUrl" alt="Logo naxus" class="naxus_logo_movil" />
+    <img
+      src="assets/img/company_name_bco.svg"
+      alt="Logo naxus"
+      class="naxus_logo_movil"
+    />
   </div>
   <div class="container-fluid" (click)="sideBarClose()">
     <div
@@ -32,7 +36,11 @@
         </p>
       </div>
       <div>
-        <img [src]="logoUrl" alt="Logo de company" class="LogoComName" />
+        <img
+          src="assets/img/company_name.svg"
+          alt="Logo de company"
+          class="LogoComName"
+        />
       </div>
     </div>
     <div class="row barraDesktop02" style="margin-top: 10px;">

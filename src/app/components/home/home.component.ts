@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   showButton = false;
   public loading = false;
   public status = 'Not available';
-  private readonly userRFC = 'BAGN900415TIA';
+  private userRFC: string;
   public sliderData: Array<any>;
   public dataNaxu: DataModel;
   constructor(
@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.userRFC = this.dataNaxu.RFCEmpleado;
     try {
       this.sliderData = ((await this.httpClient
         .get(

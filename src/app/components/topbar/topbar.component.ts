@@ -59,6 +59,11 @@ export class TopbarComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+  public sideBarEvent() {
+    document.getElementById('sidebar').classList.toggle('active');
+    this.toTop();
+  }
+
   public sideBarClose() {
     document.getElementById('sidebar').classList.remove('active');
   }

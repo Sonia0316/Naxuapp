@@ -15,7 +15,6 @@
     <div class="row">
       <div class="col-md-12">
         <h3 class="encabz01">Últimos destacados</h3>
-
         <div class="carousel slide" id="carousel-513524">
           <ol class="carousel-indicators">
             <ng-container *ngFor="let item of sliderData; let i = index">
@@ -43,29 +42,29 @@
                   </div>
                   <div class="col-md-5 offset-md-1 slideimg">
                     <img
-                      class="img-fluid"
+                      class="d-block w-100"
                       [src]="item.t13_imagen"
                       alt="slider img {{ i + 1 }}"
                     />
+                    <a
+                      class="carousel-control-prev"
+                      href="#carousel-513524"
+                      data-slide="prev"
+                      ><span class="carousel-control-prev-icon"></span>
+                      <span class="sr-only">Previous</span></a
+                    >
+                    <a
+                      class="carousel-control-next"
+                      href="#carousel-513524"
+                      data-slide="next"
+                      ><span class="carousel-control-next-icon"></span>
+                      <span class="sr-only">Next</span></a
+                    >
                   </div>
                 </div>
               </div>
             </ng-container>
           </div>
-          <a
-            class="carousel-control-prev"
-            href="#carousel-513524"
-            data-slide="prev"
-            ><span class="carousel-control-prev-icon"></span>
-            <span class="sr-only">Previous</span></a
-          >
-          <a
-            class="carousel-control-next"
-            href="#carousel-513524"
-            data-slide="next"
-            ><span class="carousel-control-next-icon"></span>
-            <span class="sr-only">Next</span></a
-          >
         </div>
       </div>
     </div>
