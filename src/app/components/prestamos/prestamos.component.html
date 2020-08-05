@@ -310,7 +310,12 @@
   </div>
   <ng-container *ngIf="status === 'Not available'">
     <h3 style="text-align: center; margin-top: 50px;">
-      Prestamos no disponibles
+      No cuentas con al antigüedad minima para poder solicitar un préstamo
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'Error'">
+    <h3 style="text-align: center; margin-top: 50px;">
+      Ocurrió un error al procesar la sección
     </h3>
   </ng-container>
 </div>
@@ -454,7 +459,9 @@
             style="min-height: 150px; text-align: center;"
           >
             <h5 style="font-size: 1.2rem;">
-              Se ha Recibido tu Petición, un Ejecutivo te Contactará para Iniciar el Trámite de tu Crédito de Nómina en un Plazo Máximo de 2 Hrs Hábiles.
+              Se ha Recibido tu Petición, un Ejecutivo te Contactará para
+              Iniciar el Trámite de tu Crédito de Nómina en un Plazo Máximo de 2
+              Hrs Hábiles.
             </h5>
           </div>
         </div>

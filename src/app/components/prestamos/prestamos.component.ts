@@ -37,6 +37,8 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public inputPeriod;
   public inputAmount;
 
+  public blockDetail: string;
+
   @ViewChild('dateRange') dateRangeRef: ElementRef;
   @ViewChild('amountRange') amountRangeRef: ElementRef;
 
@@ -56,6 +58,12 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.startDate = this.dataNaxu.antiguedad;
     this.minAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 0.1;
     try {
+      // const block = ((await this.httpClient
+      //   .get(
+      //     `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+      //   )
+      //   .toPromise()) as any).body;
+
       this.mainData = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/tipocredito'
@@ -96,7 +104,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
       return;
     } catch (error) {
       console.log(error);
-      this.status = 'Not available';
+      this.status = 'Error';
     } finally {
       this.loading = false;
     }
