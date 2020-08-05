@@ -22,7 +22,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public minAmountAvailable = 0;
   public readonly minPeriods = 1;
   public stepPeriod = 0;
-  public readonly startDate = '2019-01-01';
+  public startDate: string;
 
   public readonly moment = moment;
   public readonly Math = Math;
@@ -53,6 +53,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.startDate = this.dataNaxu.antiguedad;
     this.minAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 0.1;
     try {
       this.mainData = ((await this.httpClient
@@ -74,11 +75,11 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
               break;
             case years > 1.5 && years <= 2:
               this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 4;
-              this.maxPeriods = 4;
+              this.maxPeriods = 8;
               break;
             case years > 2:
               this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 6;
-              this.maxPeriods = 6;
+              this.maxPeriods = 10;
               break;
           }
           const calcDec = Math.pow(10, 3);

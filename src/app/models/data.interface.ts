@@ -2,7 +2,7 @@ export class DataModel {
   CURPEmpleado: string;
   NSS: string;
   RFCEmpleado: string;
-  antiguedad: 12;
+  antiguedad: string;
   codigo: number;
   correo: string;
   descripcion: string;

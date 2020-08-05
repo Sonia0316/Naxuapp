@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recupera',
@@ -14,7 +15,8 @@ export class RecuperaComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly router: Router
   ) {}
   public ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -34,7 +36,7 @@ export class RecuperaComponent implements OnInit {
         )
         .toPromise();
       if (Number(data.codigo) === 200) {
-        console.log('vista otp');
+        this.router.navigateByUrl('/otp');
       } else {
         document.getElementById('showModalErrorUserNotFound').click();
       }

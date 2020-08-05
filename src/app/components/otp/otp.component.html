@@ -107,6 +107,18 @@
   data-toggle="modal"
   style="display: none;"
 ></a>
+<a
+  href="#updatePasswordSuccess"
+  id="showModalUpdateSuccess"
+  data-toggle="modal"
+  style="display: none;"
+></a>
+<a
+  href="#updatePasswordError"
+  id="showModalErrorUpdatePasswordError"
+  data-toggle="modal"
+  style="display: none;"
+></a>
 <div
   class="modal fade"
   id="errorSolicitud"
@@ -167,6 +179,81 @@
           >
             <h5 style="font-size: 1.2rem;">
               La clave introducida es inválida.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="updatePasswordSuccess"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Cambio exitoso
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          [routerLink]="'/'"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              La contraseña ha sido cambiada correctamente.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" [routerLink]="'/'">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="updatePasswordError"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Error en la solicitud
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center"
+            style="min-height: 150px; text-align: center;"
+          >
+            <h5 style="font-size: 1.2rem;">
+              La contraseña no pudo ser cambiada. Inténtelo nuevamente.
             </h5>
           </div>
         </div>

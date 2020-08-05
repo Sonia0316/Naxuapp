@@ -35,30 +35,27 @@ export class OtpComponent implements OnInit {
     });
   }
   public async sendData() {
-    console.log('====================================');
-    console.log('aa');
-    console.log('====================================');
-    // this.loading = true;
-    // try {
-    //   const data: any = await this.httpClient
-    //     .post(
-    //       'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/sendotp',
-    //       {
-    //         ...this.userForm.value,
-    //       }
-    //     )
-    //     .toPromise();
-    //   if (Number(data.codigo) === 200) {
-    //     this.otpStep = false;
-    //   } else {
-    //     document.getElementById('showModalErrorUserNotFound').click();
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   document.getElementById('showModalErrorSolicitud').click();
-    // } finally {
-    //   this.loading = false;
-    // }
+    this.loading = true;
+    try {
+      const data: any = await this.httpClient
+        .put(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc',
+          {
+            ...this.userForm.value,
+          }
+        )
+        .toPromise();
+      if (Number(data.codigo) === 200) {
+        document.getElementById('showModalUpdateSuccess').click();
+      } else {
+        document.getElementById('showModalErrorUpdatePasswordError').click();
+      }
+    } catch (error) {
+      console.log(error);
+      document.getElementById('showModalErrorSolicitud').click();
+    } finally {
+      this.loading = false;
+    }
   }
   public async sendDataOtpData() {
     this.loading = true;
@@ -72,15 +69,13 @@ export class OtpComponent implements OnInit {
         )
         .toPromise();
       if (Number(data.codigo) === 200) {
-        console.log('====================================');
-        console.log('flagtrue');
-        console.log('====================================');
+        this.otpStep = false;
       } else {
         document.getElementById('showModalErrorOtpNotFound').click();
       }
     } catch (error) {
       console.log(error);
-      document.getElementById('showModalErrorOtpNotFound').click();
+      document.getElementById('showModalErrorSolicitud').click();
     } finally {
       this.loading = false;
     }
