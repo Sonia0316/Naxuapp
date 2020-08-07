@@ -318,6 +318,11 @@
       Ocurrió un error al procesar la sección
     </h3>
   </ng-container>
+  <ng-container *ngIf="status === 'Block' && blockDetail">
+    <h3 style="text-align: center; margin-top: 50px;">
+      {{ blockDetail }}
+    </h3>
+  </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
 <a

@@ -63,6 +63,11 @@
       Ocurrió un problema con tu solicitud
     </h3>
   </ng-container>
+  <ng-container *ngIf="status === 'block' && blockDetail">
+    <h3 style="text-align: center; margin-top: 50px;">
+      {{ blockDetail }}
+    </h3>
+  </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
 <div

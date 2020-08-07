@@ -73,7 +73,7 @@
           </div>
           <div class="col-md-8 metPago">
             <ul>
-              <li class="list-item" *ngIf="checkToPayByPayroll">
+              <li class="list-item" *ngIf="checkToPayByPayroll && !block">
                 <img
                   src="assets/img/img_tienda/paga_via_nomina.svg"
                   alt="paga vía nómina"
@@ -87,7 +87,7 @@
                 />
                 <p>Paga vía PayPal</p>
               </li>
-              <li class="list-item" *ngIf="paysAvailable.length">
+              <li class="list-item" *ngIf="paysAvailable.length && !block">
                 <img
                   src="assets/img/img_tienda/paga_via_quincena.svg"
                   alt="paga quincenalmente"
@@ -102,7 +102,7 @@
           <div class="col-12 payments-button-data">
             <button
               class="btn btn-block btn-lg btn-primary pgoVyaNom"
-              *ngIf="checkToPayByPayroll"
+              *ngIf="checkToPayByPayroll && !block"
               (click)="buyProduct({ payment: 'NOMINA' })"
             >
               PAGAR VÍA NÓMINA
@@ -115,7 +115,7 @@
           </div>
         </div>
         <br />
-        <div class="marcoPagoQuincenal" *ngIf="paysAvailable.length">
+        <div class="marcoPagoQuincenal" *ngIf="paysAvailable.length && !block">
           <h3>
             DIFIERE TU PAGO QUINCENALMENTE
           </h3>

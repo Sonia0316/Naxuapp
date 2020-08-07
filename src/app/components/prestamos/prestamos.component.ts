@@ -58,12 +58,37 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.startDate = this.dataNaxu.antiguedad;
     this.minAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 0.1;
     try {
-      // const block = ((await this.httpClient
-      //   .get(
-      //     `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
-      //   )
-      //   .toPromise()) as any).body;
-
+      const blockData = ((await this.httpClient
+        .get(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+        )
+        .toPromise()) as any).body.find((element) => Number(element.status));
+      if (blockData) {
+        switch (blockData.credito) {
+          case 'NOMINA':
+            this.blockDetail =
+              'No puedes pedir un préstamo porque tienes una compra activa vía nomina';
+            break;
+          case 'DIFERIDO':
+            this.blockDetail =
+              'No puedes pedir un préstamo porque tienes una compra activa en pagos diferidos';
+            break;
+          case 'ADELANTO':
+            this.blockDetail =
+              'No puedes pedir un préstamo porque tienes anticipo activo';
+            break;
+          case 'PRESTAMO':
+            this.blockDetail =
+              'No puedes pedir un préstamo porque ya cuentas con uno activo';
+            break;
+          default:
+            this.blockDetail =
+              'No puedes pedir un préstamo porque tienes un servicio activo';
+            break;
+        }
+        this.status = 'Block';
+        return;
+      }
       this.mainData = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/tipocredito'

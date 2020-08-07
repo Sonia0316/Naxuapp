@@ -25,6 +25,8 @@ export class DetalleProductoComponent implements OnInit {
   public checkToPayByPayroll: boolean;
   public payAvailableSelected;
 
+  public block: boolean;
+
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: 'MXN',
@@ -43,6 +45,13 @@ export class DetalleProductoComponent implements OnInit {
     this.salarioQuincenal = Number(dataNaxu.sueldoNeto);
     this.userRFC = dataNaxu.RFCEmpleado;
     try {
+      this.block = ((await this.httpClient
+        .get(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${dataNaxu.RFCEmpleado}`
+        )
+        .toPromise()) as any).body.find((element) => Number(element.status))
+        ? true
+        : false;
       const idProducto = Number(this.route.snapshot.paramMap.get('idProducto'));
       this.dataProduct = ((await this.httpClient
         .get(

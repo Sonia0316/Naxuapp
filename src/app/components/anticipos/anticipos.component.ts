@@ -18,6 +18,8 @@ export class AnticiposComponent implements OnInit {
 
   public salarioQuincenal: number;
 
+  public blockDetail: string;
+
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: 'MXN',
@@ -32,6 +34,37 @@ export class AnticiposComponent implements OnInit {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.salarioQuincenal = Number(this.dataNaxu.sueldoNeto);
     try {
+      const blockData = ((await this.httpClient
+        .get(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+        )
+        .toPromise()) as any).body.find((element) => Number(element.status));
+      if (blockData) {
+        switch (blockData.credito) {
+          case 'NOMINA':
+            this.blockDetail =
+              'No puedes pedir un anticipo porque tienes una compra activa vía nomina';
+            break;
+          case 'DIFERIDO':
+            this.blockDetail =
+              'No puedes pedir un anticipo porque tienes una compra activa en pagos diferidos';
+            break;
+          case 'ADELANTO':
+            this.blockDetail =
+              'No puedes pedir un anticipo porque ya cuentas con uno activo';
+            break;
+          case 'PRESTAMO':
+            this.blockDetail =
+              'No puedes pedir un anticipo porque tienes un préstamo activo';
+            break;
+          default:
+            this.blockDetail =
+              'No puedes pedir un anticipo porque tienes un servicio activo';
+            break;
+        }
+        this.status = 'block';
+        return;
+      }
       this.mainData = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/tipocredito'
