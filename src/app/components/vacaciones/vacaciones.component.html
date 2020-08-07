@@ -74,7 +74,11 @@
             [ngStyle]="{ color: totalDays > availableDays ? 'red' : 'inherit' }"
           >
             Estas solicitando <span> {{ totalDays }} </span>
-            {{ totalDays > 1 ? "días" : "día" }} de vacaciones
+            {{ totalDays > 1 ? "días" : "día" }} de vacaciones{{
+              totalDays > availableDays
+                ? ", lo cual excede los días disponibles. Por favor verifica la fecha."
+                : ""
+            }}
           </p>
           <button
             (click)="registerHolidays(initialDate.value, finalDate.value)"
