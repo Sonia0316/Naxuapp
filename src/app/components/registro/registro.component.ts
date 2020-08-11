@@ -17,6 +17,7 @@ export class RegistroComponent {
     'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc';
   userForm: FormGroup;
   response: any;
+  public loading = false;
   constructor(
     private formBuilder: FormBuilder,
     public http: HttpClient,
@@ -26,23 +27,25 @@ export class RegistroComponent {
       {
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
-
         email: ['', [Validators.required, ValidationService.emailValidator]],
         rfc: ['', Validators.required],
+        employee: ['', Validators.required],
       },
       {
-        validator: ValidationService.MatchPassword, // your validation method
+        validator: ValidationService.MatchPassword,
       }
     );
   }
 
   CheckRegister() {
     if (this.userForm.dirty && this.userForm.valid) {
+      this.loading = true;
       const request = {
         rfc: this.userForm.value.rfc,
         password: this.userForm.value.password,
         status: 'Activo',
         email: this.userForm.value.email,
+        empleado: this.userForm.value.employee,
       };
 
       this.postRegister(request).subscribe(
@@ -63,6 +66,9 @@ export class RegistroComponent {
             console.log('Response body:', err.message);
             alert('Response body:' + JSON.stringify(err.message));
           }
+        },
+        () => {
+          this.loading = true;
         }
       );
     }

@@ -3,4 +3,5 @@ export interface RequestRegistro {
   email: string;
   password: string;
   status: string;
+  empleado: string;
 }
