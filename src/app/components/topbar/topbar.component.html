@@ -1,4 +1,4 @@
-<ng-container *ngIf="shouldShow() && logoUrl">
+<ng-container *ngIf="shouldShow() && logos">
   <div
     class="barraMovil"
     style="
@@ -19,7 +19,7 @@
       <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
     </button>
     <img
-      src="assets/img/company_name_bco.svg"
+      [src]="logos.c09_imagen_alterna"
       alt="Logo naxus"
       class="naxus_logo_movil"
     />
@@ -37,7 +37,7 @@
       </div>
       <div>
         <img
-          [src]="logoUrl"
+          [src]="logos.c09_imagen"
           alt="Logo de company"
           class="LogoComName"
         />

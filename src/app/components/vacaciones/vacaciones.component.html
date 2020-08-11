@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" *ngIf="status === 'Available' && availableDays">
     <div class="col-12 col-md-12 col-lg-4">
       <div class="spaCbz">
         <img
@@ -91,6 +91,16 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="status === 'Error'">
+    <h3 style="text-align: center; margin-top: 50px;">
+      Ocurrió un error al procesar la sección
+    </h3>
+  </ng-container>
+  <ng-container *ngIf="status === 'NotAvailable'">
+    <h3 style="text-align: center; margin-top: 50px;">
+      No cuentas con vacaciones disponibles
+    </h3>
+  </ng-container>
 </div>
 <app-modal-loading [active]="loading"></app-modal-loading>
 <!-- <div class="row bannerVaca">

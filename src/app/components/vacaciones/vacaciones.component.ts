@@ -8,12 +8,13 @@ import { DataModel } from 'src/app/models/data.interface';
   templateUrl: './vacaciones.component.html',
 })
 export class VacacionesComponent implements OnInit {
-  public readonly availableDays = 10;
+  public availableDays = 0;
   public dataNaxu: DataModel;
   public moment = moment;
   public totalDays = 0;
   public loading = false;
   private userRFC: string;
+  public status: string;
 
   constructor(
     private readonly httpClient: HttpClient,
@@ -23,6 +24,27 @@ export class VacacionesComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.userRFC = this.dataNaxu.RFCEmpleado;
+    this.loading = true;
+    try {
+      const days: number = Number(
+        ((await this.httpClient
+          .get(
+            `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+          )
+          .toPromise()) as any).diasVacacionesDisponibles
+      );
+      if (days) {
+        this.availableDays = days;
+        this.status = 'Available';
+        return;
+      }
+      this.status = 'NotAvailable';
+    } catch (error) {
+      console.log(error);
+      this.status = 'Error';
+    } finally {
+      this.loading = false;
+    }
   }
 
   public initialChangeDate(initialDate, finalDate) {

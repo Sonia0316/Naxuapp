@@ -20,7 +20,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public maxAmountAvailable = 0;
   public maxPeriods = 0;
   public minAmountAvailable = 0;
-  public readonly minPeriods = 1;
+  public minPeriods = 1;
   public stepPeriod = 0;
   public startDate: string;
 
@@ -56,7 +56,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.startDate = this.dataNaxu.antiguedad;
-    this.minAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 0.1;
+    this.minAmountAvailable = Number(this.dataNaxu.montoMinimoPrestamo);
     try {
       const blockData = ((await this.httpClient
         .get(
@@ -99,22 +99,11 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
           element.c05_estatus === 'Activo'
       );
       if (this.mainData) {
+        this.maxAmountAvailable = Number(this.dataNaxu.montoMaximoPrestamo);
+        this.maxPeriods = Number(this.dataNaxu.plazoMaximoPrestamo);
+        this.minPeriods = Number(this.dataNaxu.plazoMinimoPrestamo);
         const years = this.moment().diff(this.startDate, 'years', true);
         if (years > 1) {
-          switch (true) {
-            case years > 1 && years <= 1.5:
-              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 2;
-              this.maxPeriods = 3;
-              break;
-            case years > 1.5 && years <= 2:
-              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 4;
-              this.maxPeriods = 8;
-              break;
-            case years > 2:
-              this.maxAmountAvailable = Number(this.dataNaxu.sueldoNeto) * 6;
-              this.maxPeriods = 10;
-              break;
-          }
           const calcDec = Math.pow(10, 3);
           this.stepPeriod =
             Math.trunc(((this.minPeriods * 100) / this.maxPeriods) * calcDec) /
