@@ -15,6 +15,22 @@
     <div class="logoLoginCompany">
       <img alt="Company Name" src="assets/img/companyname_loging.svg" />
     </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="errorLogin"
+      style="margin-top: 1rem;"
+      role="alert"
+    >
+      Credenciales incorrectas
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="errorLogin = false;"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="login-form">
       <form [formGroup]="userForm" (submit)="CheckUser()">
         <div class="form-group">
@@ -81,3 +97,4 @@
     </div>
   </div>
 </div>
+<app-modal-loading [active]="loading"></app-modal-loading>

@@ -17,7 +17,9 @@ import { DataProvider } from 'src/app/providers/data.provider';
 export class LoginComponent {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/login';
   public userForm: FormGroup;
+  public loading = false;
   response: any;
+  public errorLogin = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -33,6 +35,7 @@ export class LoginComponent {
 
   public async CheckUser() {
     if (this.userForm.dirty && this.userForm.valid) {
+      this.loading = true;
       const request = {
         email: this.userForm.value.email,
         passw: this.userForm.value.password,
@@ -50,6 +53,7 @@ export class LoginComponent {
             });
           } else {
             console.error(res.body.descripcion);
+            this.errorLogin = true;
           }
         },
         (err: HttpErrorResponse) => {
@@ -64,6 +68,9 @@ export class LoginComponent {
             console.log('Response body:', err.message);
             alert('Response body:' + JSON.stringify(err.message));
           }
+        },
+        () => {
+          this.loading = false;
         }
       );
     }
