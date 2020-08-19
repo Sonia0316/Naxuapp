@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RequestContacto } from './RequestContacto';
 import { ResponseContacto } from './ResponseContacto';
 import { Observable } from 'rxjs';
+import { DataModel } from 'src/app/models/data.interface';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-contacto',
@@ -13,10 +15,18 @@ import { Observable } from 'rxjs';
 export class ContactoComponent implements OnInit {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/contacto';
   userForm: FormGroup;
+  public dataNaxu: DataModel;
   response: any;
   public loading = false;
+  public subjectCharacters = 50;
+  public availableSubjectCharacters = 50;
+  public asuntoData = '';
 
-  constructor(private formBuilder: FormBuilder, public http: HttpClient) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public http: HttpClient,
+    private readonly dataProvider: DataProvider
+  ) {
     this.userForm = this.formBuilder.group({
       asunto: ['', Validators.required],
       mensaje: ['', [Validators.required]],
@@ -28,7 +38,7 @@ export class ContactoComponent implements OnInit {
       this.loading = true;
       this.postLogin({
         asunto: this.userForm.value.asunto,
-        mensaje: this.userForm.value.mensaje,
+        mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} ha enviado el siguiente mensaje: ${this.userForm.value.mensaje}`,
       }).subscribe(
         (res) => {
           document.getElementById('showModalExitoSolicitud').click();
@@ -52,7 +62,9 @@ export class ContactoComponent implements OnInit {
       );
     }
   }
-  ngOnInit(): void {}
+  public async ngOnInit() {
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+  }
 
   postLogin(
     login: RequestContacto

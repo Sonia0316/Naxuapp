@@ -102,7 +102,14 @@ export class HomeComponent implements OnInit {
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
           {
             asunto: 'Información de Crédito hipotecarios',
-            mensaje: `El usuario ${this.userRFC} requiere información de crédito hipotecario`,
+            mensaje: `El usuario requiere información de crédito hipotecario:\n
+            Nombre: ${this.dataNaxu.nombreEmpleado} ${this.dataNaxu.segundoNombreEmpleado}\n
+            Número de seguro social: ${this.dataNaxu.NSS}\n
+            RFC: ${this.dataNaxu.RFCEmpleado}\n
+            Correo electrónico: ${this.dataNaxu.email}\n
+            Teléfono: ${this.dataNaxu.telefonomovil}\n
+            Salario Quincenal Neto: ${this.dataNaxu.sueldoNeto}\n
+            Salario Quincenal Bruto: ${this.dataNaxu.sueldoBruto}`,
             grupo: 'HIPOTECARIO',
           }
         )

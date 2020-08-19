@@ -8,6 +8,8 @@ import {
   SafeUrl,
   SafeResourceUrl,
 } from '@angular/platform-browser';
+import { DataModel } from 'src/app/models/data.interface';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-adquirir-seguro',
@@ -20,19 +22,22 @@ export class AdquirirSeguroComponent implements OnInit {
   htmlSafeHtml: SafeHtml;
   htmlSafeHtmlModal: SafeHtml;
   htmlSafeHtmlOtros: SafeHtml;
+  public dataNaxu: DataModel;
   mainItem;
   public loading = false;
   public status: string;
   constructor(
     private readonly httpClient: HttpClient,
     private elRef: ElementRef,
-    protected sanitizer: DomSanitizer
+    protected sanitizer: DomSanitizer,
+    private readonly dataProvider: DataProvider
   ) {}
 
   public async ngOnInit(): Promise<void> {
     this.htmlStrModals = '';
     this.htmlStrOtros = '';
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
     try {
       const items: [] = ((await this.httpClient
         .get(
@@ -183,7 +188,7 @@ export class AdquirirSeguroComponent implements OnInit {
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
           {
             asunto: 'Adquisición de seguros',
-            mensaje: 'El usuario: desea comprar el seguro ' + seguro,
+            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} desea comprar el seguro ${seguro}`,
             grupo: 'SEGUROS',
           }
         )

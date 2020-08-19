@@ -31,9 +31,19 @@
           <input
             type="name"
             class="form-control"
+            style="margin-bottom: 0;"
             formControlName="asunto"
             id="asunto"
+            [maxlength]="availableSubjectCharacters"
+            [(ngModel)]="asuntoData"
+            (ngModelChange)="
+              subjectCharacters =
+                availableSubjectCharacters - asuntoData.toString().length
+            "
           />
+          <span style="margin: 5px 0 0 5px; color: gray;">{{
+            this.subjectCharacters
+          }}</span>
           <app-control-messages
             [control]="userForm.get('asunto')"
           ></app-control-messages>
