@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
   private userRFC: string;
   public sliderData: Array<any>;
   public dataNaxu: DataModel;
+  public lendAvailable = true;
+  public availableDays: number;
+
   constructor(
     private readonly platform: Platform,
     private readonly bottomSheet: MatBottomSheet,
@@ -38,6 +41,16 @@ export class HomeComponent implements OnInit {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.userRFC = this.dataNaxu.RFCEmpleado;
     try {
+      const validaPrestamos = (await this.httpClient
+        .get(
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+        )
+        .toPromise()) as any;
+      this.lendAvailable = !!validaPrestamos.body.find(
+        (element) => element.credito === 'PRESTAMO' && !Number(element.status)
+      );
+      this.availableDays =
+        Number(validaPrestamos.diasVacacionesDisponibles) ?? 0;
       this.sliderData = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/carrusel/status/Activo'

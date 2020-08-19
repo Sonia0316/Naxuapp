@@ -121,14 +121,12 @@
         </div>
         <div class="solCred">
           <div class="col-md-12">
-            <p>Actualmente tienes un préstamo de</p>
-            <h2>
-              $000.00
-            </h2>
-            <a [routerLink]="'/prestamos'" (click)="toTop()">VER DETALLE</a>
+            <ng-container *ngIf="lendAvailable">
+              <p>Tienes un préstamo disponible</p>
+              <a [routerLink]="'/prestamos'" (click)="toTop()">VER DETALLE</a>
+            </ng-container>
           </div>
         </div>
-
         <div class="row chptec">
           <div class="col-md-12">
             <div class="spaCbz">
@@ -148,7 +146,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 col-sm-12 col-md-12 col-lg-4">
         <div class="spaCbz">
           <img
@@ -160,10 +157,18 @@
         </div>
         <div class="solCred">
           <div class="col-md-12">
-            <p>Días que tienes disponibles</p>
-            <h2>
-              10 días
-            </h2>
+            <ng-container *ngIf="availableDays; else elseTemplate">
+              <p>Días que tienes disponibles</p>
+              <h2>
+                {{ availableDays }} {{ availableDays > 1 ? "días" : "día" }}
+              </h2>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <h2>
+                No tienes días disponibles
+              </h2>
+            </ng-template>
+
             <a [routerLink]="'/vacaciones'" (click)="toTop()">VER DETALLE</a>
           </div>
         </div>
@@ -216,7 +221,9 @@
             style="min-height: 150px; text-align: center;"
           >
             <h5 style="font-size: 1.2rem;">
-              Se ha Recibido tu Petición, un Ejecutivo te Contactará para Iniciar el Trámite de tu Crédito Hipotecario en un Plazo Máximo de 24 Hrs Hábiles.
+              Se ha Recibido tu Petición, un Ejecutivo te Contactará para
+              Iniciar el Trámite de tu Crédito Hipotecario en un Plazo Máximo de
+              24 Hrs Hábiles.
             </h5>
           </div>
         </div>
