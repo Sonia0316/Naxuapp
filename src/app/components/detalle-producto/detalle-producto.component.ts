@@ -249,7 +249,15 @@ export class DetalleProductoComponent implements OnInit {
           });
         },
         onApprove: async (data, actions) => {
-          this.buyProduct({ payment: 'TDC', paypalOrder: data.orderID });
+          try {
+            const generateOrder = await actions.order.capture();
+            if (generateOrder.status === 'COMPLETED') {
+              return this.buyProduct({ payment: 'TDC', paypalOrder: data.orderID });
+            }
+          } catch (error) {
+            console.error(error);
+          }
+          return document.getElementById('showModalErrorSolicitud').click();
         },
         onError: (err) => {
           console.log(err);
