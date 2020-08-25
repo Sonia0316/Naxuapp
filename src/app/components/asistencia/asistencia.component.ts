@@ -21,6 +21,7 @@ export class AsistenciaComponent implements OnInit {
   public htmlSafeHtmlModal: SafeHtml;
   public loading = false;
   public status: string;
+  public instructions = [];
 
   constructor(
     private httpClient: HttpClient,
@@ -57,6 +58,14 @@ export class AsistenciaComponent implements OnInit {
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/asistencia'
         )
         .toPromise()) as any).response.lista;
+      const instructions = ((await this.httpClient
+        .get(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/pasos/byseccion/Asistencia'
+        )
+        .toPromise()) as any).body;
+      if (Array.isArray(instructions) && instructions.length) {
+        this.instructions = instructions;
+      }
       if (items.length) {
         let flagRow = 0;
         let flagCol = 0;
@@ -67,22 +76,29 @@ export class AsistenciaComponent implements OnInit {
             if (flagRow === 0) {
               if (flagCol === 0) {
                 componente = '<div class="row">';
-                componente =
-                  componente +
+                componente +=
                   '<div class="col-12 col-md-4 descriptiononly">' +
                   '<div class="ObtBene"><h2>COMO USAR MIS ASITENCIAS</h2>' +
-                  '<hr><ul><li><div class="ObtBenePasoImg"><img src="assets/img/logos_cuerpo/logo_beneficios01.svg" alt="Paso1">' +
-                  '</div><div class="ObtBenePasoText"><p class="ObtBenePasoTextStep">Paso 1 <br> <span> Let\'s meet at starbucks today, are you free?</span></p>' +
-                  '</div></li><li><div class="ObtBenePasoImg">' +
-                  '<img src="assets/img/logos_cuerpo/logo_beneficios02.svg" alt="Paso2">' +
-                  '</div><div class="ObtBenePasoText">' +
-                  '<p class="ObtBenePasoTextStep">Product Issue <br> <span> A new issue has been reported, would you be able to help me?</span></p>' +
-                  '</div></li><li>' +
-                  '<div class="ObtBenePasoImg">' +
-                  '<img src="assets/img/logos_cuerpo/logo_beneficios03.svg" alt="Paso3">' +
-                  '</div><div class="ObtBenePasoText">' +
-                  '<p class="ObtBenePasoTextStep">New Rating <br> <span> Hurray! You\'ve got a new rating.</span></p>' +
-                  '</div></li></ul></div></div>';
+                  '<hr><ul>';
+                this.instructions.forEach((item, index) => {
+                  const tmp = document.createElement('DIV');
+                  tmp.innerHTML = item.c10_descripcion;
+                  const description = tmp.textContent || tmp.innerText || '';
+                  componente += `
+                  <li>
+                     <div class="ObtBenePasoImg">
+                      <img src="${item.c10_imagen}" alt="Paso${index + 1}" />
+                     </div>
+                     <div class="ObtBenePasoText">
+                      <p class="ObtBenePasoTextStep">
+                        ${item.c10_titulo}<br />
+                        <span>${description}</span>
+                      </p>
+                     </div>
+                  <li>
+                  `;
+                });
+                componente += '</ul></div></div>';
               }
               if (flagCol < 2) {
                 componente =
