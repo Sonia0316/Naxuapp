@@ -121,10 +121,14 @@
         </div>
         <div class="solCred">
           <div class="col-md-12">
-            <ng-container *ngIf="lendAvailable">
-              <p>Tienes un préstamo disponible</p>
+            <ng-container *ngIf="lendAvailable; else lendnotAvailable">
+              <h4>Tienes un préstamo disponible</h4>
               <a [routerLink]="'/prestamos'" (click)="toTop()">VER DETALLE</a>
             </ng-container>
+            <ng-template #lendnotAvailable>
+               <h5>No tienes prestamos diponibles</h5>
+            </ng-template>
+
           </div>
         </div>
         <div class="row chptec">
@@ -164,9 +168,9 @@
               </h2>
             </ng-container>
             <ng-template #elseTemplate>
-              <h2>
+              <h3>
                 No tienes días disponibles
-              </h2>
+              </h3>
             </ng-template>
 
             <a [routerLink]="'/vacaciones'" (click)="toTop()">VER DETALLE</a>
