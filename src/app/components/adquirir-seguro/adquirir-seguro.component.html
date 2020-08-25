@@ -56,48 +56,14 @@
           <h2>COMO USAR MIS SEGUROS</h2>
           <hr />
           <ul>
-            <li>
+            <li *ngFor="let item of instructions; let i = index">
               <div class="ObtBenePasoImg">
-                <img
-                  src="assets/img/logos_cuerpo/logo_beneficios01.svg"
-                  alt="Paso1"
-                />
+                <img [src]="item.c10_imagen" [alt]="'Paso' + (i + 1)" />
               </div>
               <div class="ObtBenePasoText">
                 <p class="ObtBenePasoTextStep">
-                  Paso 1 <br />
-                  <span> Let's meet at starbucks today, are you free?</span>
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="ObtBenePasoImg">
-                <img
-                  src="assets/img/logos_cuerpo/logo_beneficios02.svg"
-                  alt="Paso2"
-                />
-              </div>
-              <div class="ObtBenePasoText">
-                <p class="ObtBenePasoTextStep">
-                  Product Issue <br />
-                  <span>
-                    A new issue has been reported, would you be able to help
-                    me?</span
-                  >
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="ObtBenePasoImg">
-                <img
-                  src="assets/img/logos_cuerpo/logo_beneficios03.svg"
-                  alt="Paso3"
-                />
-              </div>
-              <div class="ObtBenePasoText">
-                <p class="ObtBenePasoTextStep">
-                  New Rating <br />
-                  <span> Hurray! You\'ve got a new rating.</span>
+                  {{item.c10_titulo}} <br />
+                  <span>{{item.c10_descripcion}}</span>
                 </p>
               </div>
             </li>
@@ -105,7 +71,6 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-12">
         <div class="spaCbzSeg">
@@ -176,7 +141,9 @@
             style="min-height: 150px; text-align: center;"
           >
             <h5 style="font-size: 1.2rem;">
-              Se ha Recibido tu Petición, un Ejecutivo te Contactará para Iniciar el Trámite de tu Seguro en un Plazo Máximo de 24 Hrs Hábiles.
+              Se ha Recibido tu Petición, un Ejecutivo te Contactará para
+              Iniciar el Trámite de tu Seguro en un Plazo Máximo de 24 Hrs
+              Hábiles.
             </h5>
           </div>
         </div>

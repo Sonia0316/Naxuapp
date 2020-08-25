@@ -23,9 +23,10 @@ export class AdquirirSeguroComponent implements OnInit {
   htmlSafeHtmlModal: SafeHtml;
   htmlSafeHtmlOtros: SafeHtml;
   public dataNaxu: DataModel;
-  mainItem;
+  public mainItem;
   public loading = false;
   public status: string;
+  public instructions = [];
   constructor(
     private readonly httpClient: HttpClient,
     private elRef: ElementRef,
@@ -39,6 +40,14 @@ export class AdquirirSeguroComponent implements OnInit {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
     try {
+      const instructions = ((await this.httpClient
+        .get(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/pasos/byseccion/Seguros'
+        )
+        .toPromise()) as any).body;
+      if (Array.isArray(instructions) && instructions.length) {
+        this.instructions = instructions;
+      }
       const items: [] = ((await this.httpClient
         .get(
           'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros'
