@@ -269,6 +269,18 @@
                   Acepto solicitar el préstamo en los términos seleccionados</a
                 >
               </div>
+              <span
+                *ngIf="
+                  salary <
+                  Number(
+                    ((amountRange.value / 100) * maxAmountAvailable).toFixed(0)
+                  ) /
+                    Math.round((dateRange.value / 100) * maxPeriods)
+                "
+                style="font-size: 0.8rem; margin-top: 10px; color: red;"
+                >El monto entre el numero de periodos solicitados, no puede ser
+                mayor a su salario neto</span
+              >
               <button
                 (click)="
                   registerLendData(
@@ -281,7 +293,16 @@
                   )
                 "
                 class="btn btn-block btn-primary enlace"
-                [disabled]="!tacs.checked"
+                [disabled]="
+                  !tacs.checked ||
+                  salary <
+                    Number(
+                      ((amountRange.value / 100) * maxAmountAvailable).toFixed(
+                        0
+                      )
+                    ) /
+                      Math.round((dateRange.value / 100) * maxPeriods)
+                "
                 style="margin-top: 10px;"
               >
                 Solicitar préstamo

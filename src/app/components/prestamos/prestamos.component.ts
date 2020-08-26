@@ -38,6 +38,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
   public inputAmount;
 
   public blockDetail: string;
+  public salary: number;
 
   @ViewChild('dateRange') dateRangeRef: ElementRef;
   @ViewChild('amountRange') amountRangeRef: ElementRef;
@@ -57,6 +58,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.startDate = this.dataNaxu.antiguedad;
     this.minAmountAvailable = Number(this.dataNaxu.montoMinimoPrestamo);
+    this.salary = Number(this.dataNaxu.sueldoNeto);
     try {
       const blockData = ((await this.httpClient
         .get(

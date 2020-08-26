@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from 'node_modules/@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 
 declare var paypal;
 
@@ -26,6 +27,7 @@ export class DetalleProductoComponent implements OnInit {
   public payAvailableSelected;
 
   public block: boolean;
+  public dataNaxu: DataModel;
 
   public formatter = new Intl.NumberFormat('es-MX', {
     style: 'currency',
@@ -41,13 +43,13 @@ export class DetalleProductoComponent implements OnInit {
   ) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
-    const dataNaxu = this.dataProvider.getDataNaxu();
-    this.salarioQuincenal = Number(dataNaxu.sueldoNeto);
-    this.userRFC = dataNaxu.RFCEmpleado;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+    this.salarioQuincenal = Number(this.dataNaxu.sueldoNeto);
+    this.userRFC = this.dataNaxu.RFCEmpleado;
     try {
       this.block = ((await this.httpClient
         .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${dataNaxu.RFCEmpleado}`
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any).body.find((element) => Number(element.status))
         ? true
@@ -200,6 +202,16 @@ export class DetalleProductoComponent implements OnInit {
           data
         )
         .toPromise();
+      await this.httpClient
+        .post(
+          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
+          {
+            asunto: 'Compra en tienda virtual',
+            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} realizó la compra del producto con identificador ${this.dataProduct.c02id} por el método de pago ${data.metodo_pago}`,
+            grupo: 'TIENDA',
+          }
+        )
+        .toPromise();
       document.getElementById('showModalExitoSolicitud').click();
     } catch (error) {
       console.log(error);
@@ -252,7 +264,10 @@ export class DetalleProductoComponent implements OnInit {
           try {
             const generateOrder = await actions.order.capture();
             if (generateOrder.status === 'COMPLETED') {
-              return this.buyProduct({ payment: 'TDC', paypalOrder: data.orderID });
+              return this.buyProduct({
+                payment: 'TDC',
+                paypalOrder: data.orderID,
+              });
             }
           } catch (error) {
             console.error(error);
