@@ -78,7 +78,7 @@ export class AsistenciaComponent implements OnInit {
                 componente = '<div class="row">';
                 componente +=
                   '<div class="col-12 col-md-4 descriptiononly">' +
-                  '<div class="ObtBene"><h2>COMO USAR MIS ASITENCIAS</h2>' +
+                  '<div class="ObtBene"><h2>COMO USAR MIS ASISTENCIAS</h2>' +
                   '<hr><ul>';
                 this.instructions.forEach((item, index) => {
                   const tmp = document.createElement('DIV');

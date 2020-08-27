@@ -144,6 +144,11 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
             p_prestamo: value,
             p_id_tipocredito: this.mainData.c05id,
             p_periodo: periods,
+            p_antiguedad: this.moment()
+              .diff(this.dataNaxu.antiguedad, 'years', true)
+              .toFixed(2)
+              .toString(),
+            p_sueldo_quincenal: this.salary.toString(),
           }
         )
         .toPromise()) as any).response.lista;

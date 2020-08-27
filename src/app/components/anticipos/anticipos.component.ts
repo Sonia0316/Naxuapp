@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-anticipos',
@@ -15,6 +16,7 @@ export class AnticiposComponent implements OnInit {
   public mainData;
   public lendData;
   public Number = Number;
+  public readonly moment = moment;
 
   public salarioQuincenal: number;
 
@@ -82,6 +84,11 @@ export class AnticiposComponent implements OnInit {
               p_prestamo: this.salarioQuincenal,
               p_id_tipocredito: this.mainData.c05id,
               p_periodo: '1',
+              p_antiguedad: this.moment()
+                .diff(this.dataNaxu.antiguedad, 'years', true)
+                .toFixed(2)
+                .toString(),
+              p_sueldo_quincenal: this.salarioQuincenal.toString(),
             }
           )
           .toPromise()) as any).response.lista;
