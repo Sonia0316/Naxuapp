@@ -55,6 +55,7 @@
             <div
               class="col-12 col-md-6 col-lg-4"
               style="cursor: pointer;"
+              (click) ="toTop()"
               [routerLink]="'/detalle-producto/' + producto['c02id']"
               *ngIf="
                 (categoriaSelected == 0 ||

@@ -39,11 +39,14 @@ export class ProductosComponent implements OnInit {
       this.loading = false;
     }
   }
-
   public checkValueSearch(productTitle: string) {
     const searchValue = this.searchValue.trim().toUpperCase();
     return (
       searchValue === '' || productTitle.toUpperCase().includes(searchValue)
     );
+  }
+  public toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

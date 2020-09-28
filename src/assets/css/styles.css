@@ -300,7 +300,22 @@ a.article:hover {
 .Bienv {
   margin: 0;
   color: #035fe9;
-  font-size: 2.5em;
+}
+@media only screen and (max-width: 402px) {
+  .Bienv {
+    margin-top: 10px;
+    font-size: 1.8em;
+  }
+}
+@media only screen and (min-width: 403px) {
+  .Bienv {
+    font-size: 2.2em;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .Bienv {
+    font-size: 2.4em;
+  }
 }
 
 .Usua {
