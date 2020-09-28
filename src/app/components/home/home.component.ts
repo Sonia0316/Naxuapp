@@ -122,4 +122,7 @@ export class HomeComponent implements OnInit {
       this.loading = false;
     }
   }
+  public openModalCredit() {
+    document.getElementById('showModalInfoSolicitud').click();
+  }
 }

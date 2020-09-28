@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <ng-container *ngIf="status === 'Available'">
-    <div class="row" style="margin-top: 10px;" *ngIf="showButton">
+    <div class="row" style="margin-top: 10px" *ngIf="showButton">
       <div class="offset-3 col-6 col-sm-6 offset-md-0 col-md-4">
         <button
           class="btn btn-block btn-primary"
           (click)="addToHomeScreen()"
           type="button"
-          style="padding: 10px; margin: 10px 0 5px 0; max-width: 250px;"
+          style="padding: 10px; margin: 10px 0 5px 0; max-width: 250px"
         >
           Agregar a pantalla de inicio
         </button>
@@ -30,9 +30,7 @@
               <div [ngClass]="{ 'carousel-item': true, active: i === 0 }">
                 <div class="row back-slider">
                   <div class="col-md-5 offset-md-1 content">
-                    <h4>
-                      Naxu Talent es el lado humano de tu empresa.
-                    </h4>
+                    <h4>Naxu Talent es el lado humano de tu empresa.</h4>
                     <p *ngIf="false">
                       Te ofrece soluciones para la correcta administración y
                       control de tu personal garantizando los pagos y
@@ -126,9 +124,8 @@
               <a [routerLink]="'/prestamos'" (click)="toTop()">VER DETALLE</a>
             </ng-container>
             <ng-template #lendnotAvailable>
-               <h5>No tienes prestamos diponibles</h5>
+              <h5>No tienes prestamos diponibles</h5>
             </ng-template>
-
           </div>
         </div>
         <div class="row chptec">
@@ -142,7 +139,7 @@
               <h3 class="encabz">Crédito Hipotecario</h3>
             </div>
             <button
-              (click)="senmailBackOffice()"
+              (click)="openModalCredit()"
               class="btn btn-block btn-primary enlace"
             >
               Más información
@@ -168,9 +165,7 @@
               </h2>
             </ng-container>
             <ng-template #elseTemplate>
-              <h3>
-                No tienes días disponibles
-              </h3>
+              <h3>No tienes días disponibles</h3>
             </ng-template>
 
             <a [routerLink]="'/vacaciones'" (click)="toTop()">VER DETALLE</a>
@@ -180,7 +175,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="status === 'Not available'">
-    <h3 style="text-align: center; margin-top: 50px;">
+    <h3 style="text-align: center; margin-top: 50px">
       Información no disponible
     </h3>
   </ng-container>
@@ -192,13 +187,13 @@
   href="#exitoSolicitud"
   id="showModalExitoSolicitud"
   data-toggle="modal"
-  style="display: none;"
+  style="display: none"
 ></a>
 <a
   href="#errorSolicitud"
   id="showModalErrorSolicitud"
   data-toggle="modal"
-  style="display: none;"
+  style="display: none"
 ></a>
 
 <div
@@ -211,9 +206,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">
-          Solicitud recibida
-        </h5>
+        <h5 class="modal-title" id="myModalLabel">Solicitud recibida</h5>
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">×</span>
         </button>
@@ -222,9 +215,9 @@
         <div class="row">
           <div
             class="col-12 d-flex align-items-center"
-            style="min-height: 150px; text-align: center;"
+            style="min-height: 150px; text-align: center"
           >
-            <h5 style="font-size: 1.2rem;">
+            <h5 style="font-size: 1.2rem">
               Se ha Recibido tu Petición, un Ejecutivo te Contactará para
               Iniciar el Trámite de tu Crédito Hipotecario en un Plazo Máximo de
               24 Hrs Hábiles.
@@ -248,9 +241,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">
-          Error en la solicitud
-        </h5>
+        <h5 class="modal-title">Error en la solicitud</h5>
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">×</span>
         </button>
@@ -259,9 +250,9 @@
         <div class="row">
           <div
             class="col-12 d-flex align-items-center"
-            style="min-height: 150px; text-align: center;"
+            style="min-height: 150px; text-align: center"
           >
-            <h5 style="font-size: 1.2rem;">
+            <h5 style="font-size: 1.2rem">
               Ha ocurrido un error con tu petición, inténtalo mas tarde.
             </h5>
           </div>
@@ -269,6 +260,62 @@
       </div>
       <div class="modal-footer">
         <a href="#" data-dismiss="modal">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a
+  href="#infoSolicitud"
+  id="showModalInfoSolicitud"
+  data-toggle="modal"
+  style="display: none"
+></a>
+<div
+  class="modal fade"
+  id="infoSolicitud"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Aviso legal</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 d-flex">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
+            numquam provident quibusdam pariatur iste sapiente iusto aspernatur
+            sunt cupiditate ad consequuntur molestiae, doloribus reprehenderit
+            soluta error perferendis, repellat quam suscipit. Lorem ipsum dolor
+            sit amet consectetur adipisicing elit. Odit dicta facilis, dolorum
+            quo excepturi ratione? Fuga autem possimus at voluptate velit
+            numquam iste illo veniam, odio, iure molestias, reprehenderit
+            nesciunt!
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a
+          data-dismiss="modal"
+          style="
+            cursor: pointer;
+            margin: 0.25rem 1.25rem 0.25rem 1.25rem;
+            color: red;
+          "
+          >Cancelar</a
+        >
+        <a
+          data-dismiss="modal"
+          style="cursor: pointer; margin: 0.25rem 1.25rem 0.25rem 1.25rem"
+          (click)="senmailBackOffice()"
+          >Aceptar</a
+        >
       </div>
     </div>
   </div>
