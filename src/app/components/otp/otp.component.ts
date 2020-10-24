@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { HttpClient } from '@angular/common/http';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-otp',
@@ -16,9 +17,12 @@ export class OtpComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
   ) {}
+  public logos;
   public ngOnInit(): void {
+    this.logos = this.dataProvider.logos;
     this.userForm = this.formBuilder.group({
       rfc: ['', Validators.required],
       password: ['', Validators.required],

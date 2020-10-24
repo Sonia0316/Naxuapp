@@ -29,15 +29,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
     });
 
     this.dataNaxu = this.dataProvider.getDataNaxu();
-    try {
-      this.logos = ((await this.httpClient
-        .get('https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/logos')
-        .toPromise()) as any).body.find(
-        (element) => element.c09_status === 'Activo'
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    this.logos = this.dataProvider.logos;
   }
   public shouldShow() {
     switch (this.router.url) {

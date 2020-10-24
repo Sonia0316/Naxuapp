@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { DataProvider } from 'src/app/providers/data.provider';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/login';
   public userForm: FormGroup;
   public loading = false;
@@ -32,7 +32,10 @@ export class LoginComponent {
       email: ['', [Validators.required, ValidationService.emailValidator]],
     });
   }
-
+  public logos;
+  public async ngOnInit(): Promise<void> {
+    this.logos = this.dataProvider.logos;
+  }
   public async CheckUser() {
     if (this.userForm.dirty && this.userForm.valid) {
       this.loading = true;

@@ -12,8 +12,12 @@
 </div>
 <div class="main row align-items-center justify-content-center vh-100">
   <div class="col-12 col-md-10 col-lg-10 col-xl-8">
-    <div class="logoLoginCompany">
-      <img alt="Company Name" src="assets/img/companyname_loging.svg" />
+    <div class="logoLoginCompany" style="min-height: 100px; display: flex">
+      <img
+        [src]="logos.c09_imagen"
+        alt="Logo de company"
+        style="max-width: 150px"
+      />
     </div>
     <div class="login-form">
       <form
