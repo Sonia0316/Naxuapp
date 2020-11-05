@@ -18,6 +18,7 @@ import {
   LoginComponent,
   RecuperaComponent,
   RegistroComponent,
+  HipotecariosComponent,
   OtpComponent,
 } from './components/index.paginas';
 import { AdminGuard } from './guards/admin.guard';
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'adquirirseguro', component: AdquirirSeguroComponent },
       { path: 'anticipos', component: AnticiposComponent },
+      { path: 'hipotecarios', component: HipotecariosComponent },
       { path: 'asistencia', component: AsistenciaComponent },
       { path: 'beneficios', component: BeneficiosComponent },
       { path: 'contacto', component: ContactoComponent },

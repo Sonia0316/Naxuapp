@@ -58,6 +58,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
   public getTitle(url: string): string {
     switch (true) {
+      case url === '/hipotecarios':
+        return 'Créditos hipotecarios';
       case url === '/nomina':
         return 'Recibos de Nómina';
       case url === '/prestamos':

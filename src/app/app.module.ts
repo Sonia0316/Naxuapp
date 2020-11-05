@@ -43,6 +43,7 @@ import { OtpComponent } from './components/otp/otp.component';
 
 import { SafePipeModule } from 'safe-pipe';
 import { DataProvider } from './providers/data.provider';
+import { HipotecariosComponent } from './components/hipotecarios/hipotecarios.component';
 
 export function dataProviderFactory(provider: DataProvider) {
   return () => provider.load();
@@ -73,6 +74,7 @@ export function dataProviderFactory(provider: DataProvider) {
     ModalLoadingComponent,
     PromptComponent,
     OtpComponent,
+    HipotecariosComponent,
   ],
   imports: [
     HttpClientModule,

@@ -91,6 +91,17 @@ export class HeaderComponent {
     }
   }
 
+  async hipotecarios() {
+    await this.toTop();
+    await this.router.navigate(['./hipotecarios']);
+    if (
+      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+        .display !== 'none'
+    ) {
+      document.getElementById('sidebarCollapse').click();
+    }
+  }
+
   async prestamos() {
     await this.toTop();
     await this.router.navigate(['./prestamos']);

@@ -8,6 +8,7 @@ export { DetalleProductoComponent } from './detalle-producto/detalle-producto.co
 export { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
 export { NominaComponent } from './nomina/nomina.component';
 export { PrestamosComponent } from './prestamos/prestamos.component';
+export { HipotecariosComponent } from './hipotecarios/hipotecarios.component';
 export { ProductosComponent } from './productos/productos.component';
 export { SegurosComponent } from './seguros/seguros.component';
 export { VacacionesComponent } from './vacaciones/vacaciones.component';
