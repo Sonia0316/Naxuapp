@@ -44,7 +44,7 @@
             <td data-column="Descargar" class="NoRightBorder">
               <a
                 [href]="data.t07_fileurls3"
-                *ngIf="data.t07_fileurls3"
+                *ngIf="data.t07_fileurls3 && data.t07_fileurls3 !== 'None'"
                 target="_blank"
                 rel="noopener noreferrer"
               >
