@@ -1,5 +1,5 @@
 <nav id="sidebar">
-  <div class="sidebar-header" style="height: 80px;">
+  <div class="sidebar-header" style="height: 80px">
     <img src="assets/img/logo_naxu.svg" alt="logo naxu" />
   </div>
 
@@ -10,7 +10,6 @@
         <p>Inicio</p>
       </a>
     </li>
-
     <li>
       <a (click)="nomina()" target="_self">
         <img
@@ -20,7 +19,12 @@
         <p>Recibos de Nómina</p>
       </a>
     </li>
-
+    <li>
+      <a (click)="vacaciones()" target="_self">
+        <img src="assets/img/menu/logo_vacaciones.svg" alt="vacaciones" />
+        <p>Vacaciones</p>
+      </a>
+    </li>
     <li>
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
         <img src="assets/img/menu/logo_creditos.svg" alt="creditos" />
@@ -51,14 +55,35 @@
         </li>
       </ul>
     </li>
-
     <li>
-      <a (click)="vacaciones()" target="_self">
-        <img src="assets/img/menu/logo_vacaciones.svg" alt="vacaciones" />
-        <p>Vacaciones</p>
+      <a href="#tiendaSubmenu" data-toggle="collapse" aria-expanded="false">
+        <img src="assets/img/menu/logo_tienda.svg" alt="Tienda virtual" />
+        <i class="fa fa-chevron-down"></i>
+        <p>Tienda Virtual</p>
+      </a>
+      <ul class="collapse list-unstyled" id="tiendaSubmenu">
+        <li>
+          <a (click)="productos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Productos
+            </p>
+          </a>
+        </li>
+        <li>
+          <a (click)="mispedidos()" target="_self">
+            <p class="subItem">
+              <i class="fa fa-chevron-right" id="oc"></i>Mis pedidos
+            </p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a (click)="beneficios()" target="_self">
+        <img src="assets/img/menu/logo_beneficios.svg" alt="beneficios" />
+        <p>Beneficios</p>
       </a>
     </li>
-
     <li>
       <a href="#segurosSubmenu" data-toggle="collapse" aria-expanded="false">
         <img src="assets/img/menu/logo_seguros.svg" alt="seguros" />
@@ -83,39 +108,10 @@
       </ul>
     </li>
     <li>
-      <a (click)="beneficios()" target="_self">
-        <img src="assets/img/menu/logo_beneficios.svg" alt="beneficios" />
-        <p>Beneficios</p>
-      </a>
-    </li>
-    <li>
       <a (click)="asistencia()" target="_self">
         <img src="assets/img/menu/logo_asistencia.svg" alt="asistencia" />
         <p>Asistencia</p>
       </a>
-    </li>
-    <li>
-      <a href="#tiendaSubmenu" data-toggle="collapse" aria-expanded="false">
-        <img src="assets/img/menu/logo_tienda.svg" alt="Tienda virtual" />
-        <i class="fa fa-chevron-down"></i>
-        <p>Tienda Virtual</p>
-      </a>
-      <ul class="collapse list-unstyled" id="tiendaSubmenu">
-        <li>
-          <a (click)="productos()" target="_self">
-            <p class="subItem">
-              <i class="fa fa-chevron-right" id="oc"></i>Productos
-            </p>
-          </a>
-        </li>
-        <li>
-          <a (click)="mispedidos()" target="_self">
-            <p class="subItem">
-              <i class="fa fa-chevron-right" id="oc"></i>Mis pedidos
-            </p>
-          </a>
-        </li>
-      </ul>
     </li>
     <li>
       <a (click)="contacto()" target="_self">
