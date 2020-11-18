@@ -50,7 +50,7 @@ export class AdquirirSeguroComponent implements OnInit {
       }
       const items: [] = ((await this.httpClient
         .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros'
+          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguroslist/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any).response.lista;
       if (items.length) {
