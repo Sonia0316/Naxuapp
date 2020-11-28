@@ -45,8 +45,8 @@ export class NominaComponent implements OnInit {
         const linkSource = `data:application/pdf;base64,${response.body.pdf}`;
         const downloadLink = document.createElement('a');
         const fileName = `Recibo de Nomina ${
-          +this.step === -1 ? 'Primera' : 'Segunda'
-        } Quincena de ${this.getMonth(+this.month)} del ${
+          +this.step === -1 ? 'Primer' : 'Segundo'
+        } Periodo de ${this.getMonth(+this.month)} del ${
           this.yearSelected
         }.pdf`;
         downloadLink.href = linkSource;

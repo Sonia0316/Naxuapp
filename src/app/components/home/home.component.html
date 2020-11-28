@@ -128,26 +128,8 @@
             </ng-template>
           </div>
         </div>
-        <div class="row chptec">
-          <div class="col-md-12">
-            <div class="spaCbz">
-              <img
-                src="assets/img/logos_cuerpo/logo_cuerpo_creditoh.svg"
-                alt="imagen solicitar credito"
-                class="imgEncabz"
-              />
-              <h3 class="encabz">Crédito Hipotecario</h3>
-            </div>
-            <button
-              (click)="openModalCredit()"
-              class="btn btn-block btn-primary enlace"
-            >
-              Más información
-            </button>
-          </div>
-        </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4" *ngIf="false">
         <div class="spaCbz">
           <img
             src="assets/img/logos_cuerpo/logo_cuerpo_vacaciones.svg"
@@ -169,6 +151,26 @@
             </ng-template>
 
             <a [routerLink]="'/vacaciones'" (click)="toTop()">VER DETALLE</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+        <div class="row chptec">
+          <div class="col-md-12">
+            <div class="spaCbz">
+              <img
+                src="assets/img/logos_cuerpo/logo_cuerpo_creditoh.svg"
+                alt="imagen solicitar credito"
+                class="imgEncabz"
+              />
+              <h3 class="encabz">Crédito Hipotecario</h3>
+            </div>
+            <button
+              (click)="openModalCredit()"
+              class="btn btn-block btn-primary enlace"
+            >
+              Más información
+            </button>
           </div>
         </div>
       </div>

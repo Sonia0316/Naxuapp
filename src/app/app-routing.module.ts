@@ -57,7 +57,7 @@ const routes: Routes = [
         component: DetalleProductoComponent,
       },
       { path: 'seguros', component: SegurosComponent },
-      { path: 'vacaciones', component: VacacionesComponent },
+      // { path: 'vacaciones', component: VacacionesComponent },
     ],
   },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
