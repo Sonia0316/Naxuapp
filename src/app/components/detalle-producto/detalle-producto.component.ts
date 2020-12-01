@@ -3,6 +3,7 @@ import { ActivatedRoute } from 'node_modules/@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
+import { environment } from '@envs/environment';
 
 declare var paypal;
 
@@ -49,21 +50,17 @@ export class DetalleProductoComponent implements OnInit {
     try {
       this.block = ((await this.httpClient
         .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+          `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any).body.find((element) => Number(element.status))
         ? true
         : false;
       const idProducto = Number(this.route.snapshot.paramMap.get('idProducto'));
       this.dataProduct = ((await this.httpClient
-        .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/${idProducto}`
-        )
+        .get(`${environment.mainUrl}/productos/${idProducto}`)
         .toPromise()) as any).response.lista[0];
       this.dataProduct.imagenes = ((await this.httpClient
-        .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/detalle/${idProducto}`
-        )
+        .get(`${environment.mainUrl}/productos/detalle/${idProducto}`)
         .toPromise()) as any).response.lista.filter(
         (element) => element.c03_estatus === 'Activo'
       );
@@ -104,16 +101,13 @@ export class DetalleProductoComponent implements OnInit {
   public async checkToPayByPayrollData(): Promise<void> {
     try {
       const result = ((await this.httpClient
-        .post(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/calculadora`,
-          {
-            producto: this.dataProduct.c02id,
-            cantidad: this.quantity,
-            metodopago: 'NOMINA',
-            quincenas: '',
-            salario: this.salarioQuincenal,
-          }
-        )
+        .post(`${environment.mainUrl}/calculadora`, {
+          producto: this.dataProduct.c02id,
+          cantidad: this.quantity,
+          metodopago: 'NOMINA',
+          quincenas: '',
+          salario: this.salarioQuincenal,
+        })
         .toPromise()) as any).codigo;
       this.checkToPayByPayroll = Number(result) === 200;
     } catch (error) {
@@ -128,16 +122,13 @@ export class DetalleProductoComponent implements OnInit {
           .fill(0)
           .map((x, i) => {
             return this.httpClient
-              .post(
-                `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/calculadora`,
-                {
-                  producto: this.dataProduct.c02id,
-                  cantidad: this.quantity,
-                  metodopago: 'DIFERIDO',
-                  quincenas: i + 1,
-                  salario: this.salarioQuincenal,
-                }
-              )
+              .post(`${environment.mainUrl}/calculadora`, {
+                producto: this.dataProduct.c02id,
+                cantidad: this.quantity,
+                metodopago: 'DIFERIDO',
+                quincenas: i + 1,
+                salario: this.salarioQuincenal,
+              })
               .toPromise() as any;
           })
       );
@@ -197,20 +188,14 @@ export class DetalleProductoComponent implements OnInit {
     }
     try {
       await this.httpClient
-        .post(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/registraventa`,
-          data
-        )
+        .post(`${environment.mainUrl}/registraventa`, data)
         .toPromise();
       await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-          {
-            asunto: 'Compra en tienda virtual',
-            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} realizó la compra del producto con identificador ${this.dataProduct.c02id} por el método de pago ${data.metodo_pago}`,
-            grupo: 'TIENDA',
-          }
-        )
+        .post(`${environment.mainUrl}/emailbackoffice`, {
+          asunto: 'Compra en tienda virtual',
+          mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} realizó la compra del producto con identificador ${this.dataProduct.c02id} por el método de pago ${data.metodo_pago}`,
+          grupo: 'TIENDA',
+        })
         .toPromise();
       document.getElementById('showModalExitoSolicitud').click();
     } catch (error) {

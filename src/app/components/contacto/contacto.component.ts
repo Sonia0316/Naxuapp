@@ -7,13 +7,14 @@ import { ResponseContacto } from './ResponseContacto';
 import { Observable } from 'rxjs';
 import { DataModel } from 'src/app/models/data.interface';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
 })
 export class ContactoComponent implements OnInit {
-  url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/contacto';
+  url = `${environment.mainUrl}/contacto`;
   userForm: FormGroup;
   public dataNaxu: DataModel;
   response: any;

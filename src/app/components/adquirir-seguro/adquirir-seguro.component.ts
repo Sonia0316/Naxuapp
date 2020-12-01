@@ -10,6 +10,7 @@ import {
 } from '@angular/platform-browser';
 import { DataModel } from 'src/app/models/data.interface';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-adquirir-seguro',
@@ -41,17 +42,13 @@ export class AdquirirSeguroComponent implements OnInit {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     try {
       const instructions = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/pasos/byseccion/Seguros'
-        )
+        .get(`${environment.mainUrl}/pasos/byseccion/Seguros`)
         .toPromise()) as any).body;
       if (Array.isArray(instructions) && instructions.length) {
         this.instructions = instructions;
       }
       const items: [] = ((await this.httpClient
-        .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguroslist/${this.dataNaxu.RFCEmpleado}`
-        )
+        .get(`${environment.mainUrl}/seguroslist/${this.dataNaxu.RFCEmpleado}`)
         .toPromise()) as any).response.lista;
       if (items.length) {
         this.mainItem = items.find(
@@ -193,14 +190,11 @@ export class AdquirirSeguroComponent implements OnInit {
     this.loading = true;
     try {
       await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-          {
-            asunto: 'Adquisición de seguros',
-            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} desea comprar el seguro ${seguro}`,
-            grupo: 'SEGUROS',
-          }
-        )
+        .post(`${environment.mainUrl}/emailbackoffice`, {
+          asunto: 'Adquisición de seguros',
+          mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} desea comprar el seguro ${seguro}`,
+          grupo: 'SEGUROS',
+        })
         .toPromise();
       document.getElementById('showModalExitoSolicitud').click();
     } catch (error) {

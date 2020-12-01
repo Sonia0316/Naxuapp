@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
 import * as moment from 'moment';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-anticipos',
@@ -38,7 +39,7 @@ export class AnticiposComponent implements OnInit {
     try {
       const blockData = ((await this.httpClient
         .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+          `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any).body.find((element) => Number(element.status));
       if (blockData) {
@@ -68,9 +69,7 @@ export class AnticiposComponent implements OnInit {
         return;
       }
       this.mainData = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/tipocredito'
-        )
+        .get(`${environment.mainUrl}/creditos/tipocredito`)
         .toPromise()) as any).response.lista.find(
         (element) =>
           element.c05_descripcion === this.creditType &&
@@ -78,19 +77,16 @@ export class AnticiposComponent implements OnInit {
       );
       if (this.mainData) {
         const data = ((await this.httpClient
-          .post(
-            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/calculadora',
-            {
-              p_prestamo: this.salarioQuincenal,
-              p_id_tipocredito: this.mainData.c05id,
-              p_periodo: '1',
-              p_antiguedad: this.moment()
-                .diff(this.dataNaxu.antiguedad, 'years', true)
-                .toFixed(2)
-                .toString(),
-              p_sueldo_quincenal: this.salarioQuincenal.toString(),
-            }
-          )
+          .post(`${environment.mainUrl}/creditos/calculadora`, {
+            p_prestamo: this.salarioQuincenal,
+            p_id_tipocredito: this.mainData.c05id,
+            p_periodo: '1',
+            p_antiguedad: this.moment()
+              .diff(this.dataNaxu.antiguedad, 'years', true)
+              .toFixed(2)
+              .toString(),
+            p_sueldo_quincenal: this.salarioQuincenal.toString(),
+          })
           .toPromise()) as any).response.lista;
         if (
           Array.isArray(data) &&
@@ -116,29 +112,23 @@ export class AnticiposComponent implements OnInit {
     this.loading = true;
     try {
       const resultCode = ((await this.httpClient
-        .put(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos',
-          {
-            t11id: '',
-            t11_rfc: this.dataNaxu.RFCEmpleado,
-            t11_cantidad: this.salarioQuincenal,
-            t11_numero_plazos: '1',
-            t11_estatus: 'Pendiente',
-            t11_fecha: '',
-            t11_idtipocredito: this.mainData.c05id,
-          }
-        )
+        .put(`${environment.mainUrl}/creditos`, {
+          t11id: '',
+          t11_rfc: this.dataNaxu.RFCEmpleado,
+          t11_cantidad: this.salarioQuincenal,
+          t11_numero_plazos: '1',
+          t11_estatus: 'Pendiente',
+          t11_fecha: '',
+          t11_idtipocredito: this.mainData.c05id,
+        })
         .toPromise()) as any).response.resultCode;
       if (Number(resultCode) === 200) {
         await this.httpClient
-          .post(
-            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-            {
-              asunto: 'Solicitud de anticipo',
-              mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un anticipo`,
-              grupo: 'ANTICIPO',
-            }
-          )
+          .post(`${environment.mainUrl}/emailbackoffice`, {
+            asunto: 'Solicitud de anticipo',
+            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un anticipo`,
+            grupo: 'ANTICIPO',
+          })
           .toPromise();
         document.getElementById('showModalExitoSolicitud').click();
         return;

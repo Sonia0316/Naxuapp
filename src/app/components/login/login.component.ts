@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DataModel } from 'src/app/models/data.interface';
 import { DataProvider } from 'src/app/providers/data.provider';
-
+import { environment } from '@envs/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  url = 'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/login';
+  url = `${environment.mainUrl}/login`;
   public userForm: FormGroup;
   public loading = false;
   response: any;

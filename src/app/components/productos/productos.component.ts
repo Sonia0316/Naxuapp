@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-productos',
@@ -18,14 +19,10 @@ export class ProductosComponent implements OnInit {
     this.loading = true;
     try {
       this.categorias = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos/categorias'
-        )
+        .get(`${environment.mainUrl}/productos/categorias`)
         .toPromise()) as any).response.lista;
       this.productos = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/productos'
-        )
+        .get(`${environment.mainUrl}/productos`)
         .toPromise()) as any).response.lista;
       if (this.productos.length) {
         this.status = 'complete';

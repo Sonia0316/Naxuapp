@@ -8,6 +8,7 @@ import {
   SafeUrl,
   SafeResourceUrl,
 } from '@angular/platform-browser';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-beneficios',
@@ -52,17 +53,13 @@ export class BeneficiosComponent implements OnInit {
     this.loading = true;
     try {
       const instructions = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/pasos/byseccion/Beneficios'
-        )
+        .get(`${environment.mainUrl}/pasos/byseccion/Beneficios`)
         .toPromise()) as any).body;
       if (Array.isArray(instructions) && instructions.length) {
         this.instructions = instructions;
       }
       const items: [] = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/beneficios'
-        )
+        .get(`${environment.mainUrl}/beneficios`)
         .toPromise()) as any).response.lista;
       if (items.length) {
         let flagRow = 0;

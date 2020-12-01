@@ -7,6 +7,7 @@ import { RequestRegistro } from './RequestRegistro';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-registro',
@@ -14,8 +15,7 @@ import { DataProvider } from 'src/app/providers/data.provider';
   styleUrls: ['./registro.component.scss'],
 })
 export class RegistroComponent implements OnInit {
-  url =
-    'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc';
+  url = `${environment.mainUrl}/findusersbyrfc`;
   userForm: FormGroup;
   response: any;
   public loading = false;

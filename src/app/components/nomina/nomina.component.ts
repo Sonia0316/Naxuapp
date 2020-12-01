@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DataModel } from 'src/app/models/data.interface';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-nomina',
@@ -28,16 +29,13 @@ export class NominaComponent implements OnInit {
     this.loading = true;
     try {
       const response = (await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/recibos',
-          {
-            rfc: this.dataNaxu.RFCEmpleado,
-            anio: this.yearSelected,
-            periodo: +this.month * +this.type + +this.step,
-            tipo: '001',
-            codigo: 'ORDINARI',
-          }
-        )
+        .post(`${environment.mainUrl}/recibos`, {
+          rfc: this.dataNaxu.RFCEmpleado,
+          anio: this.yearSelected,
+          periodo: +this.month * +this.type + +this.step,
+          tipo: '001',
+          codigo: 'ORDINARI',
+        })
         .toPromise()) as any;
       if (
         response.body &&

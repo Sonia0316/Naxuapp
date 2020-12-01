@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-otp',
@@ -42,12 +43,9 @@ export class OtpComponent implements OnInit {
     this.loading = true;
     try {
       const data: any = await this.httpClient
-        .put(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/findusersbyrfc',
-          {
-            ...this.userForm.value,
-          }
-        )
+        .put(`${environment.mainUrl}/findusersbyrfc`, {
+          ...this.userForm.value,
+        })
         .toPromise();
       if (Number(data.codigo) === 200) {
         document.getElementById('showModalUpdateSuccess').click();
@@ -65,12 +63,9 @@ export class OtpComponent implements OnInit {
     this.loading = true;
     try {
       const data: any = await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/loginotp',
-          {
-            ...this.otpForm.value,
-          }
-        )
+        .post(`${environment.mainUrl}/loginotp`, {
+          ...this.otpForm.value,
+        })
         .toPromise();
       if (Number(data.codigo) === 200) {
         this.otpStep = false;

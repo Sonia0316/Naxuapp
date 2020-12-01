@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
+import { environment } from '@envs/environment';
 @Component({
   selector: 'app-vacaciones',
   templateUrl: './vacaciones.component.html',
@@ -29,7 +30,7 @@ export class VacacionesComponent implements OnInit {
       const days: number = Number(
         ((await this.httpClient
           .get(
-            `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+            `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
           )
           .toPromise()) as any).diasVacacionesDisponibles
       );
@@ -61,13 +62,10 @@ export class VacacionesComponent implements OnInit {
       this.loading = true;
       try {
         const dataCalc = (await this.httpClient
-          .post(
-            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/vacaciones/calcula_dias',
-            {
-              start: initialDateValue,
-              end: finalDateValue,
-            }
-          )
+          .post(`${environment.mainUrl}/vacaciones/calcula_dias`, {
+            start: initialDateValue,
+            end: finalDateValue,
+          })
           .toPromise()) as any;
         this.totalDays =
           Number(dataCalc.codigo) === 200
@@ -91,25 +89,19 @@ export class VacacionesComponent implements OnInit {
     this.loading = true;
     try {
       const resultCode = ((await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/vacaciones',
-          {
-            t12_fechas_inicio: initialDateValue,
-            t12_fecha_fin: finalDateValue,
-            t12_usuario: this.userRFC,
-          }
-        )
+        .post(`${environment.mainUrl}/vacaciones`, {
+          t12_fechas_inicio: initialDateValue,
+          t12_fecha_fin: finalDateValue,
+          t12_usuario: this.userRFC,
+        })
         .toPromise()) as any).codigo;
       if (Number(resultCode) === 200) {
         await this.httpClient
-          .post(
-            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-            {
-              asunto: 'Registro vacaciones',
-              mensaje: `El usuario ${this.userRFC} desea registar sus vacaciones`,
-              grupo: 'VACACIONES',
-            }
-          )
+          .post(`${environment.mainUrl}/emailbackoffice`, {
+            asunto: 'Registro vacaciones',
+            mensaje: `El usuario ${this.userRFC} desea registar sus vacaciones`,
+            grupo: 'VACACIONES',
+          })
           .toPromise();
         document.getElementById('showModalExitoSolicitud').click();
         return;

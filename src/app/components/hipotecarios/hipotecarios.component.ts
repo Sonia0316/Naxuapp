@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-hipotecarios',
@@ -23,11 +24,9 @@ export class HipotecariosComponent implements OnInit {
     this.loading = true;
     try {
       await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-          {
-            asunto: 'Información de Crédito hipotecarios',
-            mensaje: `El usuario requiere información de crédito hipotecario:\n
+        .post(`${environment.mainUrl}/emailbackoffice`, {
+          asunto: 'Información de Crédito hipotecarios',
+          mensaje: `El usuario requiere información de crédito hipotecario:\n
             Nombre: ${this.dataNaxu.nombreEmpleado} ${this.dataNaxu.segundoNombreEmpleado}\n
             Número de seguro social: ${this.dataNaxu.NSS}\n
             RFC: ${this.dataNaxu.RFCEmpleado}\n
@@ -35,9 +34,8 @@ export class HipotecariosComponent implements OnInit {
             Teléfono: ${this.dataNaxu.telefonomovil}\n
             Salario Quincenal Neto: ${this.dataNaxu.sueldoNeto}\n
             Salario Quincenal Bruto: ${this.dataNaxu.sueldoBruto}`,
-            grupo: 'HIPOTECARIO',
-          }
-        )
+          grupo: 'HIPOTECARIO',
+        })
         .toPromise();
       document.getElementById('showModalExitoSolicitud').click();
     } catch (error) {

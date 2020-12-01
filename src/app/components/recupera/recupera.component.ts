@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-recupera',
@@ -32,12 +33,9 @@ export class RecuperaComponent implements OnInit {
     this.loading = true;
     try {
       const data: any = await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/sendotp',
-          {
-            ...this.userForm.value,
-          }
-        )
+        .post(`${environment.mainUrl}/sendotp`, {
+          ...this.userForm.value,
+        })
         .toPromise();
       if (Number(data.codigo) === 200) {
         this.router.navigateByUrl('/otp');

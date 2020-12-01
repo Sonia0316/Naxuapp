@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-seguros',
@@ -18,7 +19,7 @@ export class SegurosComponent implements OnInit {
   ) {}
   public async ngOnInit(): Promise<void> {
     const dataNaxu = this.dataProvider.getDataNaxu();
-    this.url = `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/seguros/asignacion/${dataNaxu.rfc}`;
+    this.url = `${environment.mainUrl}/seguros/asignacion/${dataNaxu.rfc}`;
     this.getAsignacionesbyRFC();
   }
 

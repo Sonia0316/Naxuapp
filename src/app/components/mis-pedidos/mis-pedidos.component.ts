@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { DataProvider } from 'src/app/providers/data.provider';
+import { environment } from '@envs/environment';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -21,9 +22,7 @@ export class MisPedidosComponent implements OnInit {
     const RFC = this.dataProvider.getDataNaxu().RFCEmpleado;
     try {
       this.pedidos = ((await this.httpClient
-        .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/ventas/webapp/${RFC}`
-        )
+        .get(`${environment.mainUrl}/ventas/webapp/${RFC}`)
         .toPromise()) as any).body;
       if (Array.isArray(this.pedidos) && this.pedidos.length) {
         this.status = 'complete';

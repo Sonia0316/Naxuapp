@@ -2,15 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/data.interface';
 import asyncLocalStorage from '../util/async-local-storage';
+import { environment } from '@envs/environment';
 
 @Injectable()
 export class DataProvider {
   private dataNaxu: DataModel;
   public logos;
 
-  constructor(
-    private readonly httpClient: HttpClient,
-  ) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   public getDataNaxu(): DataModel {
     return this.dataNaxu;
@@ -28,7 +27,7 @@ export class DataProvider {
     this.dataNaxu = JSON.parse(await asyncLocalStorage.getItem('naxu'));
     try {
       this.logos = ((await this.httpClient
-        .get('https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/logos')
+        .get(`${environment.mainUrl}/logos`)
         .toPromise()) as any).body.find(
         (element) => element.c09_status === 'Activo'
       );

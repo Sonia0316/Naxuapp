@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
+import { environment } from '@envs/environment';
 @Component({
   selector: 'app-prestamos',
   templateUrl: './prestamos.component.html',
@@ -62,7 +63,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     try {
       const blockData = ((await this.httpClient
         .get(
-          `https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
+          `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any).body.find((element) => Number(element.status));
       if (blockData) {
@@ -92,9 +93,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
         return;
       }
       this.mainData = ((await this.httpClient
-        .get(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/tipocredito'
-        )
+        .get(`${environment.mainUrl}/creditos/tipocredito`)
         .toPromise()) as any).response.lista.find(
         (element) =>
           element.c05_descripcion === this.creditType &&
@@ -138,19 +137,16 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.loading = true;
     try {
       const data = ((await this.httpClient
-        .post(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos/calculadora',
-          {
-            p_prestamo: value,
-            p_id_tipocredito: this.mainData.c05id,
-            p_periodo: periods,
-            p_antiguedad: this.moment()
-              .diff(this.dataNaxu.antiguedad, 'years', true)
-              .toFixed(2)
-              .toString(),
-            p_sueldo_quincenal: this.salary.toString(),
-          }
-        )
+        .post(`${environment.mainUrl}/creditos/calculadora`, {
+          p_prestamo: value,
+          p_id_tipocredito: this.mainData.c05id,
+          p_periodo: periods,
+          p_antiguedad: this.moment()
+            .diff(this.dataNaxu.antiguedad, 'years', true)
+            .toFixed(2)
+            .toString(),
+          p_sueldo_quincenal: this.salary.toString(),
+        })
         .toPromise()) as any).response.lista;
       if (Array.isArray(data) && data.length && data[0].totalpagar !== 'None') {
         this.lendData = data[0];
@@ -167,29 +163,23 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.loading = true;
     try {
       const resultCode = ((await this.httpClient
-        .put(
-          'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/creditos',
-          {
-            t11id: '',
-            t11_rfc: this.dataNaxu.RFCEmpleado,
-            t11_cantidad: value,
-            t11_numero_plazos: periods,
-            t11_estatus: 'Pendiente',
-            t11_fecha: '',
-            t11_idtipocredito: this.mainData.c05id,
-          }
-        )
+        .put(`${environment.mainUrl}/creditos`, {
+          t11id: '',
+          t11_rfc: this.dataNaxu.RFCEmpleado,
+          t11_cantidad: value,
+          t11_numero_plazos: periods,
+          t11_estatus: 'Pendiente',
+          t11_fecha: '',
+          t11_idtipocredito: this.mainData.c05id,
+        })
         .toPromise()) as any).response.resultCode;
       if (Number(resultCode) === 200) {
         await this.httpClient
-          .post(
-            'https://l9ikb48a81.execute-api.us-east-1.amazonaws.com/Dev/emailbackoffice',
-            {
-              asunto: 'Solicitud de prestamo',
-              mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un prestamo`,
-              grupo: 'PRESTAMO',
-            }
-          )
+          .post(`${environment.mainUrl}/emailbackoffice`, {
+            asunto: 'Solicitud de prestamo',
+            mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un prestamo`,
+            grupo: 'PRESTAMO',
+          })
           .toPromise();
         document.getElementById('showModalExitoSolicitud').click();
         return;
