@@ -8,8 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prod": "ng build --prod --commonChunk --vendorChunk --progress",
-    "deploy": "npm run prod && firebase deploy"
+    "prod": "ng build --configuration=production --commonChunk --vendorChunk --progress",
+    "prod2": "ng build --configuration=production2 --commonChunk --vendorChunk --progress",
+    "deploy": "npm run prod && firebase deploy && aws s3 rm s3://naxu --recursive --profile naxu && aws s3 cp ./dist s3://naxu --recursive --profile naxu  && npm run prod2 && aws s3 rm s3://naxu2 --recursive --profile naxu && aws s3 cp ./dist s3://naxu2 --recursive --profile naxu"
   },
   "private": true,
   "dependencies": {
