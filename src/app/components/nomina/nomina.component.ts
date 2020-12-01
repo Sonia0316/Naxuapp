@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DataModel } from 'src/app/models/data.interface';
 import { DataProvider } from 'src/app/providers/data.provider';
+
 @Component({
   selector: 'app-nomina',
   templateUrl: './nomina.component.html',
@@ -9,6 +10,7 @@ import { DataProvider } from 'src/app/providers/data.provider';
 export class NominaComponent implements OnInit {
   public years: Array<number>;
   public yearSelected: number | '' = '';
+  public type: number | '' = '';
   public step: number | '' = '';
   public month: number | '' = '';
   public loading = false;
@@ -31,7 +33,7 @@ export class NominaComponent implements OnInit {
           {
             rfc: this.dataNaxu.RFCEmpleado,
             anio: this.yearSelected,
-            periodo: +this.month * 2 + +this.step,
+            periodo: +this.month * +this.type + +this.step,
             tipo: '001',
             codigo: 'ORDINARI',
           }
@@ -44,11 +46,9 @@ export class NominaComponent implements OnInit {
       ) {
         const linkSource = `data:application/pdf;base64,${response.body.pdf}`;
         const downloadLink = document.createElement('a');
-        const fileName = `Recibo de Nomina ${
-          +this.step === -1 ? 'Primer' : 'Segundo'
-        } Periodo de ${this.getMonth(+this.month)} del ${
-          this.yearSelected
-        }.pdf`;
+        const fileName = `Recibo de Nomina ${this.getNamePeriod()} Periodo de ${this.getMonth(
+          +this.month
+        )} del ${this.yearSelected}.pdf`;
         downloadLink.href = linkSource;
         downloadLink.download = fileName;
         downloadLink.click();
@@ -87,6 +87,23 @@ export class NominaComponent implements OnInit {
         return 'Noviembre';
       case 12:
         return 'Diciembre';
+    }
+  }
+  private getNamePeriod(): string {
+    switch (true) {
+      case +this.type === 1 && +this.step === 0:
+      case +this.type === 2 && +this.step === -1:
+      case +this.type === 4 && +this.step === -3:
+        return 'Primer';
+      case +this.type === 2 && +this.step === 0:
+      case +this.type === 4 && +this.step === -2:
+        return 'Segundo';
+      case +this.type === 4 && +this.step === -1:
+        return 'Tercer';
+      case +this.type === 4 && +this.step === 0:
+        return 'Cuarto';
+      default:
+        return '';
     }
   }
 }
