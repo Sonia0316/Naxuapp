@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: #f0f0f7;
+}
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.img_derecha {
+    height: 100%;
+    background-color: #14141E;
+    overflow-x: hidden;
+    padding-top: 0;
+    background-image: url(../img/login-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+}
+
+.img_derecha .logoLoginMovil{
+    display: none;
+
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+.logoLoginCompany img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-height: 450px) {
+    .img_derecha {
+        padding-top: 0;
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+
+    
+    .img_derecha {
+        height: 50px;
+        background-image: none;
+        background-color: #14141E;
+      
+    }
+
+    .img_derecha .logoLoginDesk{
+        display: none;
+    }
+    
+    .img_derecha .logoLoginMovil{
+        display: block;
+        float: right;
+        padding: 4%;
+        width: 100px;
+
+    
+    }
+
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .img_derecha{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}

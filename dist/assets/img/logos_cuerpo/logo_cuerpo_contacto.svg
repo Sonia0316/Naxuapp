@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39" height="27" viewBox="0 0 39 27">
+  <g id="Grupo_1813" data-name="Grupo 1813" transform="translate(4089 -2784)">
+    <g id="logo_cuerpo_contacto" transform="translate(-4259.25 2471.75)">
+      <path id="Trazado_1263" data-name="Trazado 1263" d="M206.264,338.21H172.984a.734.734,0,0,1-.734-.734V313.984a.734.734,0,0,1,.734-.734h33.279a.734.734,0,0,1,.734.734v23.491A.734.734,0,0,1,206.264,338.21Zm-32.545-1.468h31.811V314.718H173.718Z" transform="translate(0 0)" fill="#43425d"/>
+      <path id="Trazado_1264" data-name="Trazado 1264" d="M189.624,326.464a.733.733,0,0,1-.424-.135l-16.64-11.746a.734.734,0,1,1,.848-1.2l16.216,11.446,16.216-11.446a.734.734,0,1,1,.848,1.2l-16.64,11.746A.733.733,0,0,1,189.624,326.464Z" transform="translate(0 0)" fill="#43425d"/>
+      <path id="Trazado_1265" data-name="Trazado 1265" d="M207,338" transform="translate(-0.736 -0.524)" fill="#43425d" stroke="#444" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Trazado_1266" data-name="Trazado 1266" d="M201.8,332.543a.732.732,0,0,1-.5-.2l-8.606-8.09a.735.735,0,0,1,1.006-1.071l8.606,8.09a.735.735,0,0,1-.5,1.27Z" transform="translate(-0.428 -0.206)" fill="#43425d"/>
+      <path id="Trazado_1267" data-name="Trazado 1267" d="M177.984,332.543a.735.735,0,0,1-.5-1.27l8.606-8.09a.735.735,0,0,1,1.006,1.071l-8.606,8.09A.733.733,0,0,1,177.984,332.543Z" transform="translate(-0.106 -0.206)" fill="#43425d"/>
+    </g>
+    <rect id="Rectángulo_2991" data-name="Rectángulo 2991" width="39" height="27" transform="translate(-4089 2784)" fill="none"/>
+  </g>
+</svg>
