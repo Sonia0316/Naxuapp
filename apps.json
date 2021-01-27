@@ -1,0 +1,97 @@
+[
+  {
+    "url": "https://mf0blcrio3.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-asgomor-inm-q",
+    "bucketURL": "http://naxu-asgomor-inm-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://gvyx2gcp55.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-asgomor-raisa-q",
+    "bucketURL": "http://naxu-asgomor-raisa-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://0jlg09nyx2.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-aspid-q",
+    "bucketURL": "http://naxu-aspid-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://h6yiutazu7.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-aspid-s",
+    "bucketURL": "http://naxu-aspid-s.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://rjtl1uskz6.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-celtec-q",
+    "bucketURL": "http://naxu-celtec-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://66j2kwxw40.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-celtec-naxu-q",
+    "bucketURL": "http://naxu-celtec-naxu-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://xp5ee0yst3.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-celtec-sopri-q",
+    "bucketURL": "http://naxu-celtec-sopri-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://xi9kq2d8oj.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-grudicom-s",
+    "bucketURL": "http://naxu-grudicom-s.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://qcscd8x2o3.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-chiapas-q",
+    "bucketURL": "http://naxu-meda-chiapas-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://0vt85w9kh8.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-ramos-q",
+    "bucketURL": "http://naxu-meda-ramos-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://kmcdno8rv6.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-ramos-s",
+    "bucketURL": "http://naxu-meda-ramos-s.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://0gomb1ozcb.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-corporativo",
+    "bucketURL": "http://naxu-meda-corporativo.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://05jlxfiz9k.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-morelos",
+    "bucketURL": "http://naxu-meda-morelos.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://mgw7fee7fk.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-meda-ramos-sopri-q",
+    "bucketURL": "http://naxu-meda-ramos-sopri-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://f197onbpka.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-mormen-s",
+    "bucketURL": "http://naxu-mormen-s.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://4ohi1i2y3g.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-pack-q",
+    "bucketURL": "http://naxu-pack-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://8vmk9b48rj.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-pack-s",
+    "bucketURL": "http://naxu-pack-s.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://c24i8iqjzi.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-secorse-q",
+    "bucketURL": "http://naxu-secorse-q.s3-website.us-east-2.amazonaws.com"
+  },
+  {
+    "url": "https://39bxciqpqi.execute-api.us-east-1.amazonaws.com/Prod",
+    "bucket": "naxu-att-t-sem",
+    "bucketURL": "http://naxu-att-t-sem.s3-website.us-east-2.amazonaws.com"
+  }
+]
