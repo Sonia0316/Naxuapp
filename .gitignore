@@ -45,3 +45,7 @@ testem.log
 .DS_Store
 Thumbs.db
 .firebase
+
+# Terraform Files
+.terraform
+*.tfstate.backup
