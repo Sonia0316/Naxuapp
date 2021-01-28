@@ -41,3 +41,39 @@ resource "aws_s3_bucket" "naxu-asgomor-raisa-q" {
 POLICY
 
 }
+locals {
+  s3_origin_id = "s3-naxu-asgomor-raisa-q"
+}
+resource "aws_cloudfront_distribution" "naxu-asgomor-raisa-q_distribution" {
+  origin {
+    domain_name = aws_s3_bucket.naxu-asgomor-raisa-q.bucket_regional_domain_name
+    origin_id   = local.s3_origin_id
+  }
+  enabled             = true
+  default_root_object = "index.html"
+  is_ipv6_enabled     = true
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+  default_cache_behavior {
+    viewer_protocol_policy = "redirect-to-https"
+    compress               = true
+    target_origin_id       = local.s3_origin_id
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    min_ttl                = 0
+    default_ttl            = 86400
+    max_ttl                = 31536000
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}
