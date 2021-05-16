@@ -9,6 +9,8 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 import { environment } from '@envs/environment';
+import { DataModel } from 'src/app/models/data.interface';
+import { DataProvider } from 'src/app/providers/data.provider';
 
 @Component({
   selector: 'app-asistencia',
@@ -23,10 +25,12 @@ export class AsistenciaComponent implements OnInit {
   public loading = false;
   public status: string;
   public instructions = [];
+  public dataNaxu: DataModel;
 
   constructor(
     private httpClient: HttpClient,
-    protected sanitizer: DomSanitizer
+    protected sanitizer: DomSanitizer,
+    private readonly dataProvider: DataProvider
   ) {}
 
   public transform(
@@ -53,12 +57,19 @@ export class AsistenciaComponent implements OnInit {
     this.htmlStr = '';
     this.htmlStrModals = '';
     this.loading = true;
+
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+
     try {
       const items: [] = ((await this.httpClient
-        .get(`${environment.mainUrl}/asistencia`)
+        .get(
+          `${environment.mainUrl}/asistencia/empresa/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).response.lista;
       const instructions = ((await this.httpClient
-        .get(`${environment.mainUrl}/pasos/byseccion/Asistencia`)
+        .get(
+          `${environment.mainUrl}/pasos/byseccion/Asistencia/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).body;
       if (Array.isArray(instructions) && instructions.length) {
         this.instructions = instructions;

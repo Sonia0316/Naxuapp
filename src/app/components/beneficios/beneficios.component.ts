@@ -9,6 +9,8 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 import { environment } from '@envs/environment';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 
 @Component({
   selector: 'app-beneficios',
@@ -23,10 +25,12 @@ export class BeneficiosComponent implements OnInit {
   public loading = false;
   public status: string;
   public instructions = [];
+  public dataNaxu: DataModel;
 
   constructor(
     private httpClient: HttpClient,
-    protected sanitizer: DomSanitizer
+    protected sanitizer: DomSanitizer,
+    private readonly dataProvider: DataProvider
   ) {}
   public transform(
     value: string,
@@ -51,15 +55,21 @@ export class BeneficiosComponent implements OnInit {
     this.htmlStr = '';
     this.htmlStrModals = '';
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+
     try {
       const instructions = ((await this.httpClient
-        .get(`${environment.mainUrl}/pasos/byseccion/Beneficios`)
+        .get(
+          `${environment.mainUrl}/pasos/byseccion/Beneficios/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).body;
       if (Array.isArray(instructions) && instructions.length) {
         this.instructions = instructions;
       }
       const items: [] = ((await this.httpClient
-        .get(`${environment.mainUrl}/beneficios`)
+        .get(
+          `${environment.mainUrl}/beneficios/empresa/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).response.lista;
       if (items.length) {
         let flagRow = 0;

@@ -29,7 +29,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
     });
 
     this.dataNaxu = this.dataProvider.getDataNaxu();
-    this.logos = this.dataProvider.logos;
+    // this.logos = this.dataProvider.logos;
+    this.logos = true;
   }
   public shouldShow() {
     switch (this.router.url) {

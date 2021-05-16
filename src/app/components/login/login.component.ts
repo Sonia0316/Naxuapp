@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { environment } from '@envs/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   url = `${environment.mainUrl}/login`;
   public userForm: FormGroup;
   public loading = false;
@@ -32,10 +32,6 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, ValidationService.emailValidator]],
     });
   }
-  public logos;
-  public async ngOnInit(): Promise<void> {
-    this.logos = this.dataProvider.logos;
-  }
   public async CheckUser() {
     if (this.userForm.dirty && this.userForm.valid) {
       this.loading = true;
@@ -45,10 +41,31 @@ export class LoginComponent implements OnInit {
         ipRemota: '127.0.0.1',
       };
       this.postLogin(request).subscribe(
-        (res) => {
+        async (res) => {
           const loginData = res.body;
           if (Number(loginData.codigo) === 200) {
-            this.dataProvider.setDataNaxu(loginData);
+            const empresas = (await this.http
+              .get(`${environment.mainUrl}/empresa`)
+              .toPromise()) as any;
+
+            console.log('====================================');
+            console.log(empresas);
+            console.log('====================================');
+
+            debugger;
+
+            /* const logos = ((await this.http
+              .get(`${environment.mainUrl}/logos/empresa/${loginData.empresa}`)
+              .toPromise()) as any).body.find(
+              (element) => element.c09_status === 'Activo'
+            );
+            console.log('====================================');
+            console.log(logos);
+            debugger;
+            console.log('===================================='); */
+
+            await this.dataProvider.setDataNaxu(loginData);
+
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             this.router.navigate(['./home']).then(() => {

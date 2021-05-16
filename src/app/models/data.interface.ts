@@ -2,6 +2,7 @@ export class DataModel {
   CURPEmpleado: string;
   NSS: string;
   RFCEmpleado: string;
+  aniosantiguedad: number;
   antiguedad: string;
   codigo: number;
   correo: string;

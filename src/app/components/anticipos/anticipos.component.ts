@@ -37,11 +37,16 @@ export class AnticiposComponent implements OnInit {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     this.salarioQuincenal = Number(this.dataNaxu.sueldoNeto);
     try {
-      const blockData = ((await this.httpClient
+      let blockData = (await this.httpClient
         .get(
           `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
-        .toPromise()) as any).body.find((element) => Number(element.status));
+        .toPromise()) as any;
+
+      blockData = blockData.body
+        ? blockData.body.find((element) => Number(element.status))
+        : null;
+
       if (blockData) {
         switch (blockData.credito) {
           case 'NOMINA':
@@ -114,6 +119,7 @@ export class AnticiposComponent implements OnInit {
       const resultCode = ((await this.httpClient
         .put(`${environment.mainUrl}/creditos`, {
           t11id: '',
+          t11_id_empresa: this.dataNaxu.empresa,
           t11_rfc: this.dataNaxu.RFCEmpleado,
           t11_cantidad: this.salarioQuincenal,
           t11_numero_plazos: '1',
@@ -125,6 +131,7 @@ export class AnticiposComponent implements OnInit {
       if (Number(resultCode) === 200) {
         await this.httpClient
           .post(`${environment.mainUrl}/emailbackoffice`, {
+            empresa: this.dataNaxu.empresa,
             asunto: 'Solicitud de anticipo',
             mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un anticipo`,
             grupo: 'ANTICIPO',

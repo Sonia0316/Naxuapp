@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -6,7 +6,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RequestRegistro } from './RequestRegistro';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { DataProvider } from 'src/app/providers/data.provider';
 import { environment } from '@envs/environment';
 
 @Component({
@@ -14,7 +13,7 @@ import { environment } from '@envs/environment';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent {
   url = `${environment.mainUrl}/findusersbyrfc`;
   userForm: FormGroup;
   response: any;
@@ -23,7 +22,6 @@ export class RegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     public http: HttpClient,
     private router: Router,
-    private readonly dataProvider: DataProvider
   ) {
     this.userForm = this.formBuilder.group(
       {
@@ -37,10 +35,6 @@ export class RegistroComponent implements OnInit {
         validator: ValidationService.MatchPassword,
       }
     );
-  }
-  public logos;
-  public async ngOnInit(): Promise<void> {
-    this.logos = this.dataProvider.logos;
   }
 
   CheckRegister() {

@@ -48,13 +48,17 @@ export class DetalleProductoComponent implements OnInit {
     this.salarioQuincenal = Number(this.dataNaxu.sueldoNeto);
     this.userRFC = this.dataNaxu.RFCEmpleado;
     try {
-      this.block = ((await this.httpClient
+      let blockData = (await this.httpClient
         .get(
           `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
-        .toPromise()) as any).body.find((element) => Number(element.status))
-        ? true
-        : false;
+        .toPromise()) as any;
+
+      blockData = blockData.body
+        ? blockData.body.find((element) => Number(element.status))
+        : null;
+      this.block = blockData ? true : false;
+
       const idProducto = Number(this.route.snapshot.paramMap.get('idProducto'));
       this.dataProduct = ((await this.httpClient
         .get(`${environment.mainUrl}/productos/${idProducto}`)
@@ -192,6 +196,7 @@ export class DetalleProductoComponent implements OnInit {
         .toPromise();
       await this.httpClient
         .post(`${environment.mainUrl}/emailbackoffice`, {
+          empresa: this.dataNaxu.empresa,
           asunto: 'Compra en tienda virtual',
           mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} realizó la compra del producto con identificador ${this.dataProduct.c02id} por el método de pago ${data.metodo_pago}`,
           grupo: 'TIENDA',

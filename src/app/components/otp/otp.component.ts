@@ -21,9 +21,7 @@ export class OtpComponent implements OnInit {
     private readonly httpClient: HttpClient,
     private readonly dataProvider: DataProvider
   ) {}
-  public logos;
   public ngOnInit(): void {
-    this.logos = this.dataProvider.logos;
     this.userForm = this.formBuilder.group({
       rfc: ['', Validators.required],
       password: ['', Validators.required],

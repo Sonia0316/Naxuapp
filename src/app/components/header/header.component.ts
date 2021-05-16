@@ -23,8 +23,9 @@ export class HeaderComponent {
   async adquirirseguro() {
     await this.toTop();
     await this.router.navigate(['./adquirirseguro']);
+
     if (
-      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+      window.getComputedStyle(document.getElementById('sidebarCollapse') as any)
         .display !== 'none'
     ) {
       document.getElementById('sidebarCollapse').click();
@@ -74,7 +75,7 @@ export class HeaderComponent {
     await this.toTop();
     await this.router.navigate(['./contacto']);
     if (
-      window.getComputedStyle(document.getElementById('sidebarCollapse'))
+      window.getComputedStyle(document.getElementById('sidebarCollapse') as any)
         .display !== 'none'
     ) {
       document.getElementById('sidebarCollapse').click();

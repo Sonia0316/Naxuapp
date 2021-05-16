@@ -19,10 +19,15 @@
       <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
     </button>
     <img
-      [src]="logos.c09_imagen_alterna"
+      [src]="'assets/img/logo_naxu_movil.svg'"
       alt="Logo naxus"
       class="naxus_logo_movil"
     />
+    <!-- <img
+      [src]="logos.c09_imagen_alterna"
+      alt="Logo naxus"
+      class="naxus_logo_movil"
+    /> -->
   </div>
   <div class="container-fluid" (click)="sideBarClose()">
     <div
@@ -44,12 +49,19 @@
         "
       >
         <img
+          [src]="'assets/img/logo_naxu.svg'"
+          alt="Logo de company"
+          class="LogoComName"
+          width="100px"
+          style="margin-top: 0%"
+        />
+        <!--  <img
           [src]="logos.c09_imagen"
           alt="Logo de company"
           class="LogoComName"
           width="100px"
           style="margin-top: 0%;"
-        />
+        /> -->
       </div>
     </div>
     <div class="row barraDesktop02" style="margin-top: 10px">

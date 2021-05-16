@@ -25,6 +25,7 @@ export class HipotecariosComponent implements OnInit {
     try {
       await this.httpClient
         .post(`${environment.mainUrl}/emailbackoffice`, {
+          empresa: this.dataNaxu.empresa,
           asunto: 'Información de Crédito hipotecarios',
           mensaje: `El usuario requiere información de crédito hipotecario:\n
             Nombre: ${this.dataNaxu.nombreEmpleado} ${this.dataNaxu.segundoNombreEmpleado}\n

@@ -42,7 +42,9 @@ export class AdquirirSeguroComponent implements OnInit {
     this.dataNaxu = this.dataProvider.getDataNaxu();
     try {
       const instructions = ((await this.httpClient
-        .get(`${environment.mainUrl}/pasos/byseccion/Seguros`)
+        .get(
+          `${environment.mainUrl}/pasos/byseccion/Seguros/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).body;
       if (Array.isArray(instructions) && instructions.length) {
         this.instructions = instructions;
@@ -191,6 +193,7 @@ export class AdquirirSeguroComponent implements OnInit {
     try {
       await this.httpClient
         .post(`${environment.mainUrl}/emailbackoffice`, {
+          empresa: this.dataNaxu.empresa,
           asunto: 'Adquisición de seguros',
           mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} desea comprar el seguro ${seguro}`,
           grupo: 'SEGUROS',

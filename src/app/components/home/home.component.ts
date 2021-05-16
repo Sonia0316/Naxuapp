@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   showButton = false;
   public loading = false;
   public status = 'Not available';
-  private userRFC: string;
   public sliderData: Array<any>;
   public dataNaxu: DataModel;
   public lendAvailable = true;
@@ -40,20 +39,25 @@ export class HomeComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
-    this.userRFC = this.dataNaxu.RFCEmpleado;
     try {
       const validaPrestamos = (await this.httpClient
         .get(
           `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
         .toPromise()) as any;
-      this.lendAvailable = !!validaPrestamos.body.find(
-        (element) => element.credito === 'PRESTAMO' && !Number(element.status)
-      );
+      this.lendAvailable =
+        !validaPrestamos.body ||
+        (validaPrestamos.body &&
+          !!validaPrestamos.body.find(
+            (element) =>
+              element.credito === 'PRESTAMO' && !Number(element.status)
+          ));
       this.availableDays =
         Number(validaPrestamos.diasVacacionesDisponibles) ?? 0;
       this.sliderData = ((await this.httpClient
-        .get(`${environment.mainUrl}/carrusel/status/Activo`)
+        .get(
+          `${environment.mainUrl}/carrusel/empresa/${this.dataNaxu.empresa}/Activo`
+        )
         .toPromise()) as any).body
         .filter((element) => element.t13_status === 'Activo')
         .sort((a, b) => Number(a.t13_orden) - Number(b.t13_orden));
@@ -98,6 +102,7 @@ export class HomeComponent implements OnInit {
     try {
       await this.httpClient
         .post(`${environment.mainUrl}/emailbackoffice`, {
+          empresa: this.dataNaxu.empresa,
           asunto: 'Información de Crédito hipotecarios',
           mensaje: `El usuario requiere información de crédito hipotecario:\n
             Nombre: ${this.dataNaxu.nombreEmpleado} ${this.dataNaxu.segundoNombreEmpleado}\n

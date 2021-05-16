@@ -25,7 +25,7 @@ export class DataProvider {
 
   public async load() {
     this.dataNaxu = JSON.parse(await asyncLocalStorage.getItem('naxu'));
-    try {
+    /* try {
       this.logos = ((await this.httpClient
         .get(`${environment.mainUrl}/logos`)
         .toPromise()) as any).body.find(
@@ -33,6 +33,6 @@ export class DataProvider {
       );
     } catch (error) {
       console.log(error);
-    }
+    } */
   }
 }

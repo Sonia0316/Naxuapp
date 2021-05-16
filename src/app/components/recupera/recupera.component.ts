@@ -3,7 +3,6 @@ import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { DataProvider } from 'src/app/providers/data.provider';
 import { environment } from '@envs/environment';
 
 @Component({
@@ -19,11 +18,8 @@ export class RecuperaComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly httpClient: HttpClient,
     private readonly router: Router,
-    private readonly dataProvider: DataProvider
   ) {}
-  public logos;
   public ngOnInit(): void {
-    this.logos = this.dataProvider.logos;
     this.userForm = this.formBuilder.group({
       rfc: ['', Validators.required],
       email: ['', [Validators.required, ValidationService.emailValidator]],

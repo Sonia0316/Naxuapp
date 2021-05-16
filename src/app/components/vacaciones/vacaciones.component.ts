@@ -98,6 +98,7 @@ export class VacacionesComponent implements OnInit {
       if (Number(resultCode) === 200) {
         await this.httpClient
           .post(`${environment.mainUrl}/emailbackoffice`, {
+            empresa: this.dataNaxu.empresa,
             asunto: 'Registro vacaciones',
             mensaje: `El usuario ${this.userRFC} desea registar sus vacaciones`,
             grupo: 'VACACIONES',

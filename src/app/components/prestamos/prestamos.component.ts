@@ -61,11 +61,16 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
     this.minAmountAvailable = Number(this.dataNaxu.montoMinimoPrestamo);
     this.salary = Number(this.dataNaxu.sueldoNeto);
     try {
-      const blockData = ((await this.httpClient
+      let blockData = (await this.httpClient
         .get(
           `${environment.mainUrl}/valida_prestamos/${this.dataNaxu.RFCEmpleado}`
         )
-        .toPromise()) as any).body.find((element) => Number(element.status));
+        .toPromise()) as any;
+
+      blockData = blockData.body
+        ? blockData.body.find((element) => Number(element.status))
+        : null;
+
       if (blockData) {
         switch (blockData.credito) {
           case 'NOMINA':
@@ -176,6 +181,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
       if (Number(resultCode) === 200) {
         await this.httpClient
           .post(`${environment.mainUrl}/emailbackoffice`, {
+            empresa: this.dataNaxu.empresa,
             asunto: 'Solicitud de prestamo',
             mensaje: `El usuario ${this.dataNaxu.RFCEmpleado} esta solicitando un prestamo`,
             grupo: 'PRESTAMO',

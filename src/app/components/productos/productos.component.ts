@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@envs/environment';
+import { DataProvider } from 'src/app/providers/data.provider';
+import { DataModel } from 'src/app/models/data.interface';
 
 @Component({
   selector: 'app-productos',
@@ -13,16 +15,26 @@ export class ProductosComponent implements OnInit {
   public categorias = [];
   public categoriaSelected = 0;
   public searchValue = '';
+  public dataNaxu: DataModel;
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly dataProvider: DataProvider
+  ) {}
   public async ngOnInit(): Promise<void> {
     this.loading = true;
+    this.dataNaxu = this.dataProvider.getDataNaxu();
+
     try {
       this.categorias = ((await this.httpClient
-        .get(`${environment.mainUrl}/productos/categorias`)
+        .get(
+          `${environment.mainUrl}/productos/categorias/empresa/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).response.lista;
       this.productos = ((await this.httpClient
-        .get(`${environment.mainUrl}/productos`)
+        .get(
+          `${environment.mainUrl}/productos/empresa/${this.dataNaxu.empresa}`
+        )
         .toPromise()) as any).response.lista;
       if (this.productos.length) {
         this.status = 'complete';
