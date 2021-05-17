@@ -49,3 +49,7 @@ Thumbs.db
 # Terraform Files
 .terraform
 *.tfstate.backup
+
+
+#Devcontainers
+.devcontainer
