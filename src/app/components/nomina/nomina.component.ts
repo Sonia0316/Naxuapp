@@ -33,7 +33,7 @@ export class NominaComponent implements OnInit {
           rfc: this.dataNaxu.RFCEmpleado,
           anio: this.yearSelected,
           periodo: +this.month * +this.type + +this.step,
-          tipo: '001',
+          tipo: '001', // ID Nomina
           codigo: 'ORDINARI',
         })
         .toPromise()) as any;

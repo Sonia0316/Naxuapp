@@ -1,15 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataModel } from '../models/data.interface';
 import asyncLocalStorage from '../util/async-local-storage';
-import { environment } from '@envs/environment';
 
 @Injectable()
 export class DataProvider {
   private dataNaxu: DataModel;
   public logos;
-
-  constructor(private readonly httpClient: HttpClient) {}
 
   public getDataNaxu(): DataModel {
     return this.dataNaxu;
