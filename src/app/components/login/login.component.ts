@@ -51,18 +51,13 @@ export class LoginComponent {
             console.log('====================================');
             console.log(empresas);
             console.log('====================================');
-
-            debugger;
-
             /* const logos = ((await this.http
               .get(`${environment.mainUrl}/logos/empresa/${loginData.empresa}`)
               .toPromise()) as any).body.find(
               (element) => element.c09_status === 'Activo'
             );
-            console.log('====================================');
-            console.log(logos);
-            debugger;
-            console.log('===================================='); */
+           
+            */
 
             await this.dataProvider.setDataNaxu(loginData);
 
