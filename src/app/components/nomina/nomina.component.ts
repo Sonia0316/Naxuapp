@@ -16,14 +16,23 @@ export class NominaComponent implements OnInit {
   public month: number | '' = '';
   public loading = false;
   public dataNaxu: DataModel;
+  public typePeriod = {
+    "MENSUAL": 1,
+    "QUINCENAL": 2,
+    "SEMANAL": 4,
+  }
+
   constructor(
     private readonly httpClient: HttpClient,
     private readonly dataProvider: DataProvider
-  ) {}
+  ) { }
+
   public async ngOnInit(): Promise<void> {
     const actualYear = new Date().getFullYear();
     this.years = [...Array(5).keys()].map((year) => actualYear - year);
     this.dataNaxu = this.dataProvider.getDataNaxu();
+    const nomina = this.dataNaxu.periodicidad.toUpperCase();
+    this.type = this.typePeriod[nomina] || '';
   }
   public async downloadReceipt() {
     this.loading = true;

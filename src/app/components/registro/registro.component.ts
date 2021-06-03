@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -13,11 +13,12 @@ import { environment } from '@envs/environment';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit {
   url = `${environment.mainUrl}/findusersbyrfc`;
   userForm: FormGroup;
   response: any;
   public loading = false;
+  public enterprises = [];
   constructor(
     private formBuilder: FormBuilder,
     public http: HttpClient,
@@ -30,6 +31,7 @@ export class RegistroComponent {
         email: ['', [Validators.required, ValidationService.emailValidator]],
         rfc: ['', Validators.required],
         employee: ['', Validators.required],
+        enterprise: ['', Validators.required],
       },
       {
         validator: ValidationService.MatchPassword,
@@ -46,8 +48,8 @@ export class RegistroComponent {
         status: 'Activo',
         email: this.userForm.value.email,
         empleado: this.userForm.value.employee,
+        empresaid: this.userForm.value.enterprise,
       };
-
       this.postRegister(request).subscribe(
         (res) => {
           if (Number(res.body.codigo) === 200) {
@@ -68,12 +70,11 @@ export class RegistroComponent {
           }
         },
         () => {
-          this.loading = true;
+          this.loading = false;
         }
       );
     }
   }
-
   public postRegister(login: RequestRegistro): Observable<HttpResponse<any>> {
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -82,5 +83,21 @@ export class RegistroComponent {
       headers: httpHeaders,
       observe: 'response',
     });
+  }
+  public async ngOnInit() {
+    this.loading = true;
+    try {
+      const responseEnterprises = (await this.http
+        .get(
+          `${environment.mainUrl}/empresa`
+        )
+        .toPromise()) as any;
+      if (Array.isArray(responseEnterprises.body) && responseEnterprises.body.length) {
+        this.enterprises = responseEnterprises.body;
+      }
+    } finally {
+      this.loading = false;
+    }
+
   }
 }

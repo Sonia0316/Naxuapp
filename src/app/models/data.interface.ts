@@ -29,4 +29,7 @@ export class DataModel {
   tasaInteresNomina: number;
   telefonomovil: string;
   telefonoparticular: string;
+  // tslint:disable-next-line: variable-name
+  id_tiponomina: string;
+  periodicidad: string;
 }

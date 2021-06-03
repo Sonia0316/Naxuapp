@@ -1,99 +1,56 @@
 <div class="img_derecha02">
-  <img
-    src="assets/img/logo-login-naxu.svg"
-    alt="logo naxu"
-    class="logoLoginDesk"
-  />
-  <img
-    src="assets/img/logo_naxu.svg"
-    alt="logo naxu movil"
-    class="logoLoginMovil"
-  />
+  <img src="assets/img/logo-login-naxu.svg" alt="logo naxu" class="logoLoginDesk" />
+  <img src="assets/img/logo_naxu.svg" alt="logo naxu movil" class="logoLoginMovil" />
 </div>
 <div class="main row align-items-center justify-content-center vh-100">
   <div class="col-12 col-md-10 col-lg-10 col-xl-8">
     <div class="logoLoginCompany" style="min-height: 150px; display: flex">
-      <img
-        src="assets/img/logo-main.jpg"
-        alt="Logo de company"
-        style="max-width: 150px"
-      />
+      <img src="assets/img/logo-main.jpg" alt="Logo de company" style="max-width: 150px" />
     </div>
-    <div class="login-form">
-      <form
-        class="form-login"
-        [formGroup]="userForm"
-        (submit)="CheckRegister()"
-      >
+    <div class="login-form" *ngIf="enterprises.length">
+      <form class="form-login" [formGroup]="userForm" (submit)="CheckRegister()">
         <div class="form-group">
           <label>RFC</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="rfc"
-            id="rfc"
-          />
-          <app-control-messages
-            [control]="userForm.get('rfc')"
-          ></app-control-messages>
+          <input type="text" class="form-control" formControlName="rfc" id="rfc" />
+          <app-control-messages [control]="userForm.get('rfc')"></app-control-messages>
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <select class="form-control" formControlName="enterprise">
+            <option [value]="''" disabled>Seleccione su empresa</option>
+            <ng-container *ngFor="let enterpriseSelect of enterprises">
+              <option [value]="enterpriseSelect['c11_id']" *ngIf="enterpriseSelect['c11_status'] === 'Activo'">
+                {{enterpriseSelect["c11_nombre"] }}
+              </option>
+            </ng-container>
+          </select>
+          <app-control-messages [control]="userForm.get('enterprise')"></app-control-messages>
         </div>
         <div class="form-group">
           <label>Número de empleado</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="employee"
-            id="employee"
-          />
-          <app-control-messages
-            [control]="userForm.get('employee')"
-          ></app-control-messages>
+          <input type="text" class="form-control" formControlName="employee" id="employee" />
+          <app-control-messages [control]="userForm.get('employee')"></app-control-messages>
         </div>
         <div class="form-group">
           <label>Correo</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="email"
-            id="email"
-          />
-          <app-control-messages
-            [control]="userForm.get('email')"
-          ></app-control-messages>
+          <input type="text" class="form-control" formControlName="email" id="email" />
+          <app-control-messages [control]="userForm.get('email')"></app-control-messages>
         </div>
         <div class="form-group">
           <label>Contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-            id="password"
-          />
-          <app-control-messages
-            [control]="userForm.get('password')"
-          ></app-control-messages>
+          <input type="password" class="form-control" formControlName="password" id="password" />
+          <app-control-messages [control]="userForm.get('password')"></app-control-messages>
         </div>
         <div class="form-group">
           <label>Confirmar contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="confirmPassword"
-            id="confirmPassword"
-          />
-          <app-control-messages
-            [control]="userForm.get('confirmPassword')"
-          ></app-control-messages>
+          <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword" />
+          <app-control-messages [control]="userForm.get('confirmPassword')"></app-control-messages>
         </div>
         <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-6">
-            <input
-              type="submit"
-              [disabled]="!userForm.valid"
-              class="btn btn-block btn-lg btn-primary btn-form-reg"
-              value="Registrar"
-            />
+            <input type="submit" [disabled]="!userForm.valid" class="btn btn-block btn-lg btn-primary btn-form-reg"
+              value="Registrar" />
             <br />
             <label class="control control-checkbox">
               Acepto términos y condiciones
