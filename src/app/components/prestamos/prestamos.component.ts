@@ -170,6 +170,7 @@ export class PrestamosComponent implements OnInit, AfterContentChecked {
       const resultCode = ((await this.httpClient
         .put(`${environment.mainUrl}/creditos`, {
           t11id: '',
+          t11_id_empresa: this.dataNaxu.empresa,
           t11_rfc: this.dataNaxu.RFCEmpleado,
           t11_cantidad: value,
           t11_numero_plazos: periods,
