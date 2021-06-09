@@ -29,7 +29,11 @@ export class NominaComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     const actualYear = new Date().getFullYear();
-    this.years = [...Array(5).keys()].map((year) => actualYear - year);
+    const years = [];
+    for (let index = 2020; index <= actualYear; index++) {
+      years.push(index);
+    }
+    this.years = [...years];
     this.dataNaxu = this.dataProvider.getDataNaxu();
     const nomina = this.dataNaxu.periodicidad.toUpperCase();
     this.type = this.typePeriod[nomina] || '';
