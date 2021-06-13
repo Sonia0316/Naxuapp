@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DataProvider } from 'src/app/providers/data.provider';
 import { DataModel } from 'src/app/models/data.interface';
 import { Router, Event, NavigationEnd } from '@angular/router';
@@ -13,7 +12,6 @@ import { Subscription } from 'rxjs';
 export class TopbarComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
-    private readonly httpClient: HttpClient,
     private readonly dataProvider: DataProvider
   ) {}
 
@@ -27,10 +25,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
         this.mainText = this.getTitle(event.url);
       }
     });
-
     this.dataNaxu = this.dataProvider.getDataNaxu();
-    // this.logos = this.dataProvider.logos;
-    this.logos = true;
+    this.logos = this.dataProvider.logos;
   }
   public shouldShow() {
     switch (this.router.url) {

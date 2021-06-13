@@ -1,67 +1,36 @@
-<ng-container *ngIf="shouldShow() && logos">
-  <div
-    class="barraMovil"
-    style="
+<ng-container *ngIf="shouldShow()">
+  <div class="barraMovil" style="
       justify-content: space-between;
       top: 0;
       position: fixed;
       width: 100%;
       z-index: 10;
       height: 80px;
-    "
-  >
-    <button
-      id="sidebarCollapse"
-      type="button"
-      class="sidebarCollapse"
-      (click)="sideBarEvent()"
-    >
+    ">
+    <button id="sidebarCollapse" type="button" class="sidebarCollapse" (click)="sideBarEvent()">
       <img src="assets/img/menu/btn_menu.svg" alt="menu btn" />
     </button>
     <img
-      [src]="'assets/img/logo_naxu_movil.svg'"
-      alt="Logo naxus"
-      class="naxus_logo_movil"
-    />
-    <!-- <img
-      [src]="logos.c09_imagen_alterna"
-      alt="Logo naxus"
-      class="naxus_logo_movil"
-    /> -->
+      [src]="logos && logos.c09_imagen_alterna && logos.c09_imagen_alterna !== 'Error: El archivo  no es permitido' ? logos.c09_imagen_alterna : 'assets/img/logo_naxu_movil.svg'"
+      alt="Logo naxus" class="naxus_logo_movil" />
   </div>
   <div class="container-fluid" (click)="sideBarClose()">
-    <div
-      class="barraDesktop"
-      style="max-height: 80px; display: flex; justify-content: space-between"
-    >
+    <div class="barraDesktop" style="max-height: 80px; display: flex; justify-content: space-between">
       <div>
         <h1 class="Bienv" *ngIf="mainText">{{ mainText }}</h1>
         <p class="Usua">
           {{ dataNaxu?.nombreEmpleado }} {{ dataNaxu?.segundoNombreEmpleado }}
         </p>
       </div>
-      <div
-        style="
+      <div style="
           display: flex;
           flex-direction: column;
           justify-content: center;
           margin-right: 5px;
-        "
-      >
+        ">
         <img
-          [src]="'assets/img/logo_naxu.svg'"
-          alt="Logo de company"
-          class="LogoComName"
-          width="100px"
-          style="margin-top: 0%"
-        />
-        <!--  <img
-          [src]="logos.c09_imagen"
-          alt="Logo de company"
-          class="LogoComName"
-          width="100px"
-          style="margin-top: 0%;"
-        /> -->
+          [src]="logos && logos.c09_imagen && logos.c09_imagen !== 'Error: El archivo  no es permitido' ? logos.c09_imagen : 'assets/img/logo_naxu.svg'"
+          alt="Logo de company" class="LogoComName" width="100px" style="margin-top: 0%;" />
       </div>
     </div>
     <div class="row barraDesktop02" style="margin-top: 10px">

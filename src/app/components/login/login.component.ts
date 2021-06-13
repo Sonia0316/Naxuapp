@@ -44,23 +44,17 @@ export class LoginComponent {
         async (res) => {
           const loginData = res.body;
           if (Number(loginData.codigo) === 200) {
-            const empresas = (await this.http
-              .get(`${environment.mainUrl}/empresa`)
-              .toPromise()) as any;
-
-            console.log('====================================');
-            console.log(empresas);
-            console.log('====================================');
-            /* const logos = ((await this.http
-              .get(`${environment.mainUrl}/logos/empresa/${loginData.empresa}`)
-              .toPromise()) as any).body.find(
-              (element) => element.c09_status === 'Activo'
-            );
-           
-            */
-
+            let logos;
+            try {
+              logos = ((await this.http
+                .get(`${environment.mainUrl}/logos/empresa/${loginData.empresa}`)
+                .toPromise()) as any).body.find(
+                  (element) => element.c09_status === 'Activo'
+                );
+            } finally {
+              this.dataProvider.logos = logos;
+            }
             await this.dataProvider.setDataNaxu(loginData);
-
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             this.router.navigate(['./home']).then(() => {
