@@ -29,7 +29,7 @@ export class DataProvider {
 
   public async load() {
     this.dataNaxu = JSON.parse(await asyncLocalStorage.getItem('naxu'));
-    if (this.dataNaxu.empresa && !this.logos) {
+    if (this.dataNaxu && this.dataNaxu.empresa && !this.logos) {
       let logos;
       try {
         logos = ((await this.http
