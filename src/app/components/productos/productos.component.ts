@@ -20,7 +20,7 @@ export class ProductosComponent implements OnInit {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly dataProvider: DataProvider
-  ) {}
+  ) { }
   public async ngOnInit(): Promise<void> {
     this.loading = true;
     this.dataNaxu = this.dataProvider.getDataNaxu();
@@ -35,7 +35,9 @@ export class ProductosComponent implements OnInit {
         .get(
           `${environment.mainUrl}/productos/empresa/${this.dataNaxu.empresa}`
         )
-        .toPromise()) as any).response.lista;
+        .toPromise()) as any).response.lista.filter(
+          (element) => Number(element.c02_stock)
+        );
       if (this.productos.length) {
         this.status = 'complete';
       } else {

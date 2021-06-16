@@ -56,6 +56,7 @@ export class RegistroComponent implements OnInit {
             this.router.navigate(['/']);
           } else {
             console.error(res.body.descripcion);
+            document.getElementById('showModalErrorSolicitud').click();
           }
         },
         (err: HttpErrorResponse) => {
@@ -68,6 +69,7 @@ export class RegistroComponent implements OnInit {
             console.log('Response body:', err.message);
             alert('Response body:' + JSON.stringify(err.message));
           }
+          document.getElementById('showModalErrorSolicitud').click();
         },
         () => {
           this.loading = false;
